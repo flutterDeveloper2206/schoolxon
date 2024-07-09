@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+// sizeCalculate(context);
 
-double widths = window.physicalSize.width / window.devicePixelRatio;
-double heights = window.physicalSize.height / window.devicePixelRatio;
+double widths = 0.0;
+double heights = 0.0;
+sizeCalculate(BuildContext context) {
+  widths =
+      View.of(context).physicalSize.width / View.of(context).devicePixelRatio;
+  heights =
+      View.of(context).physicalSize.width / View.of(context).devicePixelRatio;
+}
 
 double getWidth(double px) {
   return px * (widths / 360);
@@ -13,5 +20,5 @@ double getFontSize(double px) {
 }
 
 double getHeight(double px) {
-  return px * (heights / 759);
+  return px * (heights / 370);
 }
