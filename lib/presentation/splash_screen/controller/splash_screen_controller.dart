@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_routes.dart';
+
 
 class SplashScreenController extends GetxController {
   @override
@@ -11,9 +13,8 @@ class SplashScreenController extends GetxController {
   }
 
   Future changeRoute() async {
-
       Future.delayed(const Duration(milliseconds: 3000), () {
-        // Get.offAllNamed(AppRoutes.welcomeScreenRoute);
+         Get.offAllNamed(AppRoutes.onBoardingScreenRout);
       });
     }
   }

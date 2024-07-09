@@ -69,7 +69,7 @@ class AppElevatedButton extends StatelessWidget {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  showTextIcon ?? false
+                 /* showTextIcon ?? false
                       ? Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: SvgPicture.asset(
@@ -77,7 +77,7 @@ class AppElevatedButton extends StatelessWidget {
                             height: 23,
                           ),
                         )
-                      : const SizedBox(),
+                      : const SizedBox(),*/
                   Text(
                     buttonName.toString(),
                     style: PMT.style(
