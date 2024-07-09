@@ -2,10 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/routes/app_routes.dart';
+import 'package:schoolxon/widgets/error_screen.dart';
 
+import 'core/app_export.dart';
 import 'core/utils/initial_bindings.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  ErrorWidget.builder =
+      (FlutterErrorDetails details) => AppFlutterErrorScreen(details: details);
   runApp(const MyApp());
 }
 

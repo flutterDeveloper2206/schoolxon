@@ -6,7 +6,7 @@ import 'color_constant.dart';
 
 abstract class PMT {
   /// Default font family
-  static const String defaultFontOfApp = 'Manrope-Regular';
+  static const String defaultFontOfApp = 'Manrope';
   static const String _defaultFontFamily = defaultFontOfApp;
   static const FontWeight _defaultFontWeight = FontWeight.w400;
 
