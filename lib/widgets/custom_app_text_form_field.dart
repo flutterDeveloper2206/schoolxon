@@ -132,6 +132,13 @@ class CustomAppTextFormField extends StatelessWidget {
           ),
         );
 
+      case TextFormFieldShape.RoundedBorder6:
+        return BorderRadius.circular(
+          getWidth(
+            6.00,
+          ),
+        );
+
       default:
         return BorderRadius.circular(
           getWidth(
@@ -206,6 +213,7 @@ class CustomAppTextFormField extends StatelessWidget {
 enum TextFormFieldShape {
   RoundedBorder12,
   RoundedBorder18,
+  RoundedBorder6,
 }
 
 enum TextFormFieldPadding {

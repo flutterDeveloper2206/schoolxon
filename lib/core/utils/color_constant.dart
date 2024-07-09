@@ -62,6 +62,11 @@ class ColorConstant {
   static const Color ratingStartOutlineColor = Color(0x1AFFFFFF);
   static const Color bottomSheetDragColor = Color(0x6679747E);
   static const Color dropDownIconColor   = Color(0xFF6A7286);
+  static const Color black   = Color(0xFF000000);
+  static const Color GreyDarkTextColor   = Color(0xFF3D3D3D);
+  static const Color GreyTextColor   = Color(0xFF717171);
+  static const Color blueTextColor   = Color(0xFF56A8F9);
+  static const Color darkredColor   = Color(0xFFD82F36);
 
   // static Color black900Af = fromHex('#af000000');
 

@@ -54,7 +54,7 @@ class AppElevatedButton extends StatelessWidget {
               offset: const Offset(4, 12),
               color: buttonShadowColor ?? ColorConstant.btnShadowColor),
         ],
-        borderRadius: const BorderRadius.all(Radius.circular(50)),
+        borderRadius: BorderRadius.all(Radius.circular(radius ?? 50)),
       ),
       child: ElevatedButton(
         onPressed: onPressed,
@@ -62,8 +62,8 @@ class AppElevatedButton extends StatelessWidget {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           backgroundColor: buttonColor ?? ColorConstant.primaryRed,
           shadowColor: Colors.transparent,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(50))),
+          shape:  RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 50))),
         ),
         child: !isLoading!
             ? Row(
