@@ -9,6 +9,7 @@ abstract class PMT {
   static const String defaultFontOfApp = 'Manrope';
   static const String _defaultFontFamily = defaultFontOfApp;
   static const FontWeight _defaultFontWeight = FontWeight.w400;
+  static const Color _defaultFontColor = ColorConstant.primaryBlack;
 
   static TextStyle style(int size,
       {Color? fontColor, String? fontFamily, FontWeight? fontWeight}) {
@@ -206,5 +207,14 @@ case 16:
             fontWeight: fontWeight ?? _defaultFontWeight,
             color: fontColor ?? defaultFontColor);
     }
+  }
+
+  static TextStyle appStyle(double size,
+      {Color? fontColor, String? fontFamily, FontWeight? fontWeight}){
+   return TextStyle(
+        fontFamily: fontFamily ?? _defaultFontFamily,
+        fontWeight: fontWeight??_defaultFontWeight,
+        fontSize: getFontSize(size),
+        color: fontColor ?? _defaultFontColor);
   }
 }
