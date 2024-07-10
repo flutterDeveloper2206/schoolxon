@@ -54,7 +54,7 @@ class AppElevatedButton extends StatelessWidget {
               offset: const Offset(4, 12),
               color: buttonShadowColor ?? ColorConstant.btnShadowColor),
         ],
-        borderRadius: const BorderRadius.all(Radius.circular(50)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: ElevatedButton(
         onPressed: onPressed,
