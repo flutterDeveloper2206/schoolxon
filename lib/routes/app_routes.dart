@@ -8,6 +8,8 @@ import 'package:schoolxon/presentation/leave_dashboard_screen/binding/leave_dash
 import 'package:schoolxon/presentation/leave_dashboard_screen/leave_dashboard_screen.dart';
 import 'package:schoolxon/presentation/login_screen/binding/login_screen_binding.dart';
 import 'package:schoolxon/presentation/login_screen/login_screen.dart';
+import 'package:schoolxon/presentation/attendance/attendance_screen.dart';
+import 'package:schoolxon/presentation/attendance/binding/attendance_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/onBoarding_screen.dart';
 
@@ -24,6 +26,8 @@ class AppRoutes {
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String loginScreenRout = '/loginScreenRout';
   static const String languageSelectScreenRout = '/languageSelectScreenRout';
+
+  static const String attendanceScreenRout = '/attendanceScreenRout';
 
   static const String initialRoute = '/initialRoute';
 
@@ -51,7 +55,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: onBoardingScreenRout,
-        page: () => const SplashScreen(),
+        page: () =>   OnBoardingScreen(),
         bindings: [
           OnBoardingScreenBinding(),
         ],
@@ -77,5 +81,14 @@ class AppRoutes {
           LeaveDashBoardScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150))
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: attendanceScreenRout,
+        page: () =>  const AttendanceScreen(),
+        bindings: [
+          AttendanceScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
   ];
+
 }

@@ -32,6 +32,8 @@ class ColorConstant {
   static const Color btnShadowColor = Color(0x47F14A4A);
   static const Color btnDarkShadowColor = Color(0x38282727);
   static const Color blueColor = Color(0xFF035CC2);
+  static const Color blueFC = Color(0xFFA2CFFC);
+  static const Color blueF9 = Color(0xFF56A8F9);
   static const Color blueColorFF = Color(0xFF3C44FF);
   static const Color orange3C = Color(0xFFFF6B3C);
   static const Color orange6C = Color(0xFFFE6C6C);

@@ -19,7 +19,7 @@ class OnBoardingContent extends StatelessWidget {
           children: [
             Image.asset(
               image!,
-              width: MediaQuery.of(context).size.width/1.3,
+              width: MediaQuery.of(context).size.width/1.4,
             ),
           ],
         ),

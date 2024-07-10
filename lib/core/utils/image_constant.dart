@@ -8,6 +8,10 @@ class ImageConstant {
   static String icPassword = 'assets/icons/svg/ic_password.svg';
   static String icProfile = 'assets/icons/svg/ic_profile.svg';
   static String icRight = 'assets/icons/svg/ic_right.svg';
+  static String imgOnboarding1 = 'assets/images/png/Onboarding1.png';
+  static String imgOnboarding2 = 'assets/images/png/Onboarding2.png';
+  static String imgOnboarding3 = 'assets/images/png/Onboarding3.png';
+  static String imgOnboarding4 = 'assets/images/png/Onboarding4.png';
 
   static String imgAlphaLogo = 'assets/icons/svg/alpha_letter.svg';
 
