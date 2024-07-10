@@ -317,5 +317,10 @@ class AppString {
   static var SAVEGENDERDIS = 'save_gender';
   static var SAVEPETDIS = 'save_pet';
 
+  static var Attendance = 'Attendance';
+  static var Timesheet = 'Time Sheet';
+  static var Overallstatics = 'Overall Statics';
+  static var PunchIn = 'Punch  In At';
+
 
 }
