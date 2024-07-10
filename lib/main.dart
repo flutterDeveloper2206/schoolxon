@@ -1,4 +1,3 @@
-
 import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/error_screen.dart';
 
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return   GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         visualDensity: VisualDensity.standard,
@@ -35,5 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
