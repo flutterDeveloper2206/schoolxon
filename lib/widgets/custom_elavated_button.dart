@@ -63,7 +63,7 @@ class AppElevatedButton extends StatelessWidget {
           backgroundColor: buttonColor ?? ColorConstant.primaryRed,
           shadowColor: Colors.transparent,
           shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(50))),
+              borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
         child: !isLoading!
             ? Row(

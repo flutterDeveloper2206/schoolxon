@@ -22,7 +22,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: onBoardingScreenRout,
-        page: () =>  const SplashScreen(),
+        page: () =>   OnBoardingScreen(),
         bindings: [
           OnBoardingScreenBinding(),
         ],
