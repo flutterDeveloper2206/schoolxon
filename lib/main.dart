@@ -1,6 +1,4 @@
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/error_screen.dart';
 
@@ -8,6 +6,7 @@ import 'core/app_export.dart';
 import 'core/utils/initial_bindings.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   ErrorWidget.builder =
       (FlutterErrorDetails details) => AppFlutterErrorScreen(details: details);
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       title: 'SCHOOL XON',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.splashScreenRoute,
+      initialRoute: AppRoutes.accountScreenRoute,
       getPages: AppRoutes.pages,
       // ),
     );

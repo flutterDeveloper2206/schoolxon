@@ -1,4 +1,28 @@
 class AppString {
+  static const String account = "Account";
+  static const String myProfile = "My Profile";
+  static const String password = "Password";
+  static const String tHistory = "Transaction History";
+  static const String support = "Support";
+  static const String legal = "Legal";
+  static const String termsAndService = "Terms of Service";
+  static const String privacyPolicy = "Privacy Policy";
+  static const String logOut = "Log Out";
+  static const String contactSupport = "Contact Support";
+  static const String needHelp = "Need Help?";
+  static const String contactForm = "Contact Form";
+  static const String message = "Message";
+  static const String name = "Name";
+  static const String enterName = "Enter Name";
+  static const String email = "Email";
+  static const String enterEmail = "Enter Email";
+  static const String subject = "Subject";
+  static const String enterSubject = "Enter Subject";
+  static const String sendMessage = "Send Message";
+  static const String helpYou = "How can we help you?";
+  static const String needHelpText =
+      "No problem. tell us how we can help and\n we’ll get back to you in a few days";
+
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
   static const String urbanistFontFamily = 'Urbanist-Regular';
@@ -40,7 +64,6 @@ class AppString {
   static const String pushNotification = "Push notification";
   static const String showMeOnPetMeet = "Show me on Petmeet";
   static const String deleteMyAccount = "Delete my account";
-  static const String logOut = "Log out";
   static const String otpNotVerified = "OTP not verified";
   static const String areYouSureYouWantToDelete =
       "Are you sure you want to delete account?";
@@ -52,7 +75,6 @@ class AppString {
   static const String selectHere = "Select here";
   static const String enterHere = "enter here";
   static const String phoneNumber = "Phone number";
-  static const String email = "Email";
   static const String aboutMe = "About me";
   static const String age = "Age";
   static const String ageOfPet = "Age of pet";
@@ -246,7 +268,8 @@ class AppString {
   static var likeProfile = 'Liked your profile';
   static var reportUser = 'Report user successfully';
   static var newMatches = 'New matches';
-  static var selectDogCatImage = 'Please ensure the image contains only the cats & dogs';
+  static var selectDogCatImage =
+      'Please ensure the image contains only the cats & dogs';
   // static var selectDogCatImage = 'Please ensure the image contains only the cats & dogs without any human faces';
   static var noChatFound = 'No chat found';
   static var noMatchesAvailable = 'No matches available';
@@ -261,11 +284,9 @@ class AppString {
   static var locationPermissionTest =
       'Application needs location permission to get your location from your device to get it in the app';
 
-
   static var cameraPermissionTest =
       'Application needs camera permission to get your photos from your device to get it in the app';
   static var openToAll = 'Open to all';
-
 
   static var AUTH_TOKEN = 'auth_token';
   static var API_STATUS = 'api_status';

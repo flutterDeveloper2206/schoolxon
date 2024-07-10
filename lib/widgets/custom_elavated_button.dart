@@ -4,7 +4,6 @@ import '../core/utils/color_constant.dart';
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
 
-
 class AppElevatedButton extends StatelessWidget {
   final String buttonName;
   final void Function()? onPressed;
@@ -13,6 +12,7 @@ class AppElevatedButton extends StatelessWidget {
   final Color? buttonShadowColor;
   final FontWeight? fontWeight;
   final double? radius;
+  final bool isDisable;
   final bool? isLoading;
   final double? fontSize;
   final bool? showTextIcon;
@@ -33,6 +33,7 @@ class AppElevatedButton extends StatelessWidget {
       this.radius,
       this.showTextIcon,
       this.hasGradient = true,
+      this.isDisable = false,
       this.isLoading = false,
       this.buttonShadowColor})
       : super(key: key);
@@ -47,29 +48,33 @@ class AppElevatedButton extends StatelessWidget {
             ? null
             : Border.all(
                 color: ColorConstant.primaryLightRed, width: getHeight(1)),
-        color: buttonColor ?? ColorConstant.primaryRed,
-        boxShadow: [
-          BoxShadow(
-              blurRadius: 10.0,
-              offset: const Offset(4, 12),
-              color: buttonShadowColor ?? ColorConstant.btnShadowColor),
-        ],
-        borderRadius: const BorderRadius.all(Radius.circular(50)),
+        color: isDisable
+            ? ColorConstant.dividerGreyE1
+            : buttonColor ?? ColorConstant.primaryBlue,
+        // boxShadow: [
+        //   BoxShadow(
+        //       blurRadius: 10.0,
+        //       offset: const Offset(4, 12),
+        //       color: buttonShadowColor ?? ColorConstant.btnShadowColor),
+        // ],
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isDisable ? () {} : onPressed,
         style: ElevatedButton.styleFrom(
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          backgroundColor: buttonColor ?? ColorConstant.primaryRed,
+          backgroundColor: isDisable
+              ? ColorConstant.dividerGreyE1
+              : buttonColor ?? ColorConstant.primaryBlue,
           shadowColor: Colors.transparent,
           shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(50))),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
         ),
         child: !isLoading!
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 /* showTextIcon ?? false
+                  /* showTextIcon ?? false
                       ? Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: SvgPicture.asset(
@@ -82,7 +87,9 @@ class AppElevatedButton extends StatelessWidget {
                     buttonName.toString(),
                     style: PMT.style(
                       fontSize?.toInt() ?? 16,
-                      fontColor: textColor ?? ColorConstant.primaryWhite,
+                      fontColor: isDisable
+                          ? ColorConstant.textGray6D
+                          : textColor ?? ColorConstant.primaryWhite,
                       fontWeight: fontWeight ?? FontWeight.w700,
                     ),
                   ),

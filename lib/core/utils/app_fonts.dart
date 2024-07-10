@@ -213,7 +213,7 @@ case 16:
       {Color? fontColor, String? fontFamily, FontWeight? fontWeight}){
    return TextStyle(
         fontFamily: fontFamily ?? _defaultFontFamily,
-        fontWeight: fontWeight??_defaultFontWeight,
+        fontWeight: fontWeight??FontWeight.w500,
         fontSize: getFontSize(size),
         color: fontColor ?? _defaultFontColor);
   }

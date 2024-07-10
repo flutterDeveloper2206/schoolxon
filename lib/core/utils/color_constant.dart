@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ColorConstant {
-
   static const Color primaryWhite = Color(0xFFffffff);
   static const Color primaryRed = Color(0xFFF14A4A);
+  static const Color primaryBlue = Color(0xFF56A8F9);
   static const Color primaryBlack = Color(0xFF000000);
+  static const Color blackOF = Color(0xFF0F0F0F);
+  static const Color textGray78 = Color(0xFF787878);
+  static const Color textGray6D = Color(0xFF6D6D6D);
+  static const Color dividerGreyE1 = Color(0xFFE1E1E1);
+
+  static Color appBarShadow = const Color(0xFF8BA1B7).withOpacity(0.80);
+
   static const Color greyD3 = Color(0xFFD3D3D3);
   static const Color grey3 = Color(0xFFB3B3B3);
   static const Color black72 = Color(0xFF777272);
@@ -35,7 +42,7 @@ class ColorConstant {
   static const Color greyColor42 = Color(0xFF424242);
   static const Color greyColorFA = Color(0xFFFAFAFA);
   static const Color redColorE9 = Color(0xFFFFE9E9);
-  static const Color greyColorE9= Color(0xFF9E9E9E);
+  static const Color greyColorE9 = Color(0xFF9E9E9E);
   static const Color greyColorB3 = Color(0xFFB3B3B3);
   static const Color greyColorBE = Color(0xFFBEBEBE);
   static const Color greyColord3 = Color(0xFFD3D3D3);
@@ -55,13 +62,13 @@ class ColorConstant {
   static const Color bgGrey = Color(0xFFF0F5FA);
   static const Color icGrayColor = Color(0xFF8D919F);
   static const Color transparent = Colors.transparent;
-  static const Color greyBack = Color(0xFFF8FAFC  );
+  static const Color greyBack = Color(0xFFF8FAFC);
   static const Color lightOrange = Color(0xFFFFEDDD);
   static const Color lightOrangeOutline = Color(0xFFFFDEC6);
   static const Color shadowColor = Color(0xFF62697B);
   static const Color ratingStartOutlineColor = Color(0x1AFFFFFF);
   static const Color bottomSheetDragColor = Color(0x6679747E);
-  static const Color dropDownIconColor   = Color(0xFF6A7286);
+  static const Color dropDownIconColor = Color(0xFF6A7286);
 
   // static Color black900Af = fromHex('#af000000');
 
