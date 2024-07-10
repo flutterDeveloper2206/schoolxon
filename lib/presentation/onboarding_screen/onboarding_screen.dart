@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
+import 'package:schoolxon/widgets/custom_image_view.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
 import '../../widgets/custom_elavated_button.dart';
@@ -41,36 +41,30 @@ class OnBoardingScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: ColorConstant.primaryWhite,
-          body: Column(
+        backgroundColor: ColorConstant.primaryWhite,
+        body: SafeArea(
+          child: Column(
             children: [
-              SizedBox(
-                height: getHeight(40),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: (16), top: (20)),
-                    child: InkWell(
-                      onTap: () {
-                        onBoardingController.onTapOfGetStartedButton();
-                      },
-                      child: Text(
-                        "skip",
-                        style: PMT.style(0).copyWith(
-                            color: ColorConstant.blueFC,
-                            fontWeight: FontWeight.w500,
-                            fontSize: getFontSize(18)),
-                      ),
+              Padding(
+                padding: EdgeInsets.only(right: 16, top: 20),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: InkWell(
+                    onTap: () {
+                      onBoardingController.onTapOfGetStartedButton();
+                    },
+                    child: Text(
+                      "skip",
+                      style: PMT.style(0).copyWith(
+                          color: ColorConstant.blueF9,
+                          fontWeight: FontWeight.w500,
+                          fontSize: getFontSize(14)),
                     ),
                   ),
-                ],
+                ),
               ),
-              SizedBox(
-                height: getHeight(20),
-              ),
-              Expanded(
+              Flexible(
+                flex: 2,
                 child: Stack(
                   children: [
                     PageView.builder(
@@ -86,144 +80,124 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                        top: 60,
-                        child: Image.asset(ImageConstant.imgOnboarding4)),
+                        top: 220,
+                        child: CustomImageView(imagePath: ImageConstant.imgOnboarding4,)),
                     Positioned(
-                      bottom: 20,
+                      bottom: 30,
                       left: 10,
                       right: 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           onBoardingData.length,
-                          (index) => buildDot(index: index),
+                              (index) => buildDot(index: index),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: MediaQuery.of(context).size.height / 2.5,
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: (20), right: (20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: getHeight(80),
-                            ),
-                            Obx(
-                              () => Text(
-                                onBoardingController.currentPage.value == 1
-                                    ? "walkthrough 1"
-                                    : onBoardingController.currentPage.value ==
-                                            2
-                                        ? "walkthrough 2"
-                                        : "walkthrough 3",
-                                style: PMT.style(0).copyWith(
-                                    color: ColorConstant.black72,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getFontSize(18)),
-                              ),
-                            ),
-                            SizedBox(
-                              height: getHeight(40),
-                            ),
-                            Obx(
-                              () => Text(
-                                onBoardingController.currentPage.value == 1
-                                    ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
-                                    : onBoardingController.currentPage.value ==
-                                            2
-                                        ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
-                                        : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
-                                textAlign: TextAlign.center,
-                                style: PMT.style(0).copyWith(
-                                    color: ColorConstant.black72,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: getFontSize(16)),
-                              ),
-                            ),
-                            Spacer(),
-                            Obx(
-                              () => AppElevatedButton(
-                                buttonShadowColor: Colors.transparent,
-                                buttonName:
-                                    onBoardingController.currentPage.value == 2
-                                        ? "Get Started"
-                                        : "Next",
-                                textColor: Colors.white,
-                                buttonColor: ColorConstant.blueF9,
-                                onPressed: () {
-                                  if (onBoardingController.currentPage.value ==
-                                      0) {
-                                    onBoardingController.currentPage.value = 1;
-                                    onBoardingController.pageController
-                                        .nextPage(
-                                            duration:
-                                                Duration(milliseconds: 250),
-                                            curve: Curves.easeIn);
-                                  } else if (onBoardingController
-                                          .currentPage.value ==
-                                      1) {
-                                    onBoardingController.currentPage.value = 2;
-                                    onBoardingController.pageController
-                                        .nextPage(
-                                            duration:
-                                                Duration(milliseconds: 250),
-                                            curve: Curves.easeIn);
-                                  } else if (onBoardingController
-                                          .currentPage.value ==
-                                      2) {
-                                    onBoardingController
-                                        .onTapOfGetStartedButton();
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
+              SizedBox(height: getHeight(20),),
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Obx(
+                            () => Text(
+                          onBoardingController.currentPage.value == 1
+                              ? "walkthrough 2"
+                              : onBoardingController.currentPage.value == 2
+                              ? "walkthrough 3"
+                              : "walkthrough 1",
+                          style: PMT.style(0).copyWith(
+                              color: ColorConstant.primaryBlack,
+                              fontWeight: FontWeight.w700,
+                              fontSize: getFontSize(18)),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: getHeight(10)),
+                      Obx(
+                            () => Text(
+                          onBoardingController.currentPage.value == 1
+                              ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
+                              : onBoardingController.currentPage.value == 2
+                              ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
+                              : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
+                          textAlign: TextAlign.center,
+                          style: PMT.style(0).copyWith(
+                              color: ColorConstant.black72,
+                              fontWeight: FontWeight.w400,
+                              fontSize: getFontSize(15)),
+                        ),
+                      ),
+                      SizedBox(height: getHeight(50)),
+                      Obx(
+                            () => AppElevatedButton(
+                          buttonShadowColor: Colors.transparent,
+                          buttonName: onBoardingController.currentPage.value == 2
+                              ? "Get Started"
+                              : "Next",
+                          textColor: Colors.white,
+                          buttonColor: ColorConstant.blueF9,
+                          onPressed: () {
+                            if (onBoardingController.currentPage.value == 0) {
+                              onBoardingController.currentPage.value = 1;
+                              onBoardingController.pageController.nextPage(
+                                  duration: Duration(milliseconds: 250),
+                                  curve: Curves.easeIn);
+                            } else if (onBoardingController.currentPage.value ==
+                                1) {
+                              onBoardingController.currentPage.value = 2;
+                              onBoardingController.pageController.nextPage(
+                                  duration: Duration(milliseconds: 250),
+                                  curve: Curves.easeIn);
+                            } else if (onBoardingController.currentPage.value ==
+                                2) {
+                              onBoardingController.onTapOfGetStartedButton();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 
   Obx buildDot({int? index}) {
     return Obx(
-      () => onBoardingController.currentPage.value == index
+          () => onBoardingController.currentPage.value == index
           ? Container(
-              margin: EdgeInsets.only(right: 5),
-              height: getHeight(8),
-              width: getWidth(40),
-              child: Padding(
-                padding: EdgeInsets.all(1.5),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorConstant.blueF9,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            )
-          : Container(
-              margin: EdgeInsets.only(right: 5),
-              height: getHeight(8),
-              width: getWidth(8),
-              decoration: BoxDecoration(
-                color: ColorConstant.blueFC,
-                borderRadius: BorderRadius.circular(10),
-              ),
+        margin: EdgeInsets.only(right: 5),
+        height: getHeight(6),
+        width: getWidth(25),
+        child: Padding(
+          padding: EdgeInsets.all(1.5),
+          child: Container(
+            decoration: BoxDecoration(
+              color: ColorConstant.blueF9,
+              borderRadius: BorderRadius.circular(10),
             ),
+          ),
+        ),
+      )
+          : Container(
+        margin: EdgeInsets.only(right: 5),
+        height: getHeight(5),
+        width: getWidth(5),
+        decoration: BoxDecoration(
+          color: ColorConstant.blueFC,
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
     );
   }
 }
