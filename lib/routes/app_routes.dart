@@ -55,7 +55,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: onBoardingScreenRout,
-        page: () =>   OnBoardingScreen(),
+        page: () => OnBoardingScreen(),
         bindings: [
           OnBoardingScreenBinding(),
         ],
@@ -80,15 +80,13 @@ class AppRoutes {
         bindings: [
           LeaveDashBoardScreenBinding(),
         ],
-        transitionDuration: const Duration(milliseconds: 150))
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: attendanceScreenRout,
-        page: () =>  const AttendanceScreen(),
+        page: () => const AttendanceScreen(),
         bindings: [
           AttendanceScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];
-
 }
