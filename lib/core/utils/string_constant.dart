@@ -146,6 +146,11 @@ class AppString {
   static const String camera = "Camera";
   static const String gallery = "Gallery";
   static const String yes = "Yes";
+  ///added by radha
+  static const String LOGINACC = 'Login Account';
+  static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
+  static const String FORGETPWD = 'Forget Password';
+
   static var storagePermission = 'Storage permission!!';
   static var cameraPermission = 'Camera permission!!';
   static var locationPermission = 'Location permission!!';
@@ -311,4 +316,6 @@ class AppString {
   static var SHOWMEONPETMEET = 'showMeOnPetMeet';
   static var SAVEGENDERDIS = 'save_gender';
   static var SAVEPETDIS = 'save_pet';
+
+
 }

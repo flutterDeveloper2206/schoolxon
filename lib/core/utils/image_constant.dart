@@ -9,9 +9,7 @@ class ImageConstant {
   static String icProfile = 'assets/icons/svg/ic_profile.svg';
   static String icRight = 'assets/icons/svg/ic_right.svg';
 
-
-
+  static String imgAlphaLogo = 'assets/icons/svg/alpha_letter.svg';
   ///Testing
   static String imgPerson = 'assets/images/png/person.jpg';
-
 }
