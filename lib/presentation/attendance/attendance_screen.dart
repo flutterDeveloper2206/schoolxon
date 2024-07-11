@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/presentation/attendance/controller/attendance_screen_controller.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:schoolxon/widgets/custom_elavated_button.dart';
+import 'package:schoolxon/widgets/custom_image_view.dart';
 
 import '../../core/app_export.dart';
 import '../../core/utils/size_utils.dart';
@@ -31,7 +33,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                   AppString.Timesheet,
                   style: PMT.style(0).copyWith(
                       color: ColorConstant.primaryBlack,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
                       fontSize: getFontSize(18)),
                 ),
               ],
@@ -48,14 +50,9 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: Icon(
-                        Icons.watch_later_outlined,
-                        weight: 1.1,
-                        color: ColorConstant.greenColor7D,
-                        size: 35,
-                      ),
+                      child: CustomImageView(svgPath: ImageConstant.icClock,height: getHeight(30),width: getWidth(30),)
                     ),
                     SizedBox(
                       width: getWidth(15),
@@ -74,7 +71,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                         Text('Wed, 11th Mar 2019 10.00 AM',
                             style: PMT.style(0).copyWith(
                                 color: ColorConstant.primaryWhite,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                                 fontSize: getFontSize(14))),
                       ],
                     ),
@@ -117,18 +114,17 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                       children: [
                         Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(10),
                               color: ColorConstant.whiteFB,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(12),
                               child: Column(
                                 children: [
-
                                   CustomImageView(
                                     svgPath: ImageConstant.icPin,
-                                    height: getHeight(30),
-                                    width: getWidth(30),
+                                    height: getHeight(20),
+                                    width: getWidth(20),
                                   ),
                                   SizedBox(
                                     height: getHeight(20),
@@ -153,14 +149,14 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                             )),
                         Container(
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 20,top: 10),
+                            padding: const EdgeInsets.only(left: 20,),
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('15 Sunday',
                                   style: PMT.style(0).copyWith(
                                       color: ColorConstant.primaryBlack,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: getFontSize(18)),
+                                      fontSize: getFontSize(14)),
                                 ),
                                 SizedBox(height: getHeight(15)),
                                 ///Absent
@@ -182,7 +178,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                         Text( AppString.Punchin,
                                           style: PMT.style(0).copyWith(
                                               color: ColorConstant.greyB3,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                               fontSize: getFontSize(14)),
                                         ),
                                         Row(
@@ -192,7 +188,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                             Text( '10.00 AM',
                                               style: PMT.style(0).copyWith(
                                                   color: ColorConstant.primaryBlack,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontWeight: FontWeight.w600,
                                                   fontSize: getFontSize(16)),
                                             ),
                                           ],
@@ -205,7 +201,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                         Text( AppString.Punchout,
                                           style: PMT.style(0).copyWith(
                                               color: ColorConstant.greyB3,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                               fontSize: getFontSize(14)),
                                         ),
                                         Row(
@@ -215,7 +211,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                             Text( '06.00 AM',
                                               style: PMT.style(0).copyWith(
                                                   color: ColorConstant.primaryBlack,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontWeight: FontWeight.w600,
                                                   fontSize: getFontSize(16)),
                                             ),
                                           ],
