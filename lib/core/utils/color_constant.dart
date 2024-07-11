@@ -8,9 +8,19 @@ class ColorConstant {
   static const Color blackOF = Color(0xFF0F0F0F);
   static const Color textGray78 = Color(0xFF787878);
   static const Color textGray6D = Color(0xFF6D6D6D);
+  static const Color greyF4 = Color(0xFFF4F4F4);
+  static const Color green2D = Color(0xFF2DBC4C);
+  static const Color green19 = Color(0xFF199477);
+  static const Color redFB = Color(0xFFFB3F4A);
+  static const Color blueSecondary = Color(0xFF002242);
   static const Color dividerGreyE1 = Color(0xFFE1E1E1);
+  static const Color grey81 = Color(0xFF818181);
+  static const Color grey71 = Color(0xFF717171);
+  static const Color greyB8 = Color(0xFFB8B8B8);
+  static const Color greyDD = Color(0xFFDDE4EA);
 
   static Color appBarShadow = const Color(0xFF8BA1B7).withOpacity(0.80);
+  static Color cardColor = const Color.fromRGBO(0, 34, 66, 0.03);
 
   static const Color greyD3 = Color(0xFFD3D3D3);
   static const Color grey3 = Color(0xFFB3B3B3);

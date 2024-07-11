@@ -12,6 +12,10 @@ class ImageConstant {
   static String imgOnboarding2 = 'assets/images/png/Onboarding2.png';
   static String imgOnboarding3 = 'assets/images/png/Onboarding3.png';
   static String imgOnboarding4 = 'assets/images/png/Onboarding4.png';
+  static String imgTestNoticeBoard =
+      'assets/images/svg/img_test_notice_board.png';
+  static String imageNoticeBoardEmpty =
+      'assets/images/png/img_empty_notice_board.png';
 
   static String imgAlphaLogo = 'assets/icons/svg/alpha_letter.svg';
 

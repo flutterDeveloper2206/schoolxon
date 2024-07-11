@@ -10,6 +10,8 @@ import 'package:schoolxon/presentation/login_screen/binding/login_screen_binding
 import 'package:schoolxon/presentation/login_screen/login_screen.dart';
 import 'package:schoolxon/presentation/attendance/attendance_screen.dart';
 import 'package:schoolxon/presentation/attendance/binding/attendance_screen_binding.dart';
+import 'package:schoolxon/presentation/notice_board_screen/binding/notice_board_screen_binding.dart';
+import 'package:schoolxon/presentation/notice_board_screen/notice_board_screen.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/onBoarding_screen.dart';
 
@@ -21,7 +23,8 @@ class AppRoutes {
   static const String splashScreenRoute = '/splash_screen';
   static const String accountScreenRoute = '/account_screen';
   static const String contactSupportScreenRoute = '/contact_support_screen';
-  static const String leaveDashboardScreenRout = '/contact_support_screen';
+  static const String leaveDashboardScreenRout = '/leave_dashboard_screen';
+  static const String noticeBoardScreenRout = '/notice_board_screen';
 
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String loginScreenRout = '/loginScreenRout';
@@ -86,6 +89,12 @@ class AppRoutes {
         page: () => const AttendanceScreen(),
         bindings: [
           AttendanceScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)), GetPage(
+        name: noticeBoardScreenRout,
+        page: () => const NoticeBoardScreen(),
+        bindings: [
+          NoticeBoardScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];

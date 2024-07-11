@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       title: 'SCHOOL XON',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.accountScreenRoute,
+      initialRoute: AppRoutes.noticeBoardScreenRout,
       getPages: AppRoutes.pages,
       // ),
     );

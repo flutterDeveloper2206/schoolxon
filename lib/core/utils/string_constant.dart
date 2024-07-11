@@ -9,6 +9,7 @@ class AppString {
   static const String privacyPolicy = "Privacy Policy";
   static const String logOut = "Log Out";
   static const String contactSupport = "Contact Support";
+  static const String leaveInfo = "Leave Info";
   static const String needHelp = "Need Help?";
   static const String contactForm = "Contact Form";
   static const String message = "Message";
@@ -19,6 +20,14 @@ class AppString {
   static const String subject = "Subject";
   static const String enterSubject = "Enter Subject";
   static const String sendMessage = "Send Message";
+  static const String leaves = "Leaves";
+  static const String applyLeaves = "Apply Leave";
+  static const String leaveDashboard = "Leave Dashboard";
+  static const String leaveHistory = "Leave History";
+  static const String viewDetails = "View Details";
+  static const String noticeBoard = "Notice Board";
+  static const String all = "All";
+  static const String thisMonth = "This Month";
   static const String helpYou = "How can we help you?";
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
@@ -146,6 +155,7 @@ class AppString {
   static const String camera = "Camera";
   static const String gallery = "Gallery";
   static const String yes = "Yes";
+
   ///added by radha
   static const String LOGINACC = 'Login Account';
   static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
@@ -316,6 +326,4 @@ class AppString {
   static var SHOWMEONPETMEET = 'showMeOnPetMeet';
   static var SAVEGENDERDIS = 'save_gender';
   static var SAVEPETDIS = 'save_pet';
-
-
 }
