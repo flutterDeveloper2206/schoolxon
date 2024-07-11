@@ -321,6 +321,8 @@ class AppString {
   static var Timesheet = 'Time Sheet';
   static var Overallstatics = 'Overall Statics';
   static var PunchIn = 'Punch  In At';
+  static var Punchin = 'Punch In';
+  static var Punchout = 'Punch Out';
 
 
 }

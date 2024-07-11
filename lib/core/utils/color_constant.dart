@@ -80,6 +80,7 @@ class ColorConstant {
   static const Color greenColor7D = Color(0xFF86EB7D);
   static const Color whiteFB = Color(0xFFF5F7FB);
   static const Color blueC5 = Color(0xFF00B7C5);
+  static const Color greyE4 = Color(0xFFDDE4EA);
 
   // static Color black900Af = fromHex('#af000000');
 
