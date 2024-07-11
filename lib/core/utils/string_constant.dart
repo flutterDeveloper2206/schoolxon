@@ -32,6 +32,17 @@ class AppString {
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
 
+
+  static var Attendance = 'Attendance';
+  static var Timesheet = 'Time Sheet';
+  static var Overallstatics = 'Overall Statics';
+  static var PunchIn = 'Punch  In At';
+  static var Punchin = 'Punch In';
+  static var Punchout = 'Punch Out';
+
+
+
+
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
   static const String urbanistFontFamily = 'Urbanist-Regular';
@@ -155,7 +166,6 @@ class AppString {
   static const String camera = "Camera";
   static const String gallery = "Gallery";
   static const String yes = "Yes";
-
   ///added by radha
   static const String LOGINACC = 'Login Account';
   static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';

@@ -6,8 +6,10 @@ class ImageConstant {
   static String icHelp = 'assets/icons/svg/ic_help.svg';
   static String icLogout = 'assets/icons/svg/ic_logout.svg';
   static String icPassword = 'assets/icons/svg/ic_password.svg';
+  static String icClock = 'assets/icons/svg/ic_clock.svg';
   static String icProfile = 'assets/icons/svg/ic_profile.svg';
   static String icRight = 'assets/icons/svg/ic_right.svg';
+  static String icPin = 'assets/icons/svg/ic_pin.svg';
   static String imgOnboarding1 = 'assets/images/png/Onboarding1.png';
   static String imgOnboarding2 = 'assets/images/png/Onboarding2.png';
   static String imgOnboarding3 = 'assets/images/png/Onboarding3.png';

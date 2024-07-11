@@ -45,6 +45,7 @@ class ColorConstant {
   static const Color blueFC = Color(0xFFA2CFFC);
   static const Color blueF9 = Color(0xFF56A8F9);
   static const Color blueColorFF = Color(0xFF3C44FF);
+  static const Color blueColor42 = Color(0xFF002242);
   static const Color orange3C = Color(0xFFFF6B3C);
   static const Color orange6C = Color(0xFFFE6C6C);
   static const Color orange38 = Color(0xFFFF3838);
@@ -86,6 +87,12 @@ class ColorConstant {
   static const Color GreyTextColor = Color(0xFF717171);
   static const Color blueTextColor = Color(0xFF56A8F9);
   static const Color darkredColor = Color(0xFFD82F36);
+  static const Color darkredColor4A = Color(0xFFFB3F4A);
+  static const Color greenColor7D = Color(0xFF86EB7D);
+  static const Color whiteFB = Color(0xFFF5F7FB);
+  static const Color blueC5 = Color(0xFF00B7C5);
+  static const Color greyE4 = Color(0xFFDDE4EA);
+  static const Color blue42 = Color(0xFF002242);
 
   // static Color black900Af = fromHex('#af000000');
 
