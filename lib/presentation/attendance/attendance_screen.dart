@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/presentation/attendance/controller/attendance_screen_controller.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
+import 'package:schoolxon/widgets/custom_elavated_button.dart';
 
 import '../../core/app_export.dart';
 import '../../core/utils/size_utils.dart';
@@ -95,13 +96,14 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
               ],
             ),
             SizedBox(height: getHeight(20)),
+
             HorizontalWeekCalendar(
               monthColor: Colors.black,
               inactiveBackgroundColor: Colors.white,
               inactiveTextColor: Colors.grey,
               activeBackgroundColor: ColorConstant.blueC5,
-              borderRadius: BorderRadius.circular(12),
-              initialDate: DateTime.now(),
+              borderRadius: BorderRadius.circular(15),
+              initialDate: DateTime.now(),monthFormat: 'MMMM yyyy',
               minDate: DateTime(2022, 1, 1),
               maxDate: DateTime.now().add(Duration(days: 365)),
               // Set the inactive border color to green
@@ -111,7 +113,6 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
               child: ListView.builder(itemCount:4,itemBuilder: (context, index) {
                 return  Column(
                   children: [
-
                     Row(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
@@ -162,6 +163,18 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                       fontSize: getFontSize(18)),
                                 ),
                                 SizedBox(height: getHeight(15)),
+                                ///Absent
+                               /* Column(
+                                  children: [
+                                    Text('* Vignesh Is Absent Today',
+                                      style: PMT.style(0).copyWith(
+                                          color: ColorConstant.darkredColor4A,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(14)),
+                                    ),
+                                  ],
+                                ),*/
+                                ///Not Absent
                                 Row(
                                   children: [
                                     Column(
