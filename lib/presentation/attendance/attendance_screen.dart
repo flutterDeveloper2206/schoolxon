@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
+import 'package:schoolxon/packages/horizontal_week_calendar.dart';
 import 'package:schoolxon/presentation/attendance/controller/attendance_screen_controller.dart';
-import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
-import 'package:schoolxon/widgets/custom_elavated_button.dart';
 import 'package:schoolxon/widgets/custom_image_view.dart';
 
 import '../../core/app_export.dart';
@@ -50,10 +49,13 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                     Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: CustomImageView(svgPath: ImageConstant.icClock,height: getHeight(30),width: getWidth(30),)
-                    ),
+                    Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: CustomImageView(
+                          svgPath: ImageConstant.icClock,
+                          height: getHeight(30),
+                          width: getWidth(30),
+                        )),
                     SizedBox(
                       width: getWidth(15),
                     ),
@@ -93,74 +95,83 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
               ],
             ),
             SizedBox(height: getHeight(20)),
-
             HorizontalWeekCalendar(
               monthColor: Colors.black,
               inactiveBackgroundColor: Colors.white,
               inactiveTextColor: Colors.grey,
               activeBackgroundColor: ColorConstant.blueC5,
               borderRadius: BorderRadius.circular(15),
-              initialDate: DateTime.now(),monthFormat: 'MMMM yyyy',
+              initialDate: DateTime.now(), monthFormat: 'MMMM yyyy',
               minDate: DateTime(2022, 1, 1),
+
               maxDate: DateTime.now().add(Duration(days: 365)),
               // Set the inactive border color to green
             ),
             Divider(height: 60, color: ColorConstant.whiteFB, thickness: 10),
             Expanded(
-              child: ListView.builder(itemCount:4,itemBuilder: (context, index) {
-                return  Column(
-                  children: [
-                    Row(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: ColorConstant.whiteFB,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Column(
-                                children: [
-                                  CustomImageView(
-                                    svgPath: ImageConstant.icPin,
-                                    height: getHeight(20),
-                                    width: getWidth(20),
-                                  ),
-                                  SizedBox(
-                                    height: getHeight(20),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: ColorConstant.primaryWhite),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        '15 Sun',
-                                        style: PMT.style(0).copyWith(
-                                            color: ColorConstant.primaryBlack,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(14)),
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: ColorConstant.whiteFB,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  children: [
+                                    CustomImageView(
+                                      svgPath: ImageConstant.icPin,
+                                      height: getHeight(20),
+                                      width: getWidth(20),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(20),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: ColorConstant.primaryWhite),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3),
+                                        child: Text(
+                                          '15 Sun',
+                                          style: PMT.style(0).copyWith(
+                                              color: ColorConstant.primaryBlack,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: getFontSize(14)),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20,),
-                            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('15 Sunday',
-                                  style: PMT.style(0).copyWith(
-                                      color: ColorConstant.primaryBlack,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: getFontSize(14)),
+                                  ],
                                 ),
-                                SizedBox(height: getHeight(15)),
-                                ///Absent
-                               /* Column(
+                              )),
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '15 Sunday',
+                                    style: PMT.style(0).copyWith(
+                                        color: ColorConstant.primaryBlack,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: getFontSize(14)),
+                                  ),
+                                  SizedBox(height: getHeight(15)),
+
+                                  ///Absent
+                                  /* Column(
                                   children: [
                                     Text('* Vignesh Is Absent Today',
                                       style: PMT.style(0).copyWith(
@@ -170,68 +181,83 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                     ),
                                   ],
                                 ),*/
-                                ///Not Absent
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text( AppString.Punchin,
-                                          style: PMT.style(0).copyWith(
-                                              color: ColorConstant.greyB3,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: getFontSize(14)),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.circle_sharp,size: 10,color: Colors.greenAccent,),
-                                            SizedBox(width: getWidth(5)),
-                                            Text( '10.00 AM',
-                                              style: PMT.style(0).copyWith(
-                                                  color: ColorConstant.primaryBlack,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: getFontSize(16)),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(width: getWidth(40)),
-                                    Column(
-                                      children: [
-                                        Text( AppString.Punchout,
-                                          style: PMT.style(0).copyWith(
-                                              color: ColorConstant.greyB3,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: getFontSize(14)),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.circle_sharp,size: 10,color: Colors.orangeAccent,),
-                                            SizedBox(width: getWidth(5)),
-                                            Text( '06.00 AM',
-                                              style: PMT.style(0).copyWith(
-                                                  color: ColorConstant.primaryBlack,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: getFontSize(16)),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                  ///Not Absent
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text(
+                                            AppString.Punchin,
+                                            style: PMT.style(0).copyWith(
+                                                color: ColorConstant.greyB3,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: getFontSize(14)),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.circle_sharp,
+                                                size: 10,
+                                                color: Colors.greenAccent,
+                                              ),
+                                              SizedBox(width: getWidth(5)),
+                                              Text(
+                                                '10.00 AM',
+                                                style: PMT.style(0).copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: getFontSize(16)),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: getWidth(40)),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            AppString.Punchout,
+                                            style: PMT.style(0).copyWith(
+                                                color: ColorConstant.greyB3,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: getFontSize(14)),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.circle_sharp,
+                                                size: 10,
+                                                color: Colors.orangeAccent,
+                                              ),
+                                              SizedBox(width: getWidth(5)),
+                                              Text(
+                                                '06.00 AM',
+                                                style: PMT.style(0).copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: getFontSize(16)),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-
-                      ],
-                    ),
-
-                    Divider(height: 40, color: ColorConstant.greyE4, thickness: 2),
-                  ],
-                );
-              },
+                        ],
+                      ),
+                      Divider(
+                          height: 40,
+                          color: ColorConstant.greyE4,
+                          thickness: 2),
+                    ],
+                  );
+                },
               ),
             ),
           ],
