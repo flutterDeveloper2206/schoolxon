@@ -3,7 +3,6 @@ import 'dart:io';
 
 import '../core/app_export.dart';
 
-
 class CustomImageView extends StatelessWidget {
   ///[url] is required parameter for fetching network image
   String? url;
@@ -125,6 +124,7 @@ class CustomImageView extends StatelessWidget {
         fit: fit,
         imageUrl: url!,
         color: color,
+        errorListener: (value) {},
         fadeInDuration: Duration(milliseconds: 50),
         fadeOutDuration: Duration(milliseconds: 50),
         placeholder: (context, url) => Container(

@@ -2,8 +2,9 @@ import '../core/app_export.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String? title;
+  final double? elevation;
   final void Function()? onTapBack;
-  const CommonAppBar({super.key, this.title, this.onTapBack});
+  const CommonAppBar({super.key, this.title, this.onTapBack, this.elevation});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class CommonAppBar extends StatelessWidget {
       centerTitle: true,
       backgroundColor: ColorConstant.primaryWhite,
       surfaceTintColor: ColorConstant.primaryWhite,
-      elevation: 1.2,
+      elevation: elevation ?? 1.2,
       shadowColor: ColorConstant.appBarShadow,
       title: title != null
           ? Text(

@@ -3,6 +3,8 @@ import 'package:schoolxon/presentation/account_screen/account_screen.dart';
 import 'package:schoolxon/presentation/account_screen/binding/account_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/binding/contact_support_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/contact_support_screen.dart';
+import 'package:schoolxon/presentation/forgetPwd_screen/binding/forgetPWD_Screen_binding.dart';
+import 'package:schoolxon/presentation/forgetPwd_screen/forgetPwd_screen.dart';
 import 'package:schoolxon/presentation/language_select_screen/language_select_screen.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/binding/leave_dashboard_screen_binding.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/leave_dashboard_screen.dart';
@@ -14,6 +16,8 @@ import 'package:schoolxon/presentation/notice_board_screen/binding/notice_board_
 import 'package:schoolxon/presentation/notice_board_screen/notice_board_screen.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/onBoarding_screen.dart';
+import 'package:schoolxon/presentation/select_school_screen/binding/select_school_screen_binding.dart';
+import 'package:schoolxon/presentation/select_school_screen/select_school_screen.dart';
 
 import '../presentation/language_select_screen/binding/language_screen_binding.dart';
 import '../presentation/splash_screen/binding/splash_screen_binding.dart';
@@ -25,6 +29,8 @@ class AppRoutes {
   static const String contactSupportScreenRoute = '/contact_support_screen';
   static const String leaveDashboardScreenRout = '/leave_dashboard_screen';
   static const String noticeBoardScreenRout = '/notice_board_screen';
+  static const String selectSchoolScreenRout = '/select_school_screen';
+  static const String forgotScreenRout = '/forgot_screen';
 
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String loginScreenRout = '/loginScreenRout';
@@ -71,6 +77,13 @@ class AppRoutes {
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
+        name: forgotScreenRout,
+        page: () => ForgetPwdScreen(),
+        bindings: [
+          ForgetPwdScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
         name: languageSelectScreenRout,
         page: () => LanguageSelectScreen(),
         bindings: [
@@ -90,11 +103,19 @@ class AppRoutes {
         bindings: [
           AttendanceScreenBinding(),
         ],
-        transitionDuration: const Duration(milliseconds: 150)), GetPage(
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
         name: noticeBoardScreenRout,
         page: () => const NoticeBoardScreen(),
         bindings: [
           NoticeBoardScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: selectSchoolScreenRout,
+        page: () => const SelectSchoolScreen(),
+        bindings: [
+          SelectSchoolScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];

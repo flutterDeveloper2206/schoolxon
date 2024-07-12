@@ -26,9 +26,24 @@ class AppString {
   static const String leaveHistory = "Leave History";
   static const String viewDetails = "View Details";
   static const String noticeBoard = "Notice Board";
+  static const String searchSchool = "Search School";
   static const String all = "All";
   static const String thisMonth = "This Month";
   static const String helpYou = "How can we help you?";
+  static const String schools = 'Schools';
+  static const String submit = 'Submit';
+  static const String terms = ' Terms ';
+  static var next = 'Next';
+  static const String userName = 'User Name';
+  static const String forgotPassword = 'Forgot Password';
+
+  static const String something = 'Something went wrong!';
+  static const String byClicking = 'By Clicking This button You Agree To The ';
+  static const String selectSchool = 'Please Select School!';
+  static const String enterUserName = 'Please Enter UserName';
+  static const String enterPassword = 'Please Enter Password';
+  static const String loginSuccessfully = 'Login Successfully.';
+
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
 
@@ -177,7 +192,6 @@ class AppString {
   static var ultimatePetDating = 'The ultimate pet dating app!';
   static var yourPetsName = "Your pet\'s name";
   static var yourName = 'Your name';
-  static var next = 'Next';
   static var logIns = 'Login';
   static var birthDate = 'BirthDate';
   static var university = 'University';

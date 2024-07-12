@@ -7,6 +7,7 @@ import 'core/utils/initial_bindings.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   ErrorWidget.builder =
       (FlutterErrorDetails details) => AppFlutterErrorScreen(details: details);
   runApp(const MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       title: 'SCHOOL XON',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.attendanceScreenRout,
+      initialRoute: AppRoutes.selectSchoolScreenRout,
       getPages: AppRoutes.pages,
       // ),
     );

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_routes.dart';
 
-
 class SplashScreenController extends GetxController {
   @override
   void onInit() {
@@ -13,11 +12,11 @@ class SplashScreenController extends GetxController {
   }
 
   Future changeRoute() async {
-      Future.delayed(const Duration(milliseconds: 3000), () {
-         Get.offAllNamed(AppRoutes.onBoardingScreenRout);
-      });
-    }
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      Get.offAllNamed(AppRoutes.onBoardingScreenRout);
+    });
   }
+}
 
 // Future<void> callDeleteAccountApi() async {
 //   isLoadingDelete.value = true;
@@ -39,31 +38,3 @@ class SplashScreenController extends GetxController {
 //     }
 //   });
 // }
-
-
-
-
-
-
-
-
-// Future<void> callUpdateShowMeOnPetMeetApi({required int isOn}) async {
-//   await ApiService()
-//       .callPostApi(
-//       body: FormData({'show_me_on_petmeet': isOn}),
-//       headerWithToken: true,
-//       showLoader: true,
-//       url: NetworkUrl.updateShowMeOnPetMeet)
-//       .then((value) {
-//     if (value != null && value["status"] == true) {
-//       PrefUtils.setInt(AppString.SHOWMEONPETMEET, isOn);
-//
-//       ProgressDialogUtils.showSnackBar(
-//           bodyText: value["message"], headerText: "SUCCESS");
-//     } else {
-//       ProgressDialogUtils.showSnackBar(
-//           bodyText: value["message"], headerText: AppString.error);
-//     }
-//   });
-// }
-
