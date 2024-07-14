@@ -44,6 +44,7 @@ class AppString {
   static const String enterAadhaarNo = 'Enter Aadhaar Number';
   static const String currentAddress = 'Current Address';
   static const String dob = 'DOB';
+  static const String skip = 'Skip';
   static const String update = 'Update';
   static const String enterCurrentAddress = 'Enter Current Address';
   static const String permanentAddress = 'Permanent Address';
@@ -67,6 +68,7 @@ class AppString {
   static const String enterEmailPlease = 'Please Enter Email';
   static const String enterMobilePlease = 'Please Enter Mobile Number';
   static const String enterDobPlease = 'Please Select DOB';
+
   static const String enterCurrentAddressPlease =
       'Please Enter Current Address';
   static const String enterPermanentPlease = 'Please Enter Permanent Address';
@@ -77,7 +79,9 @@ class AppString {
 
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
-
+  static const String LOGINACC = 'Login Account';
+  static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
+  static const String FORGETPWD = 'Forget Password';
   static var Attendance = 'Attendance';
   static var Timesheet = 'Time Sheet';
   static var Overallstatics = 'Overall Statics';
@@ -110,7 +114,6 @@ class AppString {
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
   static const String uploadYourFile = "Upload Your File";
-
 
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
@@ -226,16 +229,12 @@ class AppString {
   static const String edit = "Edit";
   static const String error = "ERROR";
   static const String exit = "Tap one more time to exit.";
-  static const String skip = "Skip";
   static const String distance = "Distance";
   static const String rating = "Rating";
   static const String relevance = "Relevance";
   static const String yes = "Yes";
 
   ///added by radha
-  static const String LOGINACC = 'Login Account';
-  static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
-  static const String FORGETPWD = 'Forget Password';
 
   static var storagePermission = 'Storage permission!!';
   static var cameraPermission = 'Camera permission!!';

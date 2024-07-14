@@ -13,8 +13,8 @@ import '../../widgets/custom_elavated_button.dart';
 import '../../widgets/custom_image_view.dart';
 import 'controller/language_select_controller.dart';
 
-class LanguageSelectScreen extends StatelessWidget {
-  var languageSlectController = Get.find<LanguageSelectScreenController>();
+class LanguageSelectScreen extends GetWidget<LanguageSelectScreenController> {
+  const LanguageSelectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,30 +73,35 @@ class LanguageSelectScreen extends StatelessWidget {
                 height: getHeight(20),
               ),
               Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 10,
+                child: Obx(
+                  () => ListView.builder(
+                    itemCount: controller.languages.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text("title1"),
-                        trailing: Checkbox(
-                          value: languageSlectController.isChecked.value,
-                          onChanged: (bool? value) {
-                            languageSlectController.isChecked.value =
-                                !languageSlectController.isChecked.value;
-                          },
+                      return CheckboxListTile(
+                        activeColor: ColorConstant.primaryBlue,
+                        title: Text(
+                          controller.languages[index]['name'],
+                          style: TextStyle(
+                            color: ColorConstant.primaryBlack,
+                          ),
                         ),
+                        value: controller.languages[index]['isSelected'],
+                        onChanged: (bool? value) {
+                          controller.onItemSelect(index);
+                        },
                       );
-                    }),
+                    },
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0, right: 18.0),
                 child: AppElevatedButton(
-                  buttonName: 'Next',
+                  buttonName: AppString.next,
                   radius: 8.0,
                   buttonColor: ColorConstant.blueTextColor,
                   onPressed: () {
-                    Get.toNamed(AppRoutes.profileScreenRout);
+                    Get.offAllNamed(AppRoutes.homeScreenRout);
                   },
                 ),
               ),

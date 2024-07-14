@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
+import 'package:schoolxon/core/utils/string_constant.dart';
 import 'package:schoolxon/widgets/custom_image_view.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
@@ -51,15 +52,11 @@ class OnBoardingScreen extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: InkWell(
                     onTap: () {
-                      onBoardingController.onTapOfGetStartedButton();
+                      onBoardingController.skipTap();
                     },
-                    child: Text(
-                      "skip",
-                      style: PMT.style(0).copyWith(
-                          color: ColorConstant.blueF9,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(14)),
-                    ),
+                    child: Text(AppString.skip,
+                        style:
+                            PMT.appStyle(14, fontColor: ColorConstant.blueF9)),
                   ),
                 ),
               ),
@@ -81,7 +78,9 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                     Positioned(
                         top: 220,
-                        child: CustomImageView(imagePath: ImageConstant.imgOnboarding4,)),
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgOnboarding4,
+                        )),
                     Positioned(
                       bottom: 30,
                       left: 10,
@@ -90,14 +89,16 @@ class OnBoardingScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           onBoardingData.length,
-                              (index) => buildDot(index: index),
+                          (index) => buildDot(index: index),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: getHeight(20),),
+              SizedBox(
+                height: getHeight(20),
+              ),
               Flexible(
                 flex: 1,
                 child: Padding(
@@ -106,12 +107,12 @@ class OnBoardingScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Obx(
-                            () => Text(
+                        () => Text(
                           onBoardingController.currentPage.value == 1
                               ? "walkthrough 2"
                               : onBoardingController.currentPage.value == 2
-                              ? "walkthrough 3"
-                              : "walkthrough 1",
+                                  ? "walkthrough 3"
+                                  : "walkthrough 1",
                           style: PMT.style(0).copyWith(
                               color: ColorConstant.primaryBlack,
                               fontWeight: FontWeight.w700,
@@ -120,12 +121,12 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                       SizedBox(height: getHeight(10)),
                       Obx(
-                            () => Text(
+                        () => Text(
                           onBoardingController.currentPage.value == 1
                               ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
                               : onBoardingController.currentPage.value == 2
-                              ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
-                              : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
+                                  ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
+                                  : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
                           textAlign: TextAlign.center,
                           style: PMT.style(0).copyWith(
                               color: ColorConstant.black72,
@@ -135,11 +136,12 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                       SizedBox(height: getHeight(50)),
                       Obx(
-                            () => AppElevatedButton(
+                        () => AppElevatedButton(
                           buttonShadowColor: Colors.transparent,
-                          buttonName: onBoardingController.currentPage.value == 2
-                              ? "Get Started"
-                              : "Next",
+                          buttonName:
+                              onBoardingController.currentPage.value == 2
+                                  ? "Get Started"
+                                  : "Next",
                           textColor: Colors.white,
                           buttonColor: ColorConstant.blueF9,
                           onPressed: () {
@@ -174,30 +176,30 @@ class OnBoardingScreen extends StatelessWidget {
 
   Obx buildDot({int? index}) {
     return Obx(
-          () => onBoardingController.currentPage.value == index
+      () => onBoardingController.currentPage.value == index
           ? Container(
-        margin: EdgeInsets.only(right: 5),
-        height: getHeight(6),
-        width: getWidth(25),
-        child: Padding(
-          padding: EdgeInsets.all(1.5),
-          child: Container(
-            decoration: BoxDecoration(
-              color: ColorConstant.blueF9,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
-      )
+              margin: EdgeInsets.only(right: 5),
+              height: getHeight(6),
+              width: getWidth(25),
+              child: Padding(
+                padding: EdgeInsets.all(1.5),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorConstant.blueF9,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            )
           : Container(
-        margin: EdgeInsets.only(right: 5),
-        height: getHeight(5),
-        width: getWidth(5),
-        decoration: BoxDecoration(
-          color: ColorConstant.blueFC,
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
+              margin: EdgeInsets.only(right: 5),
+              height: getHeight(5),
+              width: getWidth(5),
+              decoration: BoxDecoration(
+                color: ColorConstant.blueFC,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
     );
   }
 }

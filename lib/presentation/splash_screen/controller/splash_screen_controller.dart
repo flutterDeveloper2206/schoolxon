@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:schoolxon/core/utils/app_prefs_key.dart';
+import 'package:schoolxon/core/utils/pref_utils.dart';
 
 import '../../../routes/app_routes.dart';
 
@@ -12,8 +14,13 @@ class SplashScreenController extends GetxController {
   }
 
   Future changeRoute() async {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      Get.offAllNamed(AppRoutes.onBoardingScreenRout);
+    Future.delayed(const Duration(milliseconds: 3000), () async {
+      String? login = PrefUtils.getString(PrefsKey.isLogin);
+      if (login != null && login == '1') {
+        Get.offAllNamed(AppRoutes.homeScreenRout);
+      } else {
+        Get.offAllNamed(AppRoutes.onBoardingScreenRout);
+      }
     });
   }
 }

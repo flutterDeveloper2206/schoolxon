@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
 import 'package:schoolxon/presentation/language_select_screen/language_select_screen.dart';
+import 'package:schoolxon/widgets/common_appBar.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
 import '../../core/utils/string_constant.dart';
@@ -14,24 +15,15 @@ class ForgetPwdScreen extends GetWidget {
     sizeCalculate(context);
     return Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(60.0), // height of appbar
+            child: CommonAppBar(
+              elevation: 0,
+            )),
         body: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Padding(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Icon(
-                        Icons.close,
-                        size: 25,
-                      )),
-                ),
-              ),
               SizedBox(
                 height: getHeight(30),
               ),
