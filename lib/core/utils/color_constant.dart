@@ -47,6 +47,9 @@ class ColorConstant {
   static const Color blueColor = Color(0xFF035CC2);
   static const Color blueFC = Color(0xFFA2CFFC);
   static const Color blueF9 = Color(0xFF56A8F9);
+  static const Color blue6F = Color(0xFF264B6F);
+  static const Color blue9c = Color(0xFF4A749C);
+  static const Color blue53 = Color(0xFF0B3053);
   static const Color blueColorFF = Color(0xFF3C44FF);
   static const Color blueColor42 = Color(0xFF002242);
   static const Color orange3C = Color(0xFFFF6B3C);
@@ -55,6 +58,7 @@ class ColorConstant {
   static const Color gradientEndColor = Color(0xFFE1580A);
   static const Color primaryLightRed = Color(0xFFF14A4A);
   static const Color greyColor72 = Color(0xFF777272);
+  static const Color greyColorB1 = Color(0xFF97A4B1);
   static const Color greyColor42 = Color(0xFF424242);
   static const Color greyColorFA = Color(0xFFFAFAFA);
   static const Color redColorE9 = Color(0xFFFFE9E9);

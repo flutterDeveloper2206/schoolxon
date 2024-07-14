@@ -21,9 +21,19 @@ class HomeScreen extends GetWidget<HomeScreenController> {
         body: Column(
           children: [
             Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorConstant.blue6F,
+                      ColorConstant.blue9c,
+                      ColorConstant.blueColor42,
+                    ],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                  ),
+                ),
                 height: MediaQuery.sizeOf(context).height,
                 width: MediaQuery.sizeOf(context).width,
-                color: ColorConstant.blueColor42,
                 child: Padding(
                   padding: EdgeInsets.only(top: getHeight(10)),
                   child: SafeArea(
@@ -33,7 +43,8 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: getWidth(18)),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getWidth(18)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -43,7 +54,8 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                               Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: Colors.transparent)),
+                                    border:
+                                        Border.all(color: Colors.transparent)),
                                 padding: const EdgeInsets.all(10),
                                 child: CustomImageView(
                                   svgPath: ImageConstant.icProfileLogo,
@@ -53,12 +65,21 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                           ),
                         ),
                         SizedBox(
-                          height: getHeight(25),
+                          height: getHeight(20),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 18),
                           child: Container(
                             decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorConstant.blue6F.withOpacity(.2),
+                                    ColorConstant.blue53.withOpacity(.2),
+                                    ColorConstant.blueColor42.withOpacity(.2),
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                ),
                                 border: Border.all(
                                     width: 0.4, color: const Color(0xFFC4C4C4)),
                                 borderRadius: const BorderRadiusDirectional.all(
@@ -72,24 +93,31 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                      padding: const EdgeInsets.only(bottom: 10),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
                                       child: Container(
+                                        child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                                          child: CustomImageView(
+                                            imagePath: ImageConstant.imgPerson,height: getHeight(40),width: getWidth(40),
+                                          ),
+                                        ),
                                         height: getHeight(50),
                                         width: getWidth(50),
                                         decoration: BoxDecoration(
                                             border: Border.all(
-                                                width: 0.4,
+                                                width:2,
                                                 color: const Color(0xFFC4C4C4)),
                                             borderRadius:
-                                                const BorderRadiusDirectional.all(
-                                                    Radius.circular(50)),
+                                                const BorderRadiusDirectional
+                                                    .all(Radius.circular(50)),
                                             color: ColorConstant.blueColor42),
                                       )),
                                   SizedBox(
                                     width: getWidth(10),
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text('Praveen Kumar',
                                           style: PMT.style(0).copyWith(
@@ -105,33 +133,47 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              color: ColorConstant.blueColor,
+                                              color: ColorConstant.blueColor42
+                                                  .withOpacity(.7),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(5),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 7),
                                               child: Text('ID NO: 18ubao4 ',
                                                   style: PMT.style(0).copyWith(
-                                                      color: ColorConstant.greyE4,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: getFontSize(12))),
+                                                      color:
+                                                          ColorConstant.greyE4,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          getFontSize(12))),
                                             ),
                                           ),
                                           SizedBox(
-                                            width: getWidth(30),
+                                            width: getWidth(10),
                                           ),
                                           Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              color: ColorConstant.blueColor,
+                                              color: ColorConstant.blueColor42
+                                                  .withOpacity(.7),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(5),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 7),
                                               child: Text('Class: III A',
                                                   style: PMT.style(0).copyWith(
-                                                      color: ColorConstant.greyE4,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: getFontSize(12))),
+                                                      color:
+                                                          ColorConstant.greyE4,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          getFontSize(12))),
                                             ),
                                           ),
                                         ],
@@ -150,6 +192,15 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                           padding: const EdgeInsets.symmetric(horizontal: 18),
                           child: Container(
                             decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorConstant.blue6F.withOpacity(.2),
+                                    ColorConstant.blue53.withOpacity(.2),
+                                    ColorConstant.blueColor42.withOpacity(.2),
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                ),
                                 border: Border.all(
                                     width: 0.4, color: const Color(0xFFC4C4C4)),
                                 borderRadius: const BorderRadiusDirectional.all(
@@ -158,26 +209,25 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                             width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  right: 10, top: 10, left: 16, bottom: 10),
+                                  right: 10, top: 15, left: 16, bottom: 15),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                      padding: const EdgeInsets.only(bottom: 10),
-                                      child: CustomImageView(
-                                        svgPath: ImageConstant.icClock,
-                                        height: getHeight(30),
-                                        width: getWidth(30),
-                                      )),
+                                  CustomImageView(
+                                    svgPath: ImageConstant.icClock,
+                                    height: getHeight(30),
+                                    width: getWidth(30),
+                                  ),
                                   SizedBox(
                                     width: getWidth(10),
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(AppString.PunchIn,
                                           style: PMT.style(0).copyWith(
-                                              color: ColorConstant.grey9A,
+                                              color: ColorConstant.greyColorB1,
                                               fontWeight: FontWeight.w400,
                                               fontSize: getFontSize(11))),
                                       SizedBox(
@@ -198,6 +248,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                       icon: const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         color: ColorConstant.greyE4,
+                                        size: 15,
                                       ))
                                 ],
                               ),
@@ -247,27 +298,38 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                         child: Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 18,),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 18,
+                                              ),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
                                                   Column(
                                                     children: [
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icFees,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icFees,
                                                           ),
                                                         ),
                                                       ),
@@ -277,8 +339,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.fees,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -287,16 +353,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icLeave,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icLeave,
                                                           ),
                                                         ),
                                                       ),
@@ -306,8 +380,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.leave,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -316,17 +394,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
                                                             svgPath:
-                                                                ImageConstant.icNotepad,
+                                                                ImageConstant
+                                                                    .icNotepad,
                                                           ),
                                                         ),
                                                       ),
@@ -336,8 +421,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.notePad,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -346,16 +435,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icBus,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icBus,
                                                           ),
                                                         ),
                                                       ),
@@ -365,8 +462,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.bus,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -377,92 +478,122 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                               padding: const EdgeInsets.all(18),
                                               child: Container(
                                                   decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(20),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
                                                     color: ColorConstant.crimC7,
                                                   ),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 30,
-                                                        right: 10,
-                                                        top: 20,
-                                                        bottom: 20),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 25,
+                                                            right: 10,
+                                                            top: 20,
+                                                            bottom: 20),
                                                     child: Column(
                                                       crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text('Diwali',
                                                             style: PMT.style(0).copyWith(
                                                                 color: ColorConstant
                                                                     .primaryBlack,
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: getFontSize(14))),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        14))),
                                                         Row(
                                                           children: [
-                                                            Text(
-                                                                'there will be no classes on 14th\nand will resume on 15th ',
-                                                                style: PMT
-                                                                    .style(0)
-                                                                    .copyWith(
-                                                                    color:
-                                                                    ColorConstant
+                                                            Text('there will be no classes on 14th\nand will resume on 15th ',
+                                                                style: PMT.style(0).copyWith(
+                                                                    color: ColorConstant
                                                                         .grey9A,
                                                                     fontWeight:
-                                                                    FontWeight.bold,
+                                                                        FontWeight
+                                                                            .bold,
                                                                     fontSize:
-                                                                    getFontSize(
-                                                                        13))),
+                                                                        getFontSize(
+                                                                            13))),
+                                                            SizedBox(
+                                                              width:
+                                                                  getWidth(10),
+                                                            ),
                                                             CustomImageView(
                                                               svgPath:
-                                                              ImageConstant.icSpeaker,
+                                                                  ImageConstant
+                                                                      .icSpeaker,
                                                             ),
                                                           ],
                                                         ),
                                                         Text('Read More',
                                                             style: PMT.style(0).copyWith(
-                                                                color: ColorConstant.blueF9,
-                                                                fontWeight: FontWeight.bold,
-                                                                fontSize: getFontSize(12))),
+                                                                color:
+                                                                    ColorConstant
+                                                                        .blueF9,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        12))),
                                                       ],
                                                     ),
                                                   )),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.all(18),
+                                              padding: const EdgeInsets.only(
+                                                  left: 18,
+                                                  right: 18,
+                                                  bottom: 18,
+                                                  top: 10),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     AppString.academics,
                                                     style: PMT.style(18,
-                                                        fontColor:
-                                                        ColorConstant.primaryBlack,
-                                                        fontWeight: FontWeight.bold),
+                                                        fontColor: ColorConstant
+                                                            .primaryBlack,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 18),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 18),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
                                                   Column(
                                                     children: [
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
                                                             svgPath:
-                                                            ImageConstant.icHomeWork,
+                                                                ImageConstant
+                                                                    .icHomeWork,
                                                           ),
                                                         ),
                                                       ),
@@ -472,8 +603,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.homework,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -482,17 +617,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
                                                             svgPath:
-                                                            ImageConstant.icLiveClass,
+                                                                ImageConstant
+                                                                    .icLiveClass,
                                                           ),
                                                         ),
                                                       ),
@@ -502,8 +644,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.livClass,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -512,16 +658,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icMarks,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icMarks,
                                                           ),
                                                         ),
                                                       ),
@@ -531,8 +685,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.marks,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -541,16 +699,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icDiary,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icDiary,
                                                           ),
                                                         ),
                                                       ),
@@ -560,8 +726,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.dairy,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -573,24 +743,32 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                   left: 25, top: 25, right: 70),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
                                                 children: [
                                                   Column(
                                                     children: [
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
                                                             svgPath:
-                                                            ImageConstant.icTimeTable,
+                                                                ImageConstant
+                                                                    .icTimeTable,
                                                           ),
                                                         ),
                                                       ),
@@ -600,8 +778,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.timeTable,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -613,16 +795,24 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath: ImageConstant.icExam,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath:
+                                                                ImageConstant
+                                                                    .icExam,
                                                           ),
                                                         ),
                                                       ),
@@ -632,8 +822,12 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.exam,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -645,17 +839,23 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Container(
                                                         height: getHeight(50),
                                                         width: getWidth(50),
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.circular(18),
-                                                          color: ColorConstant.blueFC
+                                                              BorderRadius
+                                                                  .circular(18),
+                                                          color: ColorConstant
+                                                              .blueFC
                                                               .withOpacity(.2),
                                                         ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(14),
-                                                          child: CustomImageView(
-                                                            svgPath:
-                                                            ImageConstant.icAttendance,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(14),
+                                                          child:
+                                                              CustomImageView(
+                                                            svgPath: ImageConstant
+                                                                .icAttendance,
                                                           ),
                                                         ),
                                                       ),
@@ -665,19 +865,25 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                       Text(
                                                         AppString.attendence,
                                                         style: PMT.style(15,
-                                                            fontColor: ColorConstant.grey9A,
-                                                            fontWeight: FontWeight.bold),
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .grey9A,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: getHeight(30),
+                                            ),
                                           ],
                                         ),
                                       ),
                                     ),
-
                                   ],
                                 ),
                               ),
