@@ -32,6 +32,7 @@ class AppString {
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
   static const String all = "All";
+  static const String homework = "Home Work";
   static const String thisMonth = "This Month";
   static const String helpYou = "How can we help you?";
   static const String schools = 'Schools';
@@ -83,6 +84,33 @@ class AppString {
   static var PunchIn = 'Punch  In At';
   static var Punchin = 'Punch In';
   static var Punchout = 'Punch Out';
+  static const String leaveApplication = "Leave Application";
+  static const String sickLeave = "Sick Leave";
+  static const String casualLeave = "Casual Leave";
+  static const String startDate = "Start Date";
+  static const String endDate = "End Date";
+  static const String description = "Description";
+  static const String comments = "Comments";
+  static const String camera = "Camera";
+  static const String gallery = "Gallery";
+  static const String fees = "Fees";
+  static const String leave = "Leave";
+  static const String notePad = "Note Pad";
+  static const String bus = "Bus";
+  static const String homeWork = "Home Work";
+  static const String livClass = "Liv Class";
+  static const String marks = "Marks";
+  static const String dairy = "Dairy";
+  static const String timeTable = "Time Table";
+  static const String exam = "Exam";
+  static const String attendence = "Attendence";
+  static const String menu = "Menu";
+  static const String academics = "Academics";
+  static const String upload = "Upload";
+  static const String attachments = "Attachments";
+  static const String applyLeave = "Apply Leave";
+  static const String uploadYourFile = "Upload Your File";
+
 
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
@@ -202,8 +230,6 @@ class AppString {
   static const String distance = "Distance";
   static const String rating = "Rating";
   static const String relevance = "Relevance";
-  static const String camera = "Camera";
-  static const String gallery = "Gallery";
   static const String yes = "Yes";
 
   ///added by radha

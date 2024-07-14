@@ -18,14 +18,15 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
   Widget build(BuildContext context) {
     sizeCalculate(context);
     return Scaffold(
+      backgroundColor: ColorConstant.primaryWhite,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60.0), // height of appbar
           child: CommonAppBar(title: AppString.Attendance)),
-      body: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 18,left: 18,top: 18),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
@@ -33,12 +34,15 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                   style: PMT.style(0).copyWith(
                       color: ColorConstant.primaryBlack,
                       fontWeight: FontWeight.w800,
-                      fontSize: getFontSize(18)),
+                      fontSize: getFontSize(16)),
                 ),
               ],
             ),
-            SizedBox(height: getHeight(20)),
-            Container(
+          ),
+          SizedBox(height: getHeight(20)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Container(
               decoration: const BoxDecoration(
                   borderRadius:
                       BorderRadiusDirectional.all(Radius.circular(15)),
@@ -81,8 +85,11 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                 ),
               ),
             ),
-            Divider(height: 60, color: ColorConstant.whiteFB, thickness: 10),
-            Row(
+          ),
+          Divider(height: 60, color: ColorConstant.whiteFB, thickness: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
@@ -90,12 +97,15 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                   style: PMT.style(0).copyWith(
                       color: ColorConstant.primaryBlack,
                       fontWeight: FontWeight.w700,
-                      fontSize: getFontSize(18)),
+                      fontSize: getFontSize(16)),
                 ),
               ],
             ),
-            SizedBox(height: getHeight(20)),
-            HorizontalWeekCalendar(
+          ),
+          SizedBox(height: getHeight(20)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: HorizontalWeekCalendar(
               monthColor: Colors.black,
               inactiveBackgroundColor: Colors.white,
               inactiveTextColor: Colors.grey,
@@ -107,14 +117,17 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
               maxDate: DateTime.now().add(Duration(days: 365)),
               // Set the inactive border color to green
             ),
-            Divider(height: 60, color: ColorConstant.whiteFB, thickness: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
+          ),
+          Divider(height: 50, color: ColorConstant.whiteFB, thickness: 10),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
@@ -123,16 +136,19 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                 color: ColorConstant.whiteFB,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
                                 child: Column(
                                   children: [
+                                    SizedBox(
+                                      height: getHeight(12),
+                                    ),
                                     CustomImageView(
                                       svgPath: ImageConstant.icPin,
                                       height: getHeight(20),
                                       width: getWidth(20),
                                     ),
                                     SizedBox(
-                                      height: getHeight(20),
+                                      height: getHeight(22),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
@@ -149,6 +165,9 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                               fontSize: getFontSize(14)),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(5),
                                     ),
                                   ],
                                 ),
@@ -184,14 +203,14 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                   ///Not Absent
                                   Row(
                                     children: [
-                                      Column(
+                                      Column(crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             AppString.Punchin,
                                             style: PMT.style(0).copyWith(
                                                 color: ColorConstant.greyB3,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: getFontSize(14)),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: getFontSize(13)),
                                           ),
                                           Row(
                                             children: [
@@ -207,21 +226,21 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                                     color: ColorConstant
                                                         .primaryBlack,
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: getFontSize(16)),
+                                                    fontSize: getFontSize(14)),
                                               ),
                                             ],
                                           )
                                         ],
                                       ),
                                       SizedBox(width: getWidth(40)),
-                                      Column(
+                                      Column( crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             AppString.Punchout,
                                             style: PMT.style(0).copyWith(
                                                 color: ColorConstant.greyB3,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: getFontSize(14)),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: getFontSize(13)),
                                           ),
                                           Row(
                                             children: [
@@ -237,7 +256,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                                     color: ColorConstant
                                                         .primaryBlack,
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: getFontSize(16)),
+                                                    fontSize: getFontSize(14)),
                                               ),
                                             ],
                                           )
@@ -251,17 +270,17 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                           ),
                         ],
                       ),
-                      Divider(
-                          height: 40,
-                          color: ColorConstant.greyE4,
-                          thickness: 2),
-                    ],
-                  );
-                },
-              ),
+                    ),
+                    Divider(
+                        height: 40,
+                        color: ColorConstant.greyE4,
+                        thickness: 1),
+                  ],
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

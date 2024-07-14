@@ -23,6 +23,7 @@ class ColorConstant {
   static Color cardColor = const Color.fromRGBO(0, 34, 66, 0.03);
 
   static const Color greyD3 = Color(0xFFD3D3D3);
+  static const Color grey7A = Color(0xFF7A7A7A);
   static const Color grey3 = Color(0xFFB3B3B3);
   static const Color black72 = Color(0xFF777272);
   static const Color grey9e = Color(0xFF9E9E9E);
@@ -36,6 +37,8 @@ class ColorConstant {
   static const Color textGrey75 = Color(0xFF757575);
   static const Color greyFA = Color(0xFFFAFAFA);
   static const Color grey61 = Color(0xFF616161);
+  static const Color grey9A = Color(0xFF99999A);
+  static const Color greyF3 = Color(0xFFEEF1F3);
 
   static const Color gradientStartColor = Color(0xFFEE5E5E);
   static const Color btnDarkBackgroundColor = Color(0xFF282727);
@@ -93,6 +96,7 @@ class ColorConstant {
   static const Color blueC5 = Color(0xFF00B7C5);
   static const Color greyE4 = Color(0xFFDDE4EA);
   static const Color blue42 = Color(0xFF002242);
+  static const Color crimC7 = Color(0xFFFFF3C7);
 
   // static Color black900Af = fromHex('#af000000');
 
