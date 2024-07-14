@@ -26,6 +26,7 @@ class ImageConstant {
   static String icExam = 'assets/icons/svg/ic_exam.svg';
   static String icSpeaker = 'assets/icons/svg/ic_speaker.svg';
   static String icAttendance = 'assets/icons/svg/ic_attendance.svg';
+  static String icPerson = 'assets/icons/svg/ic_person.svg';
   static String icProfileLogo = 'assets/icons/svg/ic_profile_logo.svg';
   static String imgOnboarding1 = 'assets/images/png/Onboarding1.png';
   static String imgOnboarding2 = 'assets/images/png/Onboarding2.png';
