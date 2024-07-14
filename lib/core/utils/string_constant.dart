@@ -27,6 +27,7 @@ class AppString {
   static const String viewDetails = "View Details";
   static const String noticeBoard = "Notice Board";
   static const String all = "All";
+  static const String homework = "Home Work";
   static const String thisMonth = "This Month";
   static const String helpYou = "How can we help you?";
   static const String needHelpText =
@@ -38,6 +39,20 @@ class AppString {
   static var PunchIn = 'Punch  In At';
   static var Punchin = 'Punch In';
   static var Punchout = 'Punch Out';
+  static const String leaveApplication = "Leave Application";
+  static const String sickLeave = "Sick Leave";
+  static const String casualLeave = "Casual Leave";
+  static const String startDate = "Start Date";
+  static const String endDate = "End Date";
+  static const String description = "Description";
+  static const String comments = "Comments";
+  static const String camera = "Camera";
+  static const String gallery = "Gallery";
+  static const String upload = "Upload";
+  static const String attachments = "Attachments";
+  static const String applyLeave = "Apply Leave";
+  static const String uploadYourFile = "Upload Your File";
+
 
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
@@ -159,8 +174,6 @@ class AppString {
   static const String distance = "Distance";
   static const String rating = "Rating";
   static const String relevance = "Relevance";
-  static const String camera = "Camera";
-  static const String gallery = "Gallery";
   static const String yes = "Yes";
 
   ///added by radha

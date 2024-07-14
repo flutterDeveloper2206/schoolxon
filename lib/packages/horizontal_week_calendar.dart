@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:schoolxon/core/app_export.dart';
+import 'package:schoolxon/core/utils/color_constant.dart';
 
 enum WeekStartFrom {
   Sunday,
@@ -387,26 +389,24 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new,
-                                  size: 17,
-                                  color: isBackDisabled()
-                                      ? (widget.inactiveNavigatorColor ??
-                                          Colors.grey)
-                                      : theme.primaryColor,
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: ColorConstant.greyE4),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  height: getHeight(40),
+                                  width: getWidth(40),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new,
+                                    size: 25,
+                                    color: _isNextDisabled()
+                                        ? (widget.inactiveNavigatorColor ??
+                                            ColorConstant.primaryBlack)
+                                        : ColorConstant.primaryBlack,
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 4,
-                                ),
-                                Text(
-                                  "Back",
-                                  style: theme.textTheme.bodyLarge!.copyWith(
-                                    color: isBackDisabled()
-                                        ? (widget.inactiveNavigatorColor ??
-                                            Colors.grey)
-                                        : theme.primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
                                 ),
                               ],
                             ),
@@ -424,10 +424,10 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                           : DateFormat(widget.monthFormat).format(
                               currentWeek.first,
                             ),
-                      style: theme.textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: widget.monthColor ?? theme.primaryColor,
-                      ),
+                      style: PMT.style(0).copyWith(
+                          color: ColorConstant.primaryBlack,
+                          fontWeight: FontWeight.bold,
+                          fontSize: getFontSize(18)),
                     ),
                     widget.showNavigationButtons == true
                         ? GestureDetector(
@@ -439,27 +439,25 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  "Next",
-                                  style: theme.textTheme.bodyLarge!.copyWith(
-                                    color: _isNextDisabled()
-                                        ? (widget.inactiveNavigatorColor ??
-                                            Colors.grey)
-                                        : theme.primaryColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 17,
-                                  color: _isNextDisabled()
-                                      ? (widget.inactiveNavigatorColor ??
-                                          Colors.grey)
-                                      : theme.primaryColor,
-                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: ColorConstant.greyE4),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  height: getHeight(40),
+                                  width: getWidth(40),
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 25,
+                                    color: _isNextDisabled()
+                                        ? (widget.inactiveNavigatorColor ??
+                                            ColorConstant.primaryBlack)
+                                        : ColorConstant.primaryBlack,
+                                  ),
+                                )
                               ],
                             ),
                           )
@@ -486,138 +484,141 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                 DateTime currentDate =
                                     listOfWeeks[ind][weekIndex];
                                 return Expanded(
-                                  child: GestureDetector(
-                                    // onTap: () {
-                                    //   _onDateSelect(currentDate);
-                                    // },
-                                    // TODO: disabled
-                                    onTap: _isReachMaximum(currentDate) &&
-                                            _isReachMinimum(currentDate)
-                                        ? () {
-                                            _onDateSelect(
-                                              listOfWeeks[ind][weekIndex],
-                                            );
-                                          }
-                                        : null,
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: widget.borderRadius,
-                                        // color: DateFormat('dd-MM-yyyy').format(
-                                        //             listOfWeeks[ind]
-                                        //                 [weekIndex]) ==
-                                        //         DateFormat('dd-MM-yyyy')
-                                        //             .format(selectedDate)
-                                        //     ? widget.activeBackgroundColor ??
-                                        //         theme.primaryColor
-                                        //     : widget.inactiveBackgroundColor ??
-                                        //         theme.primaryColor
-                                        //             .withOpacity(.2),
-                                        // TODO: disabled
-                                        color: DateFormat('dd-MM-yyyy')
-                                                    .format(currentDate) ==
-                                                DateFormat('dd-MM-yyyy')
-                                                    .format(selectedDate)
-                                            ? widget.activeBackgroundColor ??
-                                                theme.primaryColor
-                                            : _isReachMaximum(currentDate) &&
-                                                    _isReachMinimum(currentDate)
-                                                ? widget.inactiveBackgroundColor ??
-                                                    theme.primaryColor
-                                                        .withOpacity(.2)
-                                                : widget.disabledBackgroundColor ??
-                                                    Colors.grey,
-                                        border: Border.all(
-                                          color: theme.scaffoldBackgroundColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 3),
+                                    child: GestureDetector(
+                                      // onTap: () {
+                                      //   _onDateSelect(currentDate);
+                                      // },
+                                      // TODO: disabled
+                                      onTap: _isReachMaximum(currentDate) &&
+                                              _isReachMinimum(currentDate)
+                                          ? () {
+                                              _onDateSelect(
+                                                listOfWeeks[ind][weekIndex],
+                                              );
+                                            }
+                                          : null,
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius: widget.borderRadius,
+                                          // color: DateFormat('dd-MM-yyyy').format(
+                                          //             listOfWeeks[ind]
+                                          //                 [weekIndex]) ==
+                                          //         DateFormat('dd-MM-yyyy')
+                                          //             .format(selectedDate)
+                                          //     ? widget.activeBackgroundColor ??
+                                          //         theme.primaryColor
+                                          //     : widget.inactiveBackgroundColor ??
+                                          //         theme.primaryColor
+                                          //             .withOpacity(.2),
+                                          // TODO: disabled
+                                          color: DateFormat('dd-MM-yyyy')
+                                                      .format(currentDate) ==
+                                                  DateFormat('dd-MM-yyyy')
+                                                      .format(selectedDate)
+                                              ? widget.activeBackgroundColor ??
+                                                  theme.primaryColor
+                                              : _isReachMaximum(currentDate) &&
+                                                      _isReachMinimum(currentDate)
+                                                  ? widget.inactiveBackgroundColor ??
+                                                      theme.primaryColor
+                                                          .withOpacity(.2)
+                                                  : widget.disabledBackgroundColor ??
+                                                      Colors.grey,
+                                          border: Border.all(
+                                            color: ColorConstant.greyE4,
+                                          ),
                                         ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            // "$weekIndex: ${listOfWeeks[ind][weekIndex] == DateTime.now()}",
-                                            "${currentDate.day}",
-                                            textAlign: TextAlign.center,
-                                            style: theme.textTheme.titleLarge!
-                                                .copyWith(
-                                              // color: DateFormat('dd-MM-yyyy')
-                                              //             .format(listOfWeeks[
-                                              //                     ind]
-                                              //                 [weekIndex]) ==
-                                              //         DateFormat('dd-MM-yyyy')
-                                              //             .format(selectedDate)
-                                              //     ? widget.activeTextColor ??
-                                              //         Colors.white
-                                              //     : widget.inactiveTextColor ??
-                                              //         Colors.white
-                                              //             .withOpacity(.2),
-                                              // TODO: disabled
-                                              color: DateFormat('dd-MM-yyyy')
-                                                          .format(
-                                                              currentDate) ==
-                                                      DateFormat('dd-MM-yyyy')
-                                                          .format(selectedDate)
-                                                  ? widget.activeTextColor ??
-                                                      Colors.white
-                                                  : _isReachMaximum(
-                                                              currentDate) &&
-                                                          _isReachMinimum(
-                                                              currentDate)
-                                                      ? widget.inactiveTextColor ??
-                                                          Colors.white
-                                                              .withOpacity(.2)
-                                                      : widget.disabledTextColor ??
-                                                          Colors.white,
-                                              fontWeight: FontWeight.bold,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              // "$weekIndex: ${listOfWeeks[ind][weekIndex] == DateTime.now()}",
+                                              "${currentDate.day}",
+                                              textAlign: TextAlign.center,
+                                              style: theme.textTheme.titleLarge!
+                                                  .copyWith(
+                                                // color: DateFormat('dd-MM-yyyy')
+                                                //             .format(listOfWeeks[
+                                                //                     ind]
+                                                //                 [weekIndex]) ==
+                                                //         DateFormat('dd-MM-yyyy')
+                                                //             .format(selectedDate)
+                                                //     ? widget.activeTextColor ??
+                                                //         Colors.white
+                                                //     : widget.inactiveTextColor ??
+                                                //         Colors.white
+                                                //             .withOpacity(.2),
+                                                // TODO: disabled
+                                                color: DateFormat('dd-MM-yyyy')
+                                                            .format(
+                                                                currentDate) ==
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(selectedDate)
+                                                    ? widget.activeTextColor ??
+                                                        Colors.white
+                                                    : _isReachMaximum(
+                                                                currentDate) &&
+                                                            _isReachMinimum(
+                                                                currentDate)
+                                                        ? widget.inactiveTextColor ??
+                                                            Colors.white.withOpacity(5)
+                                                        : widget.disabledTextColor ??
+                                                            Colors.white,
+                                                fontWeight: FontWeight.w600,
+
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 4,
-                                          ),
-                                          Text(
-                                            DateFormat(
-                                              'EEE',
-                                            ).format(
-                                              listOfWeeks[ind][weekIndex],
+                                            const SizedBox(
+                                              height: 4,
                                             ),
-                                            textAlign: TextAlign.center,
-                                            style: theme.textTheme.bodyLarge!
-                                                .copyWith(
-                                              // color: DateFormat('dd-MM-yyyy')
-                                              //             .format(listOfWeeks[
-                                              //                     ind]
-                                              //                 [weekIndex]) ==
-                                              //         DateFormat('dd-MM-yyyy')
-                                              //             .format(selectedDate)
-                                              //     ? widget.activeTextColor ??
-                                              //         Colors.white
-                                              //     : widget.inactiveTextColor ??
-                                              //         Colors.white
-                                              //             .withOpacity(.2),
-                                              // TODO: disabled
-                                              color: DateFormat('dd-MM-yyyy')
-                                                          .format(
-                                                              currentDate) ==
-                                                      DateFormat('dd-MM-yyyy')
-                                                          .format(selectedDate)
-                                                  ? widget.activeTextColor ??
-                                                      Colors.white
-                                                  : _isReachMaximum(
-                                                              currentDate) &&
-                                                          _isReachMinimum(
-                                                              currentDate)
-                                                      ? widget.inactiveTextColor ??
-                                                          Colors.white
-                                                              .withOpacity(.2)
-                                                      : widget.disabledTextColor ??
-                                                          Colors.white,
+                                            Text(
+                                              DateFormat(
+                                                'EEE',
+                                              ).format(
+                                                listOfWeeks[ind][weekIndex],
+                                              ),
+                                              textAlign: TextAlign.center,
+                                              style: theme.textTheme.bodyLarge!
+                                                  .copyWith(
+                                                // color: DateFormat('dd-MM-yyyy')
+                                                //             .format(listOfWeeks[
+                                                //                     ind]
+                                                //                 [weekIndex]) ==
+                                                //         DateFormat('dd-MM-yyyy')
+                                                //             .format(selectedDate)
+                                                //     ? widget.activeTextColor ??
+                                                //         Colors.white
+                                                //     : widget.inactiveTextColor ??
+                                                //         Colors.white
+                                                //             .withOpacity(.2),
+                                                // TODO: disabled
+                                                color: DateFormat('dd-MM-yyyy')
+                                                            .format(
+                                                                currentDate) ==
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(selectedDate)
+                                                    ? widget.activeTextColor ??
+                                                        Colors.white
+                                                    : _isReachMaximum(
+                                                                currentDate) &&
+                                                            _isReachMinimum(
+                                                                currentDate)
+                                                        ? widget.inactiveTextColor ??
+                                                            Colors.white
+                                                                .withOpacity(.2)
+                                                        : widget.disabledTextColor ??
+                                                            Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -632,7 +633,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                   scrollPhysics:
                       widget.scrollPhysics ?? const ClampingScrollPhysics(),
                   height: 75,
-                  viewportFraction: 1,
+                  viewportFraction: 1.4,
                   enableInfiniteScroll: false,
                   reverse: true,
                   onPageChanged: (index, reason) {

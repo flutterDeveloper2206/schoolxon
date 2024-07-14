@@ -4,12 +4,15 @@ class ImageConstant {
   static String icBack = 'assets/icons/svg/ic_back.svg';
   static String icFile = 'assets/icons/svg/ic_file.svg';
   static String icHelp = 'assets/icons/svg/ic_help.svg';
+  static String icBook = 'assets/icons/svg/ic_book_icon.svg';
   static String icLogout = 'assets/icons/svg/ic_logout.svg';
   static String icPassword = 'assets/icons/svg/ic_password.svg';
+  static String icPdf = 'assets/icons/svg/ic_pdf.svg';
   static String icClock = 'assets/icons/svg/ic_clock.svg';
   static String icProfile = 'assets/icons/svg/ic_profile.svg';
   static String icRight = 'assets/icons/svg/ic_right.svg';
   static String icPin = 'assets/icons/svg/ic_pin.svg';
+  static String icClip = 'assets/icons/svg/ic_clip.svg';
   static String imgOnboarding1 = 'assets/images/png/Onboarding1.png';
   static String imgOnboarding2 = 'assets/images/png/Onboarding2.png';
   static String imgOnboarding3 = 'assets/images/png/Onboarding3.png';
