@@ -14,6 +14,10 @@ class AppString {
   static const String contactForm = "Contact Form";
   static const String message = "Message";
   static const String name = "Name";
+  static const String firstName = "First Name";
+  static const String enterFirstName = "Enter First Name";
+  static const String lastName = "Last Name";
+  static const String enterLastName = "Enter Last Name";
   static const String enterName = "Enter Name";
   static const String email = "Email";
   static const String enterEmail = "Enter Email";
@@ -33,7 +37,22 @@ class AppString {
   static const String schools = 'Schools';
   static const String submit = 'Submit';
   static const String terms = ' Terms ';
-  static var next = 'Next';
+  static const String mobileNo = 'Mobile Number';
+  static const String enterMobileNo = 'Enter Mobile Number';
+  static const String aadhaarNo = 'Aadhaar Number';
+  static const String enterAadhaarNo = 'Enter Aadhaar Number';
+  static const String currentAddress = 'Current Address';
+  static const String dob = 'DOB';
+  static const String update = 'Update';
+  static const String enterCurrentAddress = 'Enter Current Address';
+  static const String permanentAddress = 'Permanent Address';
+  static const String enterPermanentAddress = 'Enter Permanent Address';
+  static const String next = 'Next';
+  static const String noteBook = 'Note Book';
+  static const String selectYourSubject = 'Select Your Subject';
+  static const String gender = "Gender";
+  static const String male = 'Male';
+  static const String female = 'Female';
   static const String userName = 'User Name';
   static const String forgotPassword = 'Forgot Password';
 
@@ -42,7 +61,18 @@ class AppString {
   static const String selectSchool = 'Please Select School!';
   static const String enterUserName = 'Please Enter UserName';
   static const String enterPassword = 'Please Enter Password';
+  static const String enterFirstNamePlease = 'Please Enter First Name';
+  static const String enterLastNamePlease = 'Please Enter Last Name';
+  static const String enterEmailPlease = 'Please Enter Email';
+  static const String enterMobilePlease = 'Please Enter Mobile Number';
+  static const String enterDobPlease = 'Please Select DOB';
+  static const String enterCurrentAddressPlease =
+      'Please Enter Current Address';
+  static const String enterPermanentPlease = 'Please Enter Permanent Address';
+  static const String enterAadhaarPlease = 'Please Enter Aadhaar Number';
+
   static const String loginSuccessfully = 'Login Successfully.';
+  static const String profileSuccessfully = 'Profile Update Successfully.';
 
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
@@ -109,10 +139,8 @@ class AppString {
   static const String aboutMe = "About me";
   static const String age = "Age";
   static const String ageOfPet = "Age of pet";
-  static const String gender = "Gender";
   static const String petPhotos = "Pet photos";
   static const String yourPhotos = "Your photos";
-  static const String update = "Update";
   static const String profiles = "Profiles";
   static const String intrests = "Intrests";
   static const String natashaWinklesWouldLike =

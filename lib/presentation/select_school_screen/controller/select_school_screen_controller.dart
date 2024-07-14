@@ -23,7 +23,7 @@ class SelectSchoolScreenController extends GetxController {
   RxList<SchoolModel> filterSchool = <SchoolModel>[].obs;
   @override
   void onInit() {
-    callDeleteAccountApi();
+    getAllSchoolApi();
     super.onInit();
   }
 
@@ -56,7 +56,7 @@ class SelectSchoolScreenController extends GetxController {
     filterSchool.value = _results;
   }
 
-  Future<void> callDeleteAccountApi() async {
+  Future<void> getAllSchoolApi() async {
     isLoading.value = true;
     try {
       ApiService()

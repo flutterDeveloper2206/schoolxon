@@ -14,7 +14,7 @@ import '../../../core/utils/progress_dialog_utils.dart';
 class LoginScreenController extends GetxController {
   RxBool isCorrect = false.obs;
   RxBool passwordShow = true.obs;
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   Rx<LoginModel> loginModel = LoginModel().obs;
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -33,50 +33,49 @@ class LoginScreenController extends GetxController {
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
     isLoading.value = true;
 
-    // try {
-    await ApiService()
-        .callPostApi(
-            body: FormData({
-              'username': userController.text,
-              'password': passwordController.text
-            }),
-            headerWithToken: false,
-            showLoader: false,
-            url: '${NetworkUrl.loginUrl}${schoolId}')
-        .then((value) async {
-      print('value.runtimeType == String ${value}');
-      print('value.runtimeType == String ${value.statusCode}');
-      if (value.runtimeType == String) {
-        isLoading.value = false;
-
-        ProgressDialogUtils.showTitleSnackBar(
-            headerText: value.toString(), error: true);
-      } else {
-        if (value.statusCode == 200) {
-          print('value.runtimeType == String {value.runtimeType == String}');
-
+    try {
+      await ApiService()
+          .callPostApi(
+              body: FormData({
+                'username': userController.text,
+                'password': passwordController.text
+              }),
+              headerWithToken: false,
+              showLoader: false,
+              url: '${NetworkUrl.loginUrl}${schoolId}')
+          .then((value) async {
+        print('value.runtimeType == String ${value}');
+        print('value.runtimeType == String ${value.statusCode}');
+        if (value.runtimeType == String) {
           isLoading.value = false;
-          loginModel.value = LoginModel.fromJson(value.body);
-          await PrefUtils.putObject(PrefsKey.loginModel, loginModel.value);
-          await PrefUtils.setString(PrefsKey.isLogin, '1');
 
           ProgressDialogUtils.showTitleSnackBar(
-              headerText: AppString.loginSuccessfully);
-          Get.toNamed(AppRoutes.languageSelectScreenRout);
+              headerText: value.toString(), error: true);
         } else {
-          isLoading.value = false;
+          if (value.statusCode == 200) {
+            isLoading.value = false;
+            loginModel.value = LoginModel.fromJson(value.body);
+            await PrefUtils.putObject(PrefsKey.loginModel, loginModel.value);
+            await PrefUtils.setString(PrefsKey.isLogin, '1');
+            bool set = await PrefUtils.setString(
+                PrefsKey.studentID, loginModel.value.student?.studentId ?? '');
 
-          ProgressDialogUtils.showTitleSnackBar(
-              headerText: AppString.something, error: true);
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.loginSuccessfully);
+            Get.toNamed(AppRoutes.languageSelectScreenRout);
+          } else {
+            isLoading.value = false;
+
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.something, error: true);
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      isLoading.value = false;
+
+      ProgressDialogUtils.showTitleSnackBar(
+          headerText: AppString.something, error: true);
+    }
   }
-  // catch (error) {
-  //   isLoading.value = false;
-  //
-  //   ProgressDialogUtils.showTitleSnackBar(
-  //       headerText: AppString.something, error: true);
-  // }
-  // }
 }

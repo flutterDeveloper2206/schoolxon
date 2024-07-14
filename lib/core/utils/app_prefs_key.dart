@@ -6,4 +6,5 @@ abstract class PrefsKey {
   static const String loginModel = '@login_model';
   static const String isLogin = '@is_login';
   static const String selectSchoolId = '@select_school_id';
+  static const String studentID = '@student_id';
 }
