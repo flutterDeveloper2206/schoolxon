@@ -144,21 +144,21 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeWorkScreenRout,
-        page: () =>  HomeWorkScreen(),
+        page: () => HomeWorkScreen(),
         bindings: [
           HomeWorkScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeWorkDetailScreenRout,
-        page: () =>  HomeWorkDetailScreen(),
+        page: () => HomeWorkDetailScreen(),
         bindings: [
           HomeWorkDetailScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeScreenRout,
-        page: () =>  HomeScreen(),
+        page: () => HomeScreen(),
         bindings: [
           HomeScreenBinding(),
         ],
