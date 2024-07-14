@@ -5,6 +5,8 @@ import 'package:schoolxon/presentation/applyLeave_screen/applyLeave_screen.dart'
 import 'package:schoolxon/presentation/applyLeave_screen/binding/applyLeave_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/binding/contact_support_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/contact_support_screen.dart';
+import 'package:schoolxon/presentation/home_screen/binding/home_screen_binding.dart';
+import 'package:schoolxon/presentation/home_screen/home_screen.dart';
 import 'package:schoolxon/presentation/home_work_screen/binding/home_work_screen_binding.dart';
 import 'package:schoolxon/presentation/home_work_screen/home_work_screen.dart';
 import 'package:schoolxon/presentation/language_select_screen/language_select_screen.dart';
@@ -34,6 +36,7 @@ class AppRoutes {
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String applyLeaveScreenRout = '/applyLeaveScreenRout';
   static const String loginScreenRout = '/loginScreenRout';
+  static const String homeScreenRout = '/homeScreenRout';
   static const String homeWorkScreenRout = '/homeWorkScreenRout';
   static const String homeWorkDetailScreenRout = '/homeWorkDetailScreenRout';
   static const String languageSelectScreenRout = '/languageSelectScreenRout';
@@ -125,6 +128,13 @@ class AppRoutes {
         page: () =>  HomeWorkDetailScreen(),
         bindings: [
           HomeWorkDetailScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: homeScreenRout,
+        page: () =>  HomeScreen(),
+        bindings: [
+          HomeScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];
