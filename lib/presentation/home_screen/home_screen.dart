@@ -96,16 +96,20 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
                                       child: Container(
-                                        child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
                                           child: CustomImageView(
-                                            imagePath: ImageConstant.imgPerson,height: getHeight(40),width: getWidth(40),
+                                            imagePath: ImageConstant.imgPerson,
+                                            height: getHeight(40),
+                                            width: getWidth(40),
                                           ),
                                         ),
                                         height: getHeight(50),
                                         width: getWidth(50),
                                         decoration: BoxDecoration(
                                             border: Border.all(
-                                                width:2,
+                                                width: 2,
                                                 color: const Color(0xFFC4C4C4)),
                                             borderRadius:
                                                 const BorderRadiusDirectional
