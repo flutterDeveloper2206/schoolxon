@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_routes.dart';
 
-
-
 class OnBoardingScreenController extends GetxController {
   var currentPage = 0.obs;
   late PageController pageController;
@@ -25,8 +23,12 @@ class OnBoardingScreenController extends GetxController {
     super.onClose();
   }
 
-  void onTapOfGetStartedButton() {
-    Get.offAllNamed(AppRoutes.initialRoute);
+  void skipTap() {
+    currentPage.value = 3;
+    pageController.jumpToPage(currentPage.value);
   }
 
+  void onTapOfGetStartedButton() {
+    Get.offAllNamed(AppRoutes.loginScreenRout);
+  }
 }

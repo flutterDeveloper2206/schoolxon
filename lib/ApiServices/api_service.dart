@@ -51,18 +51,18 @@ class ApiService extends GetConnect {
       contentType: contentType,
     );
     if (isLogPrint) {
-      log("RESPONSE :- ${response.body}");
+      log("STATUSCODE = ${response.statusCode}\nRESPONSE :- ${response.body}");
     }
     if (response.status.hasError) {
       if (showLoader) {
         ProgressDialogUtils.hideProgressDialog();
       }
-      return response.body;
+      return response;
     } else {
       if (showLoader) {
         ProgressDialogUtils.hideProgressDialog();
       }
-      return response.body;
+      return response;
     }
   }
 

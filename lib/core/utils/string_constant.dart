@@ -14,6 +14,10 @@ class AppString {
   static const String contactForm = "Contact Form";
   static const String message = "Message";
   static const String name = "Name";
+  static const String firstName = "First Name";
+  static const String enterFirstName = "Enter First Name";
+  static const String lastName = "Last Name";
+  static const String enterLastName = "Enter Last Name";
   static const String enterName = "Enter Name";
   static const String email = "Email";
   static const String enterEmail = "Enter Email";
@@ -26,13 +30,58 @@ class AppString {
   static const String leaveHistory = "Leave History";
   static const String viewDetails = "View Details";
   static const String noticeBoard = "Notice Board";
+  static const String searchSchool = "Search School";
   static const String all = "All";
   static const String homework = "Home Work";
   static const String thisMonth = "This Month";
   static const String helpYou = "How can we help you?";
+  static const String schools = 'Schools';
+  static const String submit = 'Submit';
+  static const String terms = ' Terms ';
+  static const String mobileNo = 'Mobile Number';
+  static const String enterMobileNo = 'Enter Mobile Number';
+  static const String aadhaarNo = 'Aadhaar Number';
+  static const String enterAadhaarNo = 'Enter Aadhaar Number';
+  static const String currentAddress = 'Current Address';
+  static const String dob = 'DOB';
+  static const String skip = 'Skip';
+  static const String update = 'Update';
+  static const String enterCurrentAddress = 'Enter Current Address';
+  static const String permanentAddress = 'Permanent Address';
+  static const String enterPermanentAddress = 'Enter Permanent Address';
+  static const String next = 'Next';
+  static const String noteBook = 'Note Book';
+  static const String selectYourSubject = 'Select Your Subject';
+  static const String gender = "Gender";
+  static const String male = 'Male';
+  static const String female = 'Female';
+  static const String userName = 'User Name';
+  static const String forgotPassword = 'Forgot Password';
+
+  static const String something = 'Something went wrong!';
+  static const String byClicking = 'By Clicking This button You Agree To The ';
+  static const String selectSchool = 'Please Select School!';
+  static const String enterUserName = 'Please Enter UserName';
+  static const String enterPassword = 'Please Enter Password';
+  static const String enterFirstNamePlease = 'Please Enter First Name';
+  static const String enterLastNamePlease = 'Please Enter Last Name';
+  static const String enterEmailPlease = 'Please Enter Email';
+  static const String enterMobilePlease = 'Please Enter Mobile Number';
+  static const String enterDobPlease = 'Please Select DOB';
+
+  static const String enterCurrentAddressPlease =
+      'Please Enter Current Address';
+  static const String enterPermanentPlease = 'Please Enter Permanent Address';
+  static const String enterAadhaarPlease = 'Please Enter Aadhaar Number';
+
+  static const String loginSuccessfully = 'Login Successfully.';
+  static const String profileSuccessfully = 'Profile Update Successfully.';
+
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";
-
+  static const String LOGINACC = 'Login Account';
+  static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
+  static const String FORGETPWD = 'Forget Password';
   static var Attendance = 'Attendance';
   static var Timesheet = 'Time Sheet';
   static var Overallstatics = 'Overall Statics';
@@ -65,7 +114,6 @@ class AppString {
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
   static const String uploadYourFile = "Upload Your File";
-
 
   static const String welcome = "Welcome";
   static const String seeAll = "See all";
@@ -122,10 +170,8 @@ class AppString {
   static const String aboutMe = "About me";
   static const String age = "Age";
   static const String ageOfPet = "Age of pet";
-  static const String gender = "Gender";
   static const String petPhotos = "Pet photos";
   static const String yourPhotos = "Your photos";
-  static const String update = "Update";
   static const String profiles = "Profiles";
   static const String intrests = "Intrests";
   static const String natashaWinklesWouldLike =
@@ -183,16 +229,12 @@ class AppString {
   static const String edit = "Edit";
   static const String error = "ERROR";
   static const String exit = "Tap one more time to exit.";
-  static const String skip = "Skip";
   static const String distance = "Distance";
   static const String rating = "Rating";
   static const String relevance = "Relevance";
   static const String yes = "Yes";
 
   ///added by radha
-  static const String LOGINACC = 'Login Account';
-  static const String LOGINWLCMTEXT = 'Hello, welcome back to our account';
-  static const String FORGETPWD = 'Forget Password';
 
   static var storagePermission = 'Storage permission!!';
   static var cameraPermission = 'Camera permission!!';
@@ -203,7 +245,6 @@ class AppString {
   static var ultimatePetDating = 'The ultimate pet dating app!';
   static var yourPetsName = "Your pet\'s name";
   static var yourName = 'Your name';
-  static var next = 'Next';
   static var logIns = 'Login';
   static var birthDate = 'BirthDate';
   static var university = 'University';

@@ -1,6 +1,8 @@
 //ignore: unused_import
 import 'dart:convert';
 
+import 'package:schoolxon/presentation/login_screen/model/login_model.dart';
+import 'package:schoolxon/presentation/select_school_screen/school_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefUtils {
@@ -31,13 +33,14 @@ class PrefUtils {
     return _sharedPreferences?.getString(key) ?? defValue ?? "";
   }
 
-
   static Future<void> setInt(String key, int value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(key, value);
   }
 
-  static Future<bool>? remove(String key,) {
+  static Future<bool>? remove(
+    String key,
+  ) {
     return _sharedPreferences?.remove(key);
   }
 
@@ -53,11 +56,19 @@ class PrefUtils {
     return prefs.setString(key, json.encode(value));
   }
 
-  // static Future<LoginModel?> getLoginModelData(String key) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   String? _data = prefs.getString(key);
-  //   return (_data == null || _data.isEmpty)
-  //       ? null
-  //       : LoginModel.fromJson(jsonDecode(_data));
-  // }
+  static Future<SchoolModel?> getSchoolModelData(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? _data = prefs.getString(key);
+    return (_data == null || _data.isEmpty)
+        ? null
+        : SchoolModel.fromJson(jsonDecode(_data));
+  }
+
+  static Future<LoginModel?> getLoginModelData(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? _data = prefs.getString(key);
+    return (_data == null || _data.isEmpty)
+        ? null
+        : LoginModel.fromJson(jsonDecode(_data));
+  }
 }

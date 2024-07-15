@@ -60,7 +60,11 @@ class AppElevatedButton extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: ElevatedButton(
-        onPressed: isDisable ? () {} : onPressed,
+        onPressed: isDisable
+            ? () {}
+            : isLoading == true
+                ? () {}
+                : onPressed,
         style: ElevatedButton.styleFrom(
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           backgroundColor: isDisable

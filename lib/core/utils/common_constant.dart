@@ -4,26 +4,19 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:schoolxon/core/utils/size_utils.dart';
-import 'package:schoolxon/core/utils/string_constant.dart';
 
 import '../app_export.dart';
-import 'app_fonts.dart';
-import 'color_constant.dart';
 
 class CommonConstant {
   CommonConstant._();
 
   static final instance = CommonConstant._();
 
-
   String emailPattern =
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   Pattern phonePattern = r'(^[0-9 ]*$)';
-
 
   bool validateEmail(String email) {
     return RegExp(emailPattern).hasMatch(email);
@@ -169,6 +162,50 @@ class CommonConstant {
         barrierColor: ColorConstant.primaryBlack.withOpacity(0.5));
   }
 
+  Future<XFile?> selectImageFromSystem(
+    ImageSource imageSource,
+  ) async {
+    String? result;
+    if (imageSource == ImageSource.gallery) {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 20,
+        preferredCameraDevice: CameraDevice.front,
+      );
+      return pickedFile;
+    } else if (imageSource == ImageSource.camera) {
+      try {
+        final picker = ImagePicker();
+        final pickedFile = await picker.pickImage(
+          source: ImageSource.camera,
+          imageQuality: 20,
+          preferredCameraDevice: CameraDevice.rear,
+        );
+        return pickedFile;
+      } catch (e) {
+        var status = await Permission.camera.status;
+        if (status.isDenied ||
+            status.isPermanentlyDenied ||
+            status.isRestricted) {
+          CommonConstant.instance.CustomCupertinoAlertDilouge(
+              context: Get.context!,
+              Header: AppString.cameraPermission,
+              subTitle: AppString.cameraPermissionTest,
+              yesButtonText: AppString.yes,
+              noButtonText: AppString.cancel,
+              yesButtonColor: ColorConstant.primaryRed,
+              yesButtonTap: () {
+                Get.back();
+                openAppSettings();
+              });
+        } else {
+          print('$e');
+        }
+      }
+    }
+  }
+
   CustomCupertinoAlertDilouge(
       {required BuildContext context,
       required String Header,
@@ -250,6 +287,4 @@ class CommonConstant {
       ),
     );
   }
-
-
 }

@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:schoolxon/core/utils/network_url.dart';
 import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
+import 'package:schoolxon/routes/app_routes.dart';
+import 'package:schoolxon/widgets/bouncing_button.dart';
 
-import '../../core/utils/app_fonts.dart';
-import '../../core/utils/color_constant.dart';
-import '../../core/utils/image_constant.dart';
-import '../../core/utils/size_utils.dart';
-import '../../core/utils/string_constant.dart';
-import '../../widgets/custom_image_view.dart';
+import '../../core/app_export.dart';
 
 class HomeScreen extends GetWidget<HomeScreenController> {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
     sizeCalculate(context);
     return Scaffold(
         backgroundColor: Colors.white,
@@ -51,14 +54,19 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                               CustomImageView(
                                 svgPath: ImageConstant.icLogo,
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    border:
-                                        Border.all(color: Colors.transparent)),
-                                padding: const EdgeInsets.all(10),
-                                child: CustomImageView(
-                                  svgPath: ImageConstant.icProfileLogo,
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.profileScreenRout);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(
+                                          color: Colors.transparent)),
+                                  padding: const EdgeInsets.all(10),
+                                  child: CustomImageView(
+                                    svgPath: ImageConstant.icProfileLogo,
+                                  ),
                                 ),
                               ),
                             ],
@@ -96,6 +104,21 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
                                       child: Container(
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          child: Obx(
+                                            () => CustomImageView(
+                                              fit: BoxFit.cover,
+                                              url:
+                                                  '${NetworkUrl.imageBaseUrl}${controller.studentModel.value.studentInfo?.image ?? ''}',
+                                              height: getHeight(40),
+                                              width: getWidth(40),
+                                              placeHolder: ImageConstant
+                                                  .imgUserPlaceHolder,
+                                            ),
+                                          ),
+                                        ),
                                         height: getHeight(50),
                                         width: getWidth(50),
                                         decoration: BoxDecoration(
@@ -106,15 +129,6 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                 const BorderRadiusDirectional
                                                     .all(Radius.circular(50)),
                                             color: ColorConstant.blueColor42),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child: CustomImageView(
-                                            imagePath: ImageConstant.imgPerson,
-                                            height: getHeight(40),
-                                            width: getWidth(40),
-                                          ),
-                                        ),
                                       )),
                                   SizedBox(
                                     width: getWidth(10),
@@ -123,17 +137,23 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text('Praveen Kumar',
-                                          style: PMT.style(0).copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: getFontSize(16))),
+                                      Obx(
+                                        () => Text(
+                                            '${controller.studentModel.value.studentInfo?.firstname ?? ''} ${controller.studentModel.value.studentInfo?.middlename ?? ''}',
+                                            style: PMT.style(0).copyWith(
+                                                color:
+                                                    ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: getFontSize(16))),
+                                      ),
                                       SizedBox(
                                         height: getHeight(10),
                                       ),
                                       Row(
                                         children: [
                                           Container(
+                                            constraints: BoxConstraints(
+                                                maxWidth: getWidth(120)),
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -145,14 +165,23 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 12,
                                                       vertical: 7),
-                                              child: Text('ID NO: 18ubao4 ',
-                                                  style: PMT.style(0).copyWith(
-                                                      color:
-                                                          ColorConstant.greyE4,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize:
-                                                          getFontSize(12))),
+                                              child: Obx(
+                                                () => Text(
+                                                    'ID NO: ${controller.studentModel.value.studentInfo?.admissionNo ?? ''} ',
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow
+                                                        .ellipsis,
+                                                    style: PMT
+                                                        .style(0)
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .greyE4,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                getFontSize(
+                                                                    12))),
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
@@ -170,14 +199,20 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 12,
                                                       vertical: 7),
-                                              child: Text('Class: III A',
-                                                  style: PMT.style(0).copyWith(
-                                                      color:
-                                                          ColorConstant.greyE4,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize:
-                                                          getFontSize(12))),
+                                              child: Obx(
+                                                () => Text(
+                                                    'Class: ${controller.studentModel.value.studentInfo?.studentInfoClass ?? ''}',
+                                                    style: PMT
+                                                        .style(0)
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .greyE4,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                getFontSize(
+                                                                    12))),
+                                              ),
                                             ),
                                           ),
                                         ],

@@ -1,9 +1,18 @@
+import 'package:flutter/material.dart';
+
 import '../core/app_export.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String? title;
+  final double? elevation;
   final void Function()? onTapBack;
-  const CommonAppBar({super.key, this.title, this.onTapBack});
+  final void Function()? onPressedAction;
+  const CommonAppBar(
+      {super.key,
+      this.title,
+      this.onTapBack,
+      this.onPressedAction,
+      this.elevation});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +20,7 @@ class CommonAppBar extends StatelessWidget {
       centerTitle: true,
       backgroundColor: ColorConstant.primaryWhite,
       surfaceTintColor: ColorConstant.primaryWhite,
-      elevation: 1.2,
+      elevation: elevation ?? 1.2,
       shadowColor: ColorConstant.appBarShadow,
       title: title != null
           ? Text(
@@ -19,6 +28,9 @@ class CommonAppBar extends StatelessWidget {
               style: PMT.appStyle(18, fontWeight: FontWeight.w600),
             )
           : null,
+      actions: onPressedAction != null
+          ? [IconButton(onPressed: onPressedAction, icon: Icon(Icons.add))]
+          : [],
       leading: InkWell(
         overlayColor: const MaterialStatePropertyAll(Colors.transparent),
         onTap: onTapBack ??
