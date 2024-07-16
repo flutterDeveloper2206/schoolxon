@@ -95,6 +95,7 @@ class AppString {
   static const String endDate = "End Date";
   static const String description = "Description";
   static const String comments = "Comments";
+  static const String yourWorks = "Your Works";
   static const String camera = "Camera";
   static const String gallery = "Gallery";
   static const String fees = "Fees";

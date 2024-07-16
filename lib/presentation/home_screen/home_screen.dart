@@ -104,6 +104,16 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
                                       child: Container(
+                                        height: getHeight(50),
+                                        width: getWidth(50),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 2,
+                                                color: const Color(0xFFC4C4C4)),
+                                            borderRadius:
+                                                const BorderRadiusDirectional
+                                                    .all(Radius.circular(50)),
+                                            color: ColorConstant.blueColor42),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(50),
@@ -119,16 +129,6 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                             ),
                                           ),
                                         ),
-                                        height: getHeight(50),
-                                        width: getWidth(50),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 2,
-                                                color: const Color(0xFFC4C4C4)),
-                                            borderRadius:
-                                                const BorderRadiusDirectional
-                                                    .all(Radius.circular(50)),
-                                            color: ColorConstant.blueColor42),
                                       )),
                                   SizedBox(
                                     width: getWidth(10),
