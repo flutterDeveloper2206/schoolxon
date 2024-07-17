@@ -297,6 +297,8 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                         SizedBox(
                           height: getHeight(45),
                         ),
+
+                        ////////////////////////////////////////////////////////////////////////////////////////
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(
@@ -487,8 +489,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(14),
-                                                          child:
-                                                              CustomImageView(
+                                                          child: CustomImageView(
                                                             svgPath:
                                                                 ImageConstant
                                                                     .icBus,

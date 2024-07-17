@@ -35,7 +35,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                       children: [
                         Padding(
                           padding:
-                          EdgeInsets.symmetric(horizontal: getWidth(10)),
+                              EdgeInsets.symmetric(horizontal: getWidth(10)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -181,7 +181,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                           border: Border.all(
                                               color: ColorConstant.greyE4),
                                           borderRadius:
-                                          BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Row(
@@ -191,12 +191,12 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               width: getWidth(40),
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(50),
+                                                      BorderRadius.circular(50),
                                                   color: ColorConstant.blueFC
                                                       .withOpacity(.2)),
                                               child: Padding(
                                                 padding:
-                                                const EdgeInsets.all(12),
+                                                    const EdgeInsets.all(12),
                                                 child: CustomImageView(
                                                   svgPath: ImageConstant.icClip,
                                                 ),
@@ -209,7 +209,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               'Read Ch. 16.1 - 16.2,\nEx A1 - A5',
                                               style: PMT.style(15,
                                                   fontColor:
-                                                  ColorConstant.grey9A,
+                                                      ColorConstant.grey9A,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             const Spacer(),
@@ -231,7 +231,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                         showModalBottomSheet(
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                              BorderRadius.circular(0)),
+                                                  BorderRadius.circular(0)),
                                           context: context,
                                           builder: (BuildContext context) {
                                             return Column(
@@ -244,100 +244,128 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                       vertical: 35),
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
+                                                        MainAxisAlignment
+                                                            .spaceAround,
                                                     children: <Widget>[
                                                       Column(
                                                         children: [
                                                           Container(
-                                                            height: getHeight(
-                                                                50),
+                                                            height:
+                                                                getHeight(50),
                                                             width:
-                                                            getHeight(50),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    50),
-                                                                border: Border
-                                                                    .all(
-                                                                  color: ColorConstant
-                                                                      .primaryBlack,
-                                                                )),
+                                                                getHeight(50),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50),
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: ColorConstant
+                                                                          .primaryBlack,
+                                                                    )),
                                                             child: IconButton(
                                                               icon: const Icon(Icons
                                                                   .camera_alt_outlined),
                                                               onPressed: () {
-                                                                controller.openCamera();
+                                                                controller
+                                                                    .openCamera();
                                                               },
                                                             ),
                                                           ),
                                                           SizedBox(
                                                             height:
-                                                            getHeight(15),
+                                                                getHeight(15),
                                                           ),
                                                           Text(
                                                             AppString.camera,
                                                             style: PMT.style(16,
                                                                 fontColor:
-                                                                ColorConstant
-                                                                    .grey9A,
+                                                                    ColorConstant
+                                                                        .grey9A,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                                    FontWeight
+                                                                        .bold),
                                                           ),
                                                         ],
                                                       ),
                                                       Column(
                                                         children: [
                                                           Container(
-                                                            height: getHeight(
-                                                                50),
+                                                            height:
+                                                                getHeight(50),
                                                             width:
-                                                            getHeight(50),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    50),
-                                                                border: Border
-                                                                    .all(
-                                                                  color: ColorConstant
-                                                                      .primaryBlack,
-                                                                )),
+                                                                getHeight(50),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50),
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: ColorConstant
+                                                                          .primaryBlack,
+                                                                    )),
                                                             child: IconButton(
                                                               icon: const Icon(Icons
                                                                   .file_upload_outlined),
                                                               onPressed: () {
-
                                                                 Get.back();
                                                                 showModalBottomSheet(
-                                                                  isScrollControlled: true,
-                                                                  backgroundColor: ColorConstant.primaryWhite,
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      ColorConstant
+                                                                          .primaryWhite,
                                                                   shape: const RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                      BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))),
-                                                                  context: context,
-                                                                  builder: (BuildContext context) {
-                                                                    return Column(mainAxisSize: MainAxisSize.min,
-                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      borderRadius: BorderRadius.only(
+                                                                          topLeft: Radius.circular(
+                                                                              20),
+                                                                          topRight:
+                                                                              Radius.circular(20))),
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    return Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsets.only(right: 18,left: 18,top: 20,bottom: 10),
-                                                                          child: Text(
+                                                                          padding: const EdgeInsets
+                                                                              .only(
+                                                                              right: 18,
+                                                                              left: 18,
+                                                                              top: 20,
+                                                                              bottom: 10),
+                                                                          child:
+                                                                              Text(
                                                                             AppString.yourWorks,
                                                                             style: PMT.style(16,
                                                                                 fontColor: ColorConstant.primaryBlack,
                                                                                 fontWeight: FontWeight.bold),
                                                                           ),
                                                                         ),
-
-                                                                        const Divider(color:ColorConstant.greyE4,thickness: 4,),
-                                                                        Padding(
-                                                                          padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 15),
-                                                                          child: Column(
-                                                                            children: [
-                                                                              Container(
-                                                                                decoration: BoxDecoration(   border: Border.all(
-                                                                                    color: ColorConstant.greyE4),
+                                                                        const Divider(
+                                                                          color:
+                                                                              ColorConstant.greyE4,
+                                                                          thickness:
+                                                                              4,
+                                                                        ),
+                                                                        Column(
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                                                                              child: Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  border: Border.all(color: ColorConstant.greyE4),
                                                                                   borderRadius: BorderRadius.circular(10),
                                                                                 ),
                                                                                 width: double.infinity,
@@ -364,11 +392,10 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                                 Text(
                                                                                                   'My Work.Pdf',
                                                                                                   style: PMT.style(0).copyWith(
-                                                                                                    color:
-                                                                                                    ColorConstant.primaryBlack,
-                                                                                                    fontWeight: FontWeight.bold,
-                                                                                                    fontSize: getFontSize(13),
-                                                                                                  ),
+                                                                                                        color: ColorConstant.primaryBlack,
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontSize: getFontSize(13),
+                                                                                                      ),
                                                                                                 ),
                                                                                                 SizedBox(
                                                                                                   width: getWidth(10),
@@ -376,33 +403,33 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                                 Text(
                                                                                                   '7.5 Mb',
                                                                                                   style: PMT.style(0).copyWith(
-                                                                                                    color: ColorConstant.grey7A,
-                                                                                                    fontWeight: FontWeight.w400,
-                                                                                                    fontSize: getFontSize(12),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                const Spacer(),
-                                                                                                Obx(()=>
-                                                                                                    Text(
-                                                                                                      '${(controller.progress.value * 100).toStringAsFixed(0)}%',
-                                                                                                      style: PMT.style(0).copyWith(
                                                                                                         color: ColorConstant.grey7A,
-                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontWeight: FontWeight.w400,
                                                                                                         fontSize: getFontSize(12),
                                                                                                       ),
-                                                                                                    ),
+                                                                                                ),
+                                                                                                const Spacer(),
+                                                                                                Obx(
+                                                                                                  () => Text(
+                                                                                                    '${(controller.progress.value * 100).toStringAsFixed(0)}%',
+                                                                                                    style: PMT.style(0).copyWith(
+                                                                                                          color: ColorConstant.grey7A,
+                                                                                                          fontWeight: FontWeight.bold,
+                                                                                                          fontSize: getFontSize(12),
+                                                                                                        ),
+                                                                                                  ),
                                                                                                 ),
                                                                                               ],
                                                                                             ),
                                                                                             SizedBox(
                                                                                               height: getHeight(10),
                                                                                             ),
-                                                                                            LinearProgressIndicator(borderRadius: BorderRadius.circular(20),
+                                                                                            LinearProgressIndicator(
+                                                                                              borderRadius: BorderRadius.circular(20),
                                                                                               value: controller.progress.value,
                                                                                               minHeight: 6.0,
                                                                                               backgroundColor: ColorConstant.greyE4,
-                                                                                              valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                                  Colors.blueAccent),
+                                                                                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
                                                                                             ),
                                                                                           ],
                                                                                         ),
@@ -411,10 +438,15 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              SizedBox(height: getHeight(15),),
-                                                                              Container(
-                                                                                decoration: BoxDecoration(   border: Border.all(
-                                                                                    color: ColorConstant.greyE4),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: getHeight(15),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                                                                              child: Container(
+                                                                                decoration: BoxDecoration(
+                                                                                  border: Border.all(color: ColorConstant.greyE4),
                                                                                   borderRadius: BorderRadius.circular(10),
                                                                                 ),
                                                                                 width: double.infinity,
@@ -441,11 +473,10 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                                 Text(
                                                                                                   'My Work.Pdf',
                                                                                                   style: PMT.style(0).copyWith(
-                                                                                                    color:
-                                                                                                    ColorConstant.primaryBlack,
-                                                                                                    fontWeight: FontWeight.bold,
-                                                                                                    fontSize: getFontSize(13),
-                                                                                                  ),
+                                                                                                        color: ColorConstant.primaryBlack,
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontSize: getFontSize(13),
+                                                                                                      ),
                                                                                                 ),
                                                                                                 SizedBox(
                                                                                                   width: getWidth(10),
@@ -453,33 +484,33 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                                 Text(
                                                                                                   '7.5 Mb',
                                                                                                   style: PMT.style(0).copyWith(
-                                                                                                    color: ColorConstant.grey7A,
-                                                                                                    fontWeight: FontWeight.w400,
-                                                                                                    fontSize: getFontSize(12),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                const Spacer(),
-                                                                                                Obx(()=>
-                                                                                                    Text(
-                                                                                                      '${(controller.progress.value * 100).toStringAsFixed(0)}%',
-                                                                                                      style: PMT.style(0).copyWith(
                                                                                                         color: ColorConstant.grey7A,
-                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                        fontWeight: FontWeight.w400,
                                                                                                         fontSize: getFontSize(12),
                                                                                                       ),
-                                                                                                    ),
+                                                                                                ),
+                                                                                                const Spacer(),
+                                                                                                Obx(
+                                                                                                  () => Text(
+                                                                                                    '${(controller.progress.value * 100).toStringAsFixed(0)}%',
+                                                                                                    style: PMT.style(0).copyWith(
+                                                                                                          color: ColorConstant.grey7A,
+                                                                                                          fontWeight: FontWeight.bold,
+                                                                                                          fontSize: getFontSize(12),
+                                                                                                        ),
+                                                                                                  ),
                                                                                                 ),
                                                                                               ],
                                                                                             ),
                                                                                             SizedBox(
                                                                                               height: getHeight(10),
                                                                                             ),
-                                                                                            LinearProgressIndicator(borderRadius: BorderRadius.circular(20),
+                                                                                            LinearProgressIndicator(
+                                                                                              borderRadius: BorderRadius.circular(20),
                                                                                               value: controller.progress.value,
                                                                                               minHeight: 6.0,
                                                                                               backgroundColor: ColorConstant.greyE4,
-                                                                                              valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                                  Colors.blueAccent),
+                                                                                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
                                                                                             ),
                                                                                           ],
                                                                                         ),
@@ -488,74 +519,108 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              SizedBox(height: getHeight(160),),
-                                                                            ],
-                                                                          ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: getHeight(160),
+                                                                            ),
+                                                                            Container(
+                                                                                width: double.infinity,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.white,
+                                                                                  boxShadow: [
+                                                                                    BoxShadow(
+                                                                                      color: Colors.grey.withOpacity(0.5),
+                                                                                      spreadRadius: 1,
+                                                                                      blurRadius: 5,
+                                                                                      offset: const Offset(0, -3), // changes position of shadow
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                                child: Padding(
+                                                                                    padding: const EdgeInsets.all(20.0),
+                                                                                    child: Column(
+                                                                                      mainAxisSize: MainAxisSize.min,
+                                                                                      children: [
+                                                                                        AppElevatedButton(
+                                                                                          textColor: ColorConstant.grey9A,
+                                                                                          buttonName: AppString.uploadFiles,
+                                                                                          onPressed: () {},
+                                                                                          buttonColor: ColorConstant.primaryWhite,
+                                                                                        ),
+                                                                                        const SizedBox(height: 10),
+                                                                                        AppElevatedButton(
+                                                                                          buttonName: AppString.handIn,
+                                                                                          onPressed: () {},
+                                                                                          buttonColor: ColorConstant.blueF9,
+                                                                                        )
+                                                                                      ],
+                                                                                    ))),
+                                                                          ],
                                                                         ),
-
-
                                                                       ],
                                                                     );
                                                                   },
                                                                 );
-
                                                               },
                                                             ),
                                                           ),
                                                           SizedBox(
                                                             height:
-                                                            getHeight(15),
+                                                                getHeight(15),
                                                           ),
                                                           Text(
                                                             AppString.upload,
                                                             style: PMT.style(16,
                                                                 fontColor:
-                                                                ColorConstant
-                                                                    .grey9A,
+                                                                    ColorConstant
+                                                                        .grey9A,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                                    FontWeight
+                                                                        .bold),
                                                           ),
                                                         ],
                                                       ),
                                                       Column(
                                                         children: [
                                                           Container(
-                                                            height: getHeight(
-                                                                50),
+                                                            height:
+                                                                getHeight(50),
                                                             width:
-                                                            getHeight(50),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    50),
-                                                                border: Border
-                                                                    .all(
-                                                                  color: ColorConstant
-                                                                      .primaryBlack,
-                                                                )),
+                                                                getHeight(50),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50),
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: ColorConstant
+                                                                          .primaryBlack,
+                                                                    )),
                                                             child: IconButton(
                                                               icon: const Icon(Icons
                                                                   .photo_outlined),
                                                               onPressed: () {
-                                                                controller.openGallery();
+                                                                controller
+                                                                    .openGallery();
                                                                 // Implement gallery functionality
                                                               },
                                                             ),
                                                           ),
                                                           SizedBox(
                                                             height:
-                                                            getHeight(15),
+                                                                getHeight(15),
                                                           ),
                                                           Text(
                                                             AppString.gallery,
                                                             style: PMT.style(16,
                                                                 fontColor:
-                                                                ColorConstant
-                                                                    .grey9A,
+                                                                    ColorConstant
+                                                                        .grey9A,
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                                    FontWeight
+                                                                        .bold),
                                                           ),
                                                         ],
                                                       ),
@@ -567,6 +632,88 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                           },
                                         );
                                       },
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(15),
+                                    ),
+                                    Text(
+                                      AppString.yourWorks,
+                                      style: PMT.style(16,
+                                          fontColor: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(15),
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                          children: [
+                                            CustomImageView(
+                                              imagePath: ImageConstant.pdf2,
+                                              height: getHeight(35),
+                                              width: getWidth(35),
+                                            ),
+                                            SizedBox(
+                                              width: getWidth(10),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    width: getWidth(10),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'My Work.Pdf',
+                                                        style: PMT
+                                                            .style(0)
+                                                            .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      13),
+                                                            ),
+                                                      ),
+                                                      const Spacer(),
+                                                      const Icon(Icons.close)
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        '7.5 Mb',
+                                                        style: PMT
+                                                            .style(0)
+                                                            .copyWith(
+                                                              color:
+                                                                  ColorConstant
+                                                                      .grey7A,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      12),
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -581,7 +728,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                   right: 18,
                                   left: 18,
                                   bottom:
-                                  MediaQuery.of(context).viewInsets.bottom,
+                                      MediaQuery.of(context).viewInsets.bottom,
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -595,6 +742,39 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                     SizedBox(
                                       height: getHeight(20),
                                     ),
+
+                                    ///ADD Condistion
+                                    TextField(
+                                      onTap: () {},
+                                      readOnly: false,
+                                      decoration: InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          borderSide: const BorderSide(
+                                            color: ColorConstant
+                                                .blueF9, // Color of the border when not focused
+                                          ),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 0, horizontal: 12.0),
+                                        hintText: "Add Comment",
+                                        hintStyle: const TextStyle(
+                                            color: ColorConstant.grey9A),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          borderSide: const BorderSide(
+                                            color: Colors
+                                                .grey, // Color of the border when not focused
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(20),
+                                    ),
                                     Row(
                                       children: [
                                         Container(
@@ -602,7 +782,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                           width: getWidth(45),
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(50),
+                                                  BorderRadius.circular(50),
                                               color: ColorConstant.blueF9),
                                           child: Center(
                                             child: Text(
@@ -610,8 +790,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               style: PMT.style(15,
                                                   fontColor: ColorConstant
                                                       .primaryWhite,
-                                                  fontWeight:
-                                                  FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
                                         ),
@@ -620,7 +799,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'You',
@@ -636,7 +815,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               'Hi Mam I Need Your Help',
                                               style: PMT.style(15,
                                                   fontColor:
-                                                  ColorConstant.grey9A,
+                                                      ColorConstant.grey9A,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -653,7 +832,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                           width: getWidth(45),
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(50),
+                                                  BorderRadius.circular(50),
                                               color: ColorConstant.blueF9),
                                           child: Center(
                                             child: Text(
@@ -661,8 +840,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               style: PMT.style(15,
                                                   fontColor: ColorConstant
                                                       .primaryWhite,
-                                                  fontWeight:
-                                                  FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
                                         ),
@@ -671,7 +849,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'You',
@@ -687,7 +865,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                               'Hi Mam I Need Your Help',
                                               style: PMT.style(15,
                                                   fontColor:
-                                                  ColorConstant.grey9A,
+                                                      ColorConstant.grey9A,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -712,7 +890,7 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                       showModalBottomSheet(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(0)),
+                                                BorderRadius.circular(0)),
                                         context: context,
                                         builder: (BuildContext context) {
                                           return Column(
@@ -720,29 +898,30 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                             children: [
                                               Container(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 35),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 35),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceAround,
+                                                      MainAxisAlignment
+                                                          .spaceAround,
                                                   children: <Widget>[
                                                     Column(
                                                       children: [
                                                         Container(
-                                                          height:
-                                                          getHeight(50),
+                                                          height: getHeight(50),
                                                           width: getHeight(50),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  50),
-                                                              border: Border.all(
-                                                                color: ColorConstant
-                                                                    .primaryBlack,
-                                                              )),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: ColorConstant
+                                                                        .primaryBlack,
+                                                                  )),
                                                           child: IconButton(
                                                             icon: const Icon(Icons
                                                                 .camera_alt_outlined),
@@ -752,36 +931,36 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          height:
-                                                          getHeight(15),
+                                                          height: getHeight(15),
                                                         ),
                                                         Text(
                                                           AppString.camera,
                                                           style: PMT.style(16,
                                                               fontColor:
-                                                              ColorConstant
-                                                                  .grey9A,
+                                                                  ColorConstant
+                                                                      .grey9A,
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .bold),
+                                                                  FontWeight
+                                                                      .bold),
                                                         ),
                                                       ],
                                                     ),
                                                     Column(
                                                       children: [
                                                         Container(
-                                                          height:
-                                                          getHeight(50),
+                                                          height: getHeight(50),
                                                           width: getHeight(50),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  50),
-                                                              border: Border.all(
-                                                                color: ColorConstant
-                                                                    .primaryBlack,
-                                                              )),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: ColorConstant
+                                                                        .primaryBlack,
+                                                                  )),
                                                           child: IconButton(
                                                             icon: const Icon(Icons
                                                                 .file_upload_outlined),
@@ -791,36 +970,36 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          height:
-                                                          getHeight(15),
+                                                          height: getHeight(15),
                                                         ),
                                                         Text(
                                                           AppString.upload,
                                                           style: PMT.style(16,
                                                               fontColor:
-                                                              ColorConstant
-                                                                  .grey9A,
+                                                                  ColorConstant
+                                                                      .grey9A,
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .bold),
+                                                                  FontWeight
+                                                                      .bold),
                                                         ),
                                                       ],
                                                     ),
                                                     Column(
                                                       children: [
                                                         Container(
-                                                          height:
-                                                          getHeight(50),
+                                                          height: getHeight(50),
                                                           width: getHeight(50),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  50),
-                                                              border: Border.all(
-                                                                color: ColorConstant
-                                                                    .primaryBlack,
-                                                              )),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: ColorConstant
+                                                                        .primaryBlack,
+                                                                  )),
                                                           child: IconButton(
                                                             icon: const Icon(Icons
                                                                 .photo_outlined),
@@ -830,18 +1009,17 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          height:
-                                                          getHeight(15),
+                                                          height: getHeight(15),
                                                         ),
                                                         Text(
                                                           AppString.gallery,
                                                           style: PMT.style(16,
                                                               fontColor:
-                                                              ColorConstant
-                                                                  .grey9A,
+                                                                  ColorConstant
+                                                                      .grey9A,
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .bold),
+                                                                  FontWeight
+                                                                      .bold),
                                                         ),
                                                       ],
                                                     ),
@@ -853,152 +1031,216 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                         },
                                       );
                                     },
-                                    child:  TextField(onTap: (){
-                                      showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: ColorConstant.primaryWhite,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(20)),
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Padding(
-                                            padding:  EdgeInsets.only(top: 18,left: 18,right: 18,bottom: MediaQuery.of(context).viewInsets.bottom),
-                                            child: Column(mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      AppString.comments,
-                                                      style: PMT.style(16,
-                                                          fontColor: ColorConstant.primaryBlack,
-                                                          fontWeight: FontWeight.bold),
-                                                    ),
-                                                    IconButton(onPressed: (){Get.back();}, icon: const Icon(Icons.close))
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: getHeight(20),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      height: getHeight(45),
-                                                      width: getWidth(45),
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius.circular(50),
-                                                          color: ColorConstant.blueF9),
-                                                      child: Center(
-                                                        child: Text(
-                                                          'En',
-                                                          style: PMT.style(15,
-                                                              fontColor: ColorConstant
-                                                                  .primaryWhite,
-                                                              fontWeight:
-                                                              FontWeight.bold),
+                                    child: TextField(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor:
+                                              ColorConstant.primaryWhite,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 18,
+                                                  left: 18,
+                                                  right: 18,
+                                                  bottom: MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        AppString.comments,
+                                                        style: PMT.style(16,
+                                                            fontColor:
+                                                                ColorConstant
+                                                                    .primaryBlack,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          icon: const Icon(
+                                                              Icons.close))
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: getHeight(20),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        height: getHeight(45),
+                                                        width: getWidth(45),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            color: ColorConstant
+                                                                .blueF9),
+                                                        child: Center(
+                                                          child: Text(
+                                                            'En',
+                                                            style: PMT.style(15,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .primaryWhite,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: getWidth(20),
-                                                    ),
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          'You',
-                                                          style: PMT.style(16,
-                                                              fontColor: ColorConstant
-                                                                  .primaryBlack,
-                                                              fontWeight: FontWeight.bold),
-                                                        ),
-                                                        SizedBox(
-                                                          height: getHeight(4),
-                                                        ),
-                                                        Text(
-                                                          'Hi Mam I Need Your Help',
-                                                          style: PMT.style(15,
-                                                              fontColor:
-                                                              ColorConstant.grey9A,
-                                                              fontWeight: FontWeight.bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: getHeight(20),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      height: getHeight(45),
-                                                      width: getWidth(45),
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius.circular(50),
-                                                          color: ColorConstant.blueF9),
-                                                      child: Center(
-                                                        child: Text(
-                                                          'En',
-                                                          style: PMT.style(15,
-                                                              fontColor: ColorConstant
-                                                                  .primaryWhite,
-                                                              fontWeight:
-                                                              FontWeight.bold),
+                                                      SizedBox(
+                                                        width: getWidth(20),
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'You',
+                                                            style: PMT.style(16,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .primaryBlack,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getHeight(4),
+                                                          ),
+                                                          Text(
+                                                            'Hi Mam I Need Your Help',
+                                                            style: PMT.style(15,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .grey9A,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: getHeight(20),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        height: getHeight(45),
+                                                        width: getWidth(45),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            color: ColorConstant
+                                                                .blueF9),
+                                                        child: Center(
+                                                          child: Text(
+                                                            'En',
+                                                            style: PMT.style(15,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .primaryWhite,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
                                                         ),
                                                       ),
+                                                      SizedBox(
+                                                        width: getWidth(20),
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'You',
+                                                            style: PMT.style(16,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .primaryBlack,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getHeight(4),
+                                                          ),
+                                                          Text(
+                                                            'Hi Mam I Need Your Help',
+                                                            style: PMT.style(15,
+                                                                fontColor:
+                                                                    ColorConstant
+                                                                        .grey9A,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: getHeight(20),
+                                                  ),
+                                                  Divider(
+                                                      height: getHeight(10),
+                                                      color:
+                                                          ColorConstant.greyE4,
+                                                      thickness: 2),
+                                                  const TextField(
+                                                    decoration: InputDecoration(
+                                                      suffixIcon: Icon(
+                                                        Icons.send,
+                                                        color: ColorConstant
+                                                            .grey9A,
+                                                      ),
+                                                      hintText:
+                                                          "Add Your Comment",
+                                                      hintStyle: TextStyle(
+                                                          color: ColorConstant
+                                                              .grey9A),
+                                                      border: InputBorder.none,
                                                     ),
-                                                    SizedBox(
-                                                      width: getWidth(20),
-                                                    ),
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          'You',
-                                                          style: PMT.style(16,
-                                                              fontColor: ColorConstant
-                                                                  .primaryBlack,
-                                                              fontWeight: FontWeight.bold),
-                                                        ),
-                                                        SizedBox(
-                                                          height: getHeight(4),
-                                                        ),
-                                                        Text(
-                                                          'Hi Mam I Need Your Help',
-                                                          style: PMT.style(15,
-                                                              fontColor:
-                                                              ColorConstant.grey9A,
-                                                              fontWeight: FontWeight.bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: getHeight(20),
-                                                ),
-                                                 Divider(height: getHeight(10),
-                                                    color: ColorConstant.greyE4, thickness: 2),
-                                                const TextField(decoration: InputDecoration(suffixIcon: Icon(Icons.send,color:ColorConstant.grey9A ,),
-                                                  hintText: "Add Your Comment",
-                                                  hintStyle: TextStyle(
-                                                      color: ColorConstant.grey9A),
-                                                  border: InputBorder.none,
-                                                ),)
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
                                       readOnly: true,
-                                      decoration: const InputDecoration(suffixIcon: Icon(Icons.send,color:ColorConstant.grey9A ,),
+                                      decoration: const InputDecoration(
+                                        suffixIcon: Icon(
+                                          Icons.send,
+                                          color: ColorConstant.grey9A,
+                                        ),
                                         hintText: "Add Your Comment",
                                         hintStyle: TextStyle(
                                             color: ColorConstant.grey9A),
