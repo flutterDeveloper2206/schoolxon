@@ -14,7 +14,7 @@ class SplashScreen extends GetWidget<SplashScreenController> {
         backgroundColor: ColorConstant.primaryBlue,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(70),
+            padding: const EdgeInsets.all(100),
             child: CustomImageView(
               svgPath: ImageConstant.imgSplashLogo,
               height: double.infinity,
