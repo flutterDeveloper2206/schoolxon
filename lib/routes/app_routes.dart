@@ -5,6 +5,8 @@ import 'package:schoolxon/presentation/applyLeave_screen/applyLeave_screen.dart'
 import 'package:schoolxon/presentation/applyLeave_screen/binding/applyLeave_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/binding/contact_support_screen_binding.dart';
 import 'package:schoolxon/presentation/contact_support_screen/contact_support_screen.dart';
+import 'package:schoolxon/presentation/dashboard_screen/binding/dashboard_screen_binding.dart';
+import 'package:schoolxon/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:schoolxon/presentation/forgetPwd_screen/binding/forgetPWD_Screen_binding.dart';
 import 'package:schoolxon/presentation/forgetPwd_screen/forgetPwd_screen.dart';
 import 'package:schoolxon/presentation/home_screen/binding/home_screen_binding.dart';
@@ -22,6 +24,8 @@ import 'package:schoolxon/presentation/not_book_subject_screen/binding/not_book_
 import 'package:schoolxon/presentation/not_book_subject_screen/not_book_subject_screen.dart';
 import 'package:schoolxon/presentation/note_list_screen/binding/note_list_screen_binding.dart';
 import 'package:schoolxon/presentation/note_list_screen/note_list_screen.dart';
+import 'package:schoolxon/presentation/note_show_screen/binding/note_show_screen_binding.dart';
+import 'package:schoolxon/presentation/note_show_screen/note_show_screen.dart';
 import 'package:schoolxon/presentation/notice_board_screen/binding/notice_board_screen_binding.dart';
 import 'package:schoolxon/presentation/notice_board_screen/notice_board_screen.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
@@ -51,6 +55,8 @@ class AppRoutes {
   static const String noteBookSubjectScreenRout = '/note_book_subject_screen';
   static const String noteListScreenRout = '/note_list_screen';
   static const String writeNoteScreenRout = '/write_note_screen';
+  static const String noteShowScreenRout = '/note_show_screen';
+  static const String dashBoardScreenRout = '/dashboard_screen';
 
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String applyLeaveScreenRout = '/applyLeaveScreenRout';
@@ -196,6 +202,20 @@ class AppRoutes {
         page: () => WriteNoteScreen(),
         bindings: [
           WriteNoteScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: noteShowScreenRout,
+        page: () => NoteShowScreen(),
+        bindings: [
+          NoteShowScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: dashBoardScreenRout,
+        page: () => DashBoardScreen(),
+        bindings: [
+          DashBoardScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];

@@ -20,9 +20,18 @@ class NoteListScreen extends GetWidget<NoteListScreenController> {
 
     return Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
             preferredSize: Size.fromHeight(60.0), // height of appbar
-            child: CommonAppBar(title: 'English')),
+            child: CommonAppBar(
+              title: 'English',
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.writeNoteScreenRout);
+                    },
+                    icon: Icon(Icons.add))
+              ],
+            )),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
           child: Column(
@@ -38,21 +47,32 @@ class NoteListScreen extends GetWidget<NoteListScreenController> {
                   mainAxisSpacing: 1,
                   crossAxisSpacing: 8,
                   pattern: [
-                    WovenGridTile(
+                    const WovenGridTile(
                       4.5 / 8,
                       crossAxisRatio: 0.9,
                       // alignment: AlignmentDirectional.centerEnd,
                     ),
-                    WovenGridTile(0.9, crossAxisRatio: 1),
+                    const WovenGridTile(0.9, crossAxisRatio: 1),
                   ],
                 ),
                 childrenDelegate: SliverChildBuilderDelegate(
                   (context, index) => Bounce(
                     onTap: () {
-                      Get.toNamed(AppRoutes.writeNoteScreenRout);
+                      Get.toNamed(AppRoutes.noteShowScreenRout);
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                            gradient: index % 3 == 0
+                                ? LinearGradient(
+                                    colors: [
+                                      controller.getRandomColor(),
+                                      ColorConstant.primaryWhite
+                                    ],
+                                    stops: const [0.1, 1],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                  )
+                                : null,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: ColorConstant.greyDD)),
                         child: Padding(
@@ -79,7 +99,7 @@ class NoteListScreen extends GetWidget<NoteListScreenController> {
                                   14,
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 '6 january',
                                 overflow: TextOverflow.ellipsis,

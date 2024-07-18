@@ -29,6 +29,6 @@ class OnBoardingScreenController extends GetxController {
   }
 
   void onTapOfGetStartedButton() {
-    Get.offAllNamed(AppRoutes.loginScreenRout);
+    Get.offAllNamed(AppRoutes.selectSchoolScreenRout);
   }
 }

@@ -24,7 +24,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
         body: Column(
           children: [
             Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       ColorConstant.blue6F,
@@ -332,6 +332,8 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                                         ],
                                       ),
                                     ),
+
+                                    //////////////////////////////////////////////////////////////////////////////////////////
                                     Expanded(
                                       child: SingleChildScrollView(
                                         child: Column(

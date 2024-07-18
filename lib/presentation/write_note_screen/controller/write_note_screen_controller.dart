@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 
 import '../../../routes/app_routes.dart';
 
 class WriteNoteScreenController extends GetxController {
+  RxString result = ''.obs;
+  final HtmlEditorController controller1 = HtmlEditorController();
   @override
   void onInit() {
     super.onInit();

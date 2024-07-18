@@ -111,6 +111,11 @@ class AppString {
   static const String menu = "Menu";
   static const String academics = "Academics";
   static const String upload = "Upload";
+  static const String home = "Home";
+  static const String chat = "Chat";
+  static const String report = "Report";
+  static const String profile = "Profile";
+  static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
   static const String uploadYourFile = "Upload Your File";
@@ -147,7 +152,6 @@ class AppString {
       "You have successfully subscribed to\n No ads bundle for 1 month.";
   static const String ok = "OK";
   static const String add = "Add";
-  static const String profile = "Profile";
   static const String enjoyAllTheBenefits = "Enjoy all the benefits!";
   static const String enjoyUnlimitedSwipingLikes =
       "Enjoy unlimited swiping, likes, without\nrestrictions, & without ads";

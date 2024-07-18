@@ -5,6 +5,8 @@ class ColorConstant {
   static const Color primaryRed = Color(0xFFF14A4A);
   static const Color primaryBlue = Color(0xFF56A8F9);
   static const Color primaryBlack = Color(0xFF000000);
+  static const Color yellowFA = Color(0xFFFAE789);
+  static const Color grey63 = Color(0xFF636268);
   static const Color blackOF = Color(0xFF0F0F0F);
   static const Color textGray78 = Color(0xFF787878);
   static const Color textGray6D = Color(0xFF6D6D6D);

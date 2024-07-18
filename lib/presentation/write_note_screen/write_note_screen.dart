@@ -1,54 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:schoolxon/core/utils/image_constant.dart';
+import 'package:schoolxon/widgets/custom_elavated_button.dart';
 import '../../core/app_export.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:file_picker/file_picker.dart';
-import '../../core/utils/color_constant.dart';
-import '../../widgets/custom_image_view.dart';
+import '../../widgets/common_appBar.dart';
 import 'controller/write_note_screen_controller.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 
 class WriteNoteScreen extends GetWidget<WriteNoteScreenController> {
-  WriteNoteScreen({super.key});
-
-  String result = '';
-  final HtmlEditorController controller1 = HtmlEditorController();
+  const WriteNoteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    sizeCalculate(context);
     return GestureDetector(
       onTap: () {
         if (!kIsWeb) {
-          controller1.clearFocus();
+          controller.controller1.clearFocus();
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('widget.title'),
-          elevation: 0,
-          actions: [
-            IconButton(
-                icon: Icon(Icons.refresh),
-                onPressed: () {
-                  if (kIsWeb) {
-                    controller1.reloadWeb();
-                  } else {
-                    controller1.editorController!.reload();
-                  }
-                })
-          ],
-        ),
+        backgroundColor: ColorConstant.primaryWhite,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60.0), // height of appbar
+            child: CommonAppBar(
+              title: 'English',
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: CustomImageView(
+                      svgPath: ImageConstant.icFilterSearch,
+                    ))
+              ],
+            )),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               HtmlEditor(
-                controller: controller1,
+                controller: controller.controller1,
                 htmlEditorOptions: HtmlEditorOptions(
                   hint: 'Your text here...',
                   shouldEnsureVisible: true,
@@ -130,7 +120,7 @@ class WriteNoteScreen extends GetWidget<WriteNoteScreenController> {
                 }, onKeyDown: (int? keyCode) {
                   print('$keyCode key downed');
                   print(
-                      'current character count: ${controller1.characterCount}');
+                      'current character count: ${controller.controller1.characterCount}');
                 }, onKeyUp: (int? keyCode) {
                   print('$keyCode key released');
                 }, onMouseDown: () {
@@ -160,72 +150,36 @@ class WriteNoteScreen extends GetWidget<WriteNoteScreenController> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: getWidth(16), vertical: getHeight(5)),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller1.undo();
-                      },
-                      child:
-                          Text('Undo', style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey),
-                      onPressed: () {
-                        controller1.clear();
-                      },
-                      child:
-                          Text('Reset', style: TextStyle(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary),
-                      onPressed: () async {
-                        var txt = await controller1.getText();
-                        if (txt.contains('src=\"data:')) {
-                          txt =
-                              '<text removed due to base-64 data, displaying the text could cause the app to crash>';
-                        }
-                        result = txt;
-                      },
-                      child: Text(
-                        'Submit',
-                        style: TextStyle(color: Colors.white),
+                  children: [
+                    Expanded(
+                      child: AppElevatedButton(
+                        buttonName: 'Clear',
+                        onPressed: () {
+                          controller.controller1.clear();
+                        },
                       ),
                     ),
                     SizedBox(
-                      width: 16,
+                      width: getWidth(15),
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary),
-                      onPressed: () {
-                        controller1.redo();
-                      },
-                      child: Text(
-                        'Redo',
-                        style: TextStyle(color: Colors.white),
+                    Expanded(
+                      child: AppElevatedButton(
+                        buttonName: 'Submit',
+                        onPressed: () async {
+                          var txt = await controller.controller1.getText();
+                          if (txt.contains('src=\"data:')) {
+                            txt =
+                                '<text removed due to base-64 data, displaying the text could cause the app to crash>';
+                          }
+                          controller.result.value = txt;
+                        },
                       ),
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(result),
               ),
             ],
           ),

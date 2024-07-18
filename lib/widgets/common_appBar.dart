@@ -4,7 +4,9 @@ import '../core/app_export.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String? title;
+  final Color? backgroundColor;
   final double? elevation;
+  final List<Widget>? actions;
   final void Function()? onTapBack;
   final void Function()? onPressedAction;
   const CommonAppBar(
@@ -12,13 +14,15 @@ class CommonAppBar extends StatelessWidget {
       this.title,
       this.onTapBack,
       this.onPressedAction,
-      this.elevation});
+      this.backgroundColor,
+      this.elevation,
+      this.actions});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: ColorConstant.primaryWhite,
+      backgroundColor: backgroundColor ?? ColorConstant.primaryWhite,
       surfaceTintColor: ColorConstant.primaryWhite,
       elevation: elevation ?? 1.2,
       shadowColor: ColorConstant.appBarShadow,
@@ -28,9 +32,7 @@ class CommonAppBar extends StatelessWidget {
               style: PMT.appStyle(18, fontWeight: FontWeight.w600),
             )
           : null,
-      actions: onPressedAction != null
-          ? [IconButton(onPressed: onPressedAction, icon: Icon(Icons.add))]
-          : [],
+      actions: actions,
       leading: InkWell(
         overlayColor: const MaterialStatePropertyAll(Colors.transparent),
         onTap: onTapBack ??

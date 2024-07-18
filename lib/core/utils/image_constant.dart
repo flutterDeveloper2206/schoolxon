@@ -2,8 +2,13 @@ class ImageConstant {
   static String imageNotFound = 'assets/images/image_not_found.png';
   static String imgSplashLogo = 'assets/images/svg/splashLogo.svg';
   static String icBack = 'assets/icons/svg/ic_back.svg';
+  static String icFilterSearch = 'assets/icons/svg/ic_filter_search.svg';
   static String icFile = 'assets/icons/svg/ic_file.svg';
   static String icHelp = 'assets/icons/svg/ic_help.svg';
+  static String icChat = 'assets/icons/svg/ic_chat.svg';
+  static String icHome = 'assets/icons/svg/ic_home.svg';
+  static String icProfileUser = 'assets/icons/svg/ic_profile.svg';
+  static String icReport = 'assets/icons/svg/ic_report.svg';
   static String icBook = 'assets/icons/svg/ic_book_icon.svg';
   static String icLogout = 'assets/icons/svg/ic_logout.svg';
   static String icPassword = 'assets/icons/svg/ic_password.svg';
