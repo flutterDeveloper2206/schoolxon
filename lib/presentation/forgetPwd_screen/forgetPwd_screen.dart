@@ -83,7 +83,7 @@ class ForgetPwdScreen extends GetWidget {
                 child: AppElevatedButton(
                   buttonName: 'Request Password',
                   radius: 8.0,
-                  buttonColor: ColorConstant.blueTextColor,
+                  buttonColor: ColorConstant.primaryBlue,
                   onPressed: () {
                     Get.to(LanguageSelectScreen());
                   },
@@ -104,7 +104,7 @@ class ForgetPwdScreen extends GetWidget {
                       TextSpan(
                         text: ' Terms ',
                         style: PMT.style(12).copyWith(
-                            color: ColorConstant.blueTextColor,
+                            color: ColorConstant.primaryBlue.withOpacity(.9),
                             fontWeight: FontWeight.w400,
                             fontSize: getFontSize(12)),
                       ),

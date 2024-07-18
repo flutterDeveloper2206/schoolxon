@@ -334,7 +334,7 @@ class ProfileScreen extends GetWidget<ProfileScreenController> {
                         () => !controller.hasEdit.value
                             ? Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: getWidth(16)),
+                                    horizontal: getWidth(16),vertical: getHeight(5)),
                                 child: AppElevatedButton(
                                   isLoading: controller.isUpdateLoading.value,
                                   buttonName: AppString.update,

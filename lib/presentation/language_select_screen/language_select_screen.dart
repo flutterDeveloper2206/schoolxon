@@ -99,7 +99,7 @@ class LanguageSelectScreen extends GetWidget<LanguageSelectScreenController> {
                 child: AppElevatedButton(
                   buttonName: AppString.next,
                   radius: 8.0,
-                  buttonColor: ColorConstant.blueTextColor,
+                  buttonColor: ColorConstant.primaryBlue,
                   onPressed: () {
                     Get.offAllNamed(AppRoutes.homeScreenRout);
                   },

@@ -148,7 +148,7 @@ class LoginScreen extends GetWidget<LoginScreenController> {
                     child: Text(
                       AppString.forgotPassword,
                       style: PMT.style(15).copyWith(
-                          color: ColorConstant.blueTextColor,
+                          color: ColorConstant.primaryBlue,
                           fontWeight: FontWeight.w400,
                           fontSize: getFontSize(15)),
                     ),
@@ -163,7 +163,7 @@ class LoginScreen extends GetWidget<LoginScreenController> {
                     buttonName: AppString.submit,
                     radius: 8.0,
                     isLoading: controller.isLoading.value,
-                    buttonColor: ColorConstant.blueTextColor,
+                    buttonColor: ColorConstant.primaryBlue,
                     onPressed: () {
                       controller.submit();
                       // controller.isCorrect.value = !controller.isCorrect.value;
@@ -186,7 +186,7 @@ class LoginScreen extends GetWidget<LoginScreenController> {
                       TextSpan(
                         text: AppString.terms,
                         style: PMT.style(12).copyWith(
-                            color: ColorConstant.blueTextColor,
+                            color: ColorConstant.primaryBlue,
                             fontWeight: FontWeight.w400,
                             fontSize: getFontSize(12)),
                       ),
