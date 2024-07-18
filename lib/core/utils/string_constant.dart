@@ -58,6 +58,7 @@ class AppString {
   static const String userName = 'User Name';
   static const String forgotPassword = 'Forgot Password';
 
+
   static const String something = 'Something went wrong!';
   static const String byClicking = 'By Clicking This button You Agree To The ';
   static const String selectSchool = 'Please Select School!';
@@ -95,6 +96,7 @@ class AppString {
   static const String endDate = "End Date";
   static const String description = "Description";
   static const String comments = "Comments";
+  static const String yourWorks = "Your Works";
   static const String camera = "Camera";
   static const String gallery = "Gallery";
   static const String fees = "Fees";
@@ -118,6 +120,8 @@ class AppString {
   static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
+  static const String handIn = "Hand In";
+  static const String uploadFiles = "Upload Files";
   static const String uploadYourFile = "Upload Your File";
 
   static const String welcome = "Welcome";

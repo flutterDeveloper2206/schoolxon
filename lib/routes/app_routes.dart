@@ -7,6 +7,8 @@ import 'package:schoolxon/presentation/contact_support_screen/binding/contact_su
 import 'package:schoolxon/presentation/contact_support_screen/contact_support_screen.dart';
 import 'package:schoolxon/presentation/dashboard_screen/binding/dashboard_screen_binding.dart';
 import 'package:schoolxon/presentation/dashboard_screen/dashboard_screen.dart';
+import 'package:schoolxon/presentation/exam_resources_screen/binding/exam_resources_screen_binding.dart';
+import 'package:schoolxon/presentation/exam_resources_screen/exam_resources_screen.dart';
 import 'package:schoolxon/presentation/forgetPwd_screen/binding/forgetPWD_Screen_binding.dart';
 import 'package:schoolxon/presentation/forgetPwd_screen/forgetPwd_screen.dart';
 import 'package:schoolxon/presentation/home_screen/binding/home_screen_binding.dart';
@@ -65,6 +67,7 @@ class AppRoutes {
   static const String homeWorkScreenRout = '/homeWorkScreenRout';
   static const String homeWorkDetailScreenRout = '/homeWorkDetailScreenRout';
   static const String languageSelectScreenRout = '/languageSelectScreenRout';
+  static const String examResourcesScreenRout = '/examResourcesScreenRout';
 
   static const String attendanceScreenRout = '/attendanceScreenRout';
 
@@ -202,6 +205,13 @@ class AppRoutes {
         page: () => WriteNoteScreen(),
         bindings: [
           WriteNoteScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: examResourcesScreenRout,
+        page: () => const ExamResourcesScreen(),
+        bindings: [
+          ExamResourcesScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(

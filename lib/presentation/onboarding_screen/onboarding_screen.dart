@@ -11,14 +11,8 @@ import '../../widgets/custom_elavated_button.dart';
 import 'controller/onboarding_screen_controller.dart';
 import 'onBoardingContant_screen.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
   var onBoardingController = Get.find<OnBoardingScreenController>();
-
-  List<Map<String, String>> onBoardingData = [
-    {"image": ImageConstant.imgOnboarding1},
-    {"image": ImageConstant.imgOnboarding2},
-    {"image": ImageConstant.imgOnboarding3},
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,133 +35,163 @@ class OnBoardingScreen extends StatelessWidget {
               curve: Curves.easeIn);
         }
       },
-      child: Scaffold(
-        backgroundColor: ColorConstant.primaryWhite,
-        body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 16, top: 20),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: InkWell(
-                    onTap: () {
-                      onBoardingController.skipTap();
-                    },
-                    child: Text(AppString.skip,
-                        style:
-                            PMT.appStyle(14, fontColor: ColorConstant.blueF9)),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 2,
-                child: Stack(
-                  children: [
-                    PageView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (value) {
-                        onBoardingController.currentPage.value = value;
-                        print(onBoardingController.currentPage.value);
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: ColorConstant.yellow39,
+          body: Obx(
+            () => Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: ColorConstant.yellow39,
+                  borderRadius: BorderRadius.circular(40),
+                  image: DecorationImage(
+                      image:
+                          AssetImage(onBoardingController.currentPage.value == 0
+                              ? ImageConstant.backGround
+                              : onBoardingController.currentPage.value == 1
+                                  ? ImageConstant.backGround1
+                                  : ImageConstant.backGround2),
+                      fit: BoxFit.cover)),
+              child: Column(
+                children: [
+                  ///skip button
+                  /* Align(
+                    alignment: Alignment.topRight,
+                    child: InkWell(
+                      onTap: () {
+                        onBoardingController.skipTap();
                       },
-                      controller: onBoardingController.pageController,
-                      itemCount: onBoardingData.length,
-                      itemBuilder: (context, index) => OnBoardingContent(
-                        image: onBoardingData[index]["image"],
-                      ),
+                      child: Text(AppString.skip,
+                          style:
+                              PMT.appStyle(14, fontColor: ColorConstant.blueF9)),
                     ),
-                    Positioned(
-                        top: 220,
-                        child: CustomImageView(
-                          imagePath: ImageConstant.imgOnboarding4,
-                        )),
-                    Positioned(
-                      bottom: 30,
-                      left: 10,
-                      right: 10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          onBoardingData.length,
-                          (index) => buildDot(index: index),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: getHeight(20),
-              ),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Obx(
-                        () => Text(
-                          onBoardingController.currentPage.value == 1
-                              ? "walkthrough 2"
-                              : onBoardingController.currentPage.value == 2
-                                  ? "walkthrough 3"
-                                  : "walkthrough 1",
-                          style: PMT.style(0).copyWith(
-                              color: ColorConstant.primaryBlack,
-                              fontWeight: FontWeight.w700,
-                              fontSize: getFontSize(18)),
-                        ),
-                      ),
-                      SizedBox(height: getHeight(10)),
-                      Obx(
-                        () => Text(
-                          onBoardingController.currentPage.value == 1
-                              ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
-                              : onBoardingController.currentPage.value == 2
-                                  ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's "
-                                  : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
-                          textAlign: TextAlign.center,
-                          style: PMT.style(0).copyWith(
-                              color: ColorConstant.black72,
-                              fontWeight: FontWeight.w400,
-                              fontSize: getFontSize(15)),
-                        ),
-                      ),
-                      SizedBox(height: getHeight(50)),
-                      Obx(
-                        () => AppElevatedButton(
-                          buttonShadowColor: Colors.transparent,
-                          buttonName:
-                              onBoardingController.currentPage.value == 2
-                                  ? "Get Started"
-                                  : "Next",
-                          textColor: Colors.white,
-                          buttonColor: ColorConstant.blueF9,
-                          onPressed: () {
-                            if (onBoardingController.currentPage.value == 0) {
-                              onBoardingController.currentPage.value = 1;
-                              onBoardingController.pageController.nextPage(
-                                  duration: Duration(milliseconds: 250),
-                                  curve: Curves.easeIn);
-                            } else if (onBoardingController.currentPage.value ==
-                                1) {
-                              onBoardingController.currentPage.value = 2;
-                              onBoardingController.pageController.nextPage(
-                                  duration: Duration(milliseconds: 250),
-                                  curve: Curves.easeIn);
-                            } else if (onBoardingController.currentPage.value ==
-                                2) {
-                              onBoardingController.onTapOfGetStartedButton();
-                            }
+                  ),*/
+                  Flexible(
+                    flex: 2,
+                    child: Stack(
+                      children: [
+                        PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          onPageChanged: (value) {
+                            onBoardingController.currentPage.value = value;
+                            print(onBoardingController.currentPage.value);
                           },
+                          controller: onBoardingController.pageController,
+                          itemCount: controller.onBoardingData.length,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 369),
+                            child: OnBoardingContent(
+                              image: controller.onBoardingData[index]["image"],
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          bottom: 40,
+                          left: 10,
+                          right: 10,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(
+                                  controller.onBoardingData.length,
+                                  (index) => buildDot(index: index),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(30),
+                              ),
+                              Obx(
+                                () => Text(
+                                  onBoardingController.currentPage.value == 1
+                                      ? "Vamos  embarcar\n    nesta jornada\n          juntos"
+                                      : onBoardingController
+                                                  .currentPage.value ==
+                                              2
+                                          ? "Vamos  embarcar\n    nesta jornada\n          juntos"
+                                          : "Vamos  embarcar\n    nesta jornada\n          juntos",
+                                  style: PMT.style(0).copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(5),
+                              ),
+                              Obx(
+                                () => Text(
+                                  onBoardingController.currentPage.value == 1
+                                      ? "Vamos comecar a jornada rumo\nao conhecimento solidpo"
+                                      : onBoardingController
+                                                  .currentPage.value ==
+                                              2
+                                          ? "Vamos comecar a jornada rumo\nao conhecimento solidpo "
+                                          : "Vamos comecar a jornada rumo\nao conhecimento solidpo",
+                                  textAlign: TextAlign.center,
+                                  style: PMT.style(0).copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: getFontSize(10)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(15),
+                              ),
+                              Obx(
+                                () => Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 60, left: 60, top: 50),
+                                  child: AppElevatedButton(
+                                    buttonShadowColor: Colors.transparent,
+                                    buttonName: onBoardingController
+                                                .currentPage.value ==
+                                            2
+                                        ? AppString.getStarted
+                                        : AppString.next,
+                                    textColor: Colors.white,
+                                    buttonColor: ColorConstant.greyColor78,
+                                    onPressed: () {
+                                      if (onBoardingController
+                                              .currentPage.value ==
+                                          0) {
+                                        onBoardingController.currentPage.value =
+                                            1;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      } else if (onBoardingController
+                                              .currentPage.value ==
+                                          1) {
+                                        onBoardingController.currentPage.value =
+                                            2;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      } else if (onBoardingController
+                                              .currentPage.value ==
+                                          2) {
+                                        onBoardingController
+                                            .onTapOfGetStartedButton();
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -179,13 +203,13 @@ class OnBoardingScreen extends StatelessWidget {
       () => onBoardingController.currentPage.value == index
           ? Container(
               margin: EdgeInsets.only(right: 5),
-              height: getHeight(6),
-              width: getWidth(25),
+              height: getHeight(8),
+              width: getWidth(30),
               child: Padding(
                 padding: EdgeInsets.all(1.5),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ColorConstant.blueF9,
+                    color: ColorConstant.greyColor78,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -194,9 +218,9 @@ class OnBoardingScreen extends StatelessWidget {
           : Container(
               margin: EdgeInsets.only(right: 5),
               height: getHeight(5),
-              width: getWidth(5),
+              width: getWidth(12),
               decoration: BoxDecoration(
-                color: ColorConstant.blueFC,
+                color: ColorConstant.greyColor78,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
