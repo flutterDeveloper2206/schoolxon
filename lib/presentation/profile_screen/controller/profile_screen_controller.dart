@@ -157,7 +157,6 @@ class ProfileScreenController extends GetxController {
         // print('value.runtimeType == String ${value.statusCode}');
         if (value.runtimeType == String) {
           isUpdateLoading.value = false;
-
           ProgressDialogUtils.showTitleSnackBar(
               headerText: value.toString(), error: true);
         } else {
@@ -168,7 +167,6 @@ class ProfileScreenController extends GetxController {
             // await PrefUtils.setString(PrefsKey.isLogin, '1');
             // bool set = await PrefUtils.setString(
             //     PrefsKey.studentID, loginModel.value.student?.studentId ?? '');
-            Get.back();
             ProgressDialogUtils.showTitleSnackBar(
                 headerText: AppString.profileSuccessfully);
             // Get.toNamed(AppRoutes.languageSelectScreenRout);
