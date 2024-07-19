@@ -36,6 +36,8 @@ import 'package:schoolxon/presentation/profile_screen/binding/profile_screen_bin
 import 'package:schoolxon/presentation/profile_screen/profile_screen.dart';
 import 'package:schoolxon/presentation/select_school_screen/binding/select_school_screen_binding.dart';
 import 'package:schoolxon/presentation/select_school_screen/select_school_screen.dart';
+import 'package:schoolxon/presentation/submit_home_work_screen/binding/submit_home_work_screen_binding.dart';
+import 'package:schoolxon/presentation/submit_home_work_screen/submit_home_work_screen.dart';
 import 'package:schoolxon/presentation/write_note_screen/binding/write_note_screen_binding.dart';
 import 'package:schoolxon/presentation/write_note_screen/write_note_screen.dart';
 
@@ -68,6 +70,7 @@ class AppRoutes {
   static const String homeWorkDetailScreenRout = '/homeWorkDetailScreenRout';
   static const String languageSelectScreenRout = '/languageSelectScreenRout';
   static const String examResourcesScreenRout = '/examResourcesScreenRout';
+  static const String submitHomeWorkScreenRout = '/submitHomeWorkScreenRout';
 
   static const String attendanceScreenRout = '/attendanceScreenRout';
 
@@ -226,6 +229,13 @@ class AppRoutes {
         page: () => DashBoardScreen(),
         bindings: [
           DashBoardScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: submitHomeWorkScreenRout,
+        page: () => SubmitHomeWorkScreen(),
+        bindings: [
+          SubmitHomeWorkScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];
