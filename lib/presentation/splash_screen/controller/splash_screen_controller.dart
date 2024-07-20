@@ -17,7 +17,7 @@ class SplashScreenController extends GetxController {
     Future.delayed(const Duration(milliseconds: 3000), () async {
       String? login = PrefUtils.getString(PrefsKey.isLogin);
       if (login != null && login == '1') {
-        Get.offAllNamed(AppRoutes.homeScreenRout);
+        Get.offAllNamed(AppRoutes.dashBoardScreenRout);
       } else {
         Get.offAllNamed(AppRoutes.onBoardingScreenRout);
       }

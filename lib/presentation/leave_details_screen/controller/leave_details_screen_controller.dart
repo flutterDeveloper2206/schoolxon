@@ -12,7 +12,7 @@ import '../../../core/utils/network_url.dart';
 import '../../../core/utils/pref_utils.dart';
 import '../../../core/utils/progress_dialog_utils.dart';
 
-class ApplyLeaveScreenController extends GetxController {
+class LeaveDetailsScreenController extends GetxController {
   var progress = 0.0.obs;
   final Rx<DateTime?> selectedStartDate = Rx<DateTime?>(null);
   final Rx<DateTime?> selectedEndDate = Rx<DateTime?>(null);

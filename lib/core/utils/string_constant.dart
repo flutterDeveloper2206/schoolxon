@@ -31,6 +31,7 @@ class AppString {
   static const String viewDetails = "View Details";
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
+  static const String logIn = 'Login';
   static const String all = "All";
   static const String homework = "Home Work";
   static const String thisMonth = "This Month";
@@ -56,12 +57,17 @@ class AppString {
   static const String male = 'Male';
   static const String female = 'Female';
   static const String userName = 'User Name';
-  static const String forgotPassword = 'Forgot Password';
-
+  static const String forgetPassword = 'Forget Password';
+  static const String language = 'Language';
 
   static const String something = 'Something went wrong!';
   static const String byClicking = 'By Clicking This button You Agree To The ';
   static const String selectSchool = 'Please Select School!';
+  static const String enterUserSubject = 'Please Enter Subject';
+  static const String selectStartDate = 'Please Select Start Date';
+  static const String selectEndDate = 'Please Select End Date';
+  static const String enterDescription = 'Please Enter Description';
+  static const String selectDocument = 'Please Select Document';
   static const String enterUserName = 'Please Enter UserName';
   static const String enterPassword = 'Please Enter Password';
   static const String enterFirstNamePlease = 'Please Enter First Name';
@@ -69,6 +75,7 @@ class AppString {
   static const String enterEmailPlease = 'Please Enter Email';
   static const String enterMobilePlease = 'Please Enter Mobile Number';
   static const String enterDobPlease = 'Please Select DOB';
+  static const String enterDes = 'Enter Description';
 
   static const String enterCurrentAddressPlease =
       'Please Enter Current Address';
@@ -120,6 +127,8 @@ class AppString {
   static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
+  static const String deleteLeave = "Delete Leave";
+  static const String leaveDetails = "Leave Details";
   static const String handIn = "Hand In";
   static const String uploadFiles = "Upload Files";
   static const String uploadYourFile = "Upload Your File";
@@ -249,7 +258,6 @@ class AppString {
   static var locationPermission = 'Location permission!!';
   static var createAccount = 'Create account';
   static var termCondition = 'Terms and conditions';
-  static var logIn = 'Log in';
   static var ultimatePetDating = 'The ultimate pet dating app!';
   static var yourPetsName = "Your pet\'s name";
   static var yourName = 'Your name';

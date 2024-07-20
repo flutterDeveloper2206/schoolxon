@@ -22,14 +22,16 @@ class CommonAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: backgroundColor ?? ColorConstant.primaryWhite,
+      backgroundColor: backgroundColor ?? ColorConstant.primaryBlue,
       surfaceTintColor: ColorConstant.primaryWhite,
       elevation: elevation ?? 1.2,
       shadowColor: ColorConstant.appBarShadow,
       title: title != null
           ? Text(
               title ?? '',
-              style: PMT.appStyle(18, fontWeight: FontWeight.w600),
+              style: PMT.appStyle(18,
+                  fontWeight: FontWeight.w600,
+                  fontColor: ColorConstant.primaryWhite),
             )
           : null,
       actions: actions,
@@ -46,6 +48,7 @@ class CommonAppBar extends StatelessWidget {
               width: getHeight(5),
               child: CustomImageView(
                 svgPath: ImageConstant.icBack,
+                color: ColorConstant.primaryWhite,
               )),
         ),
       ),

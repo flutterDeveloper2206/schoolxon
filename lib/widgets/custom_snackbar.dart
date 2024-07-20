@@ -20,7 +20,7 @@ class CustomSnackBar {
 
     Get.rawSnackbar(
         duration: duration,
-        snackPosition: SnackPosition.TOP,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundColor: color ?? ColorConstant.primaryBlue,
         borderRadius: getWidth(12),
         messageText: Text(

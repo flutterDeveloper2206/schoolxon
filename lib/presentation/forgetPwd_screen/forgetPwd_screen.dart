@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
+import 'package:schoolxon/presentation/forgetPwd_screen/controller/forgetPwd_screen_controller.dart';
 import 'package:schoolxon/presentation/language_select_screen/language_select_screen.dart';
 import 'package:schoolxon/widgets/common_appBar.dart';
 import '../../core/utils/app_fonts.dart';
@@ -9,7 +10,7 @@ import '../../core/utils/string_constant.dart';
 import '../../widgets/custom_app_text_form_field.dart';
 import '../../widgets/custom_elavated_button.dart';
 
-class ForgetPwdScreen extends GetWidget {
+class ForgetPwdScreen extends GetWidget<ForgetPwdScreenController> {
   @override
   Widget build(BuildContext context) {
     sizeCalculate(context);
@@ -18,6 +19,7 @@ class ForgetPwdScreen extends GetWidget {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60.0), // height of appbar
             child: CommonAppBar(
+              title: AppString.forgetPassword,
               elevation: 0,
             )),
         body: Form(

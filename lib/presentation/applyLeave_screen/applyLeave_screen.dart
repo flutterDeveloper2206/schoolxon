@@ -1,5 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:schoolxon/core/app_export.dart';
+import 'package:schoolxon/widgets/bouncing_button.dart';
+import 'package:schoolxon/widgets/common_appBar.dart';
 import 'package:schoolxon/widgets/custom_elavated_button.dart';
 import 'controller/applyLeave_screen_controller.dart';
 
@@ -11,38 +14,24 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
     sizeCalculate(context);
 
     // State management for selected dates
-    final Rx<DateTime?> selectedStartDate = Rx<DateTime?>(null);
-    final Rx<DateTime?> selectedEndDate = Rx<DateTime?>(null);
-
-    Future<void> _selectDate(
-        BuildContext context, Rx<DateTime?> selectedDate) async {
-      final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: selectedDate.value ?? DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2101),
-      );
-      if (pickedDate != null) {
-        selectedDate.value = pickedDate;
-      }
-    }
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(60.0), // height of appbar
+            child: CommonAppBar(
+              title: AppString.applyLeave,
+              elevation: 0,
+            )),
         body: Padding(
           padding: const EdgeInsets.all(25),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.close,
-                  color: ColorConstant.primaryBlack,
-                  size: 30,
-                ),
                 SizedBox(
-                  height: getHeight(20),
+                  height: getHeight(10),
                 ),
                 Text(
                   AppString.leaveApplication,
@@ -52,20 +41,26 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                       fontSize: getFontSize(20)),
                 ),
                 SizedBox(
-                  height: getHeight(20),
+                  height: getHeight(30),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
-                      onTap: controller.selectSickLeave,
+                    Bounce(
+                      onTap: () {
+                        controller.selectCasualLeave(0);
+                      },
                       child: Obx(
                         () => Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: controller.sickLeaveBorderColor),
+                                color: controller.isSickLeaveSelected.value == 0
+                                    ? ColorConstant.transparent
+                                    : ColorConstant.greyE4),
                             borderRadius: BorderRadius.circular(10),
-                            color: controller.sickLeaveColor,
+                            color: controller.isSickLeaveSelected.value == 0
+                                ? ColorConstant.primaryBlue.withOpacity(.1)
+                                : Colors.transparent,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
@@ -73,7 +68,11 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                             child: Text(
                               AppString.sickLeave,
                               style: PMT.style(0).copyWith(
-                                    color: controller.sickLeaveTextColor,
+                                    color:
+                                        controller.isSickLeaveSelected.value ==
+                                                0
+                                            ? ColorConstant.blueColor42
+                                            : ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.bold,
                                     fontSize: getFontSize(14),
                                   ),
@@ -82,15 +81,21 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: controller.selectCasualLeave,
+                    Bounce(
+                      onTap: () {
+                        controller.selectCasualLeave(1);
+                      },
                       child: Obx(
                         () => Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: controller.casualLeaveBorderColor),
+                                color: controller.isSickLeaveSelected.value == 1
+                                    ? ColorConstant.transparent
+                                    : ColorConstant.greyE4),
                             borderRadius: BorderRadius.circular(10),
-                            color: controller.casualLeaveColor,
+                            color: controller.isSickLeaveSelected.value == 1
+                                ? ColorConstant.primaryBlue.withOpacity(.1)
+                                : Colors.transparent,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
@@ -98,7 +103,11 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                             child: Text(
                               AppString.casualLeave,
                               style: PMT.style(0).copyWith(
-                                    color: controller.casualLeaveTextColor,
+                                    color:
+                                        controller.isSickLeaveSelected.value ==
+                                                1
+                                            ? ColorConstant.blueColor42
+                                            : ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.bold,
                                     fontSize: getFontSize(14),
                                   ),
@@ -120,17 +129,22 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                       fontSize: getFontSize(17)),
                 ),
                 SizedBox(
-                  height: getHeight(20),
+                  height: getHeight(10),
                 ),
-                Text(
-                  'Not Well Today !!!',
-                  style: PMT.style(0).copyWith(
-                      color: ColorConstant.primaryBlack,
-                      fontWeight: FontWeight.bold,
-                      fontSize: getFontSize(12)),
+                TextFormField(
+                  controller: controller.subjectController,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: AppString.enterSubject,
+                      hintStyle: PMT.appStyle(14)),
                 ),
-                const Divider(
-                    height: 40, color: ColorConstant.greyE4, thickness: 2),
+                Container(
+                  height: 2,
+                  color: ColorConstant.greyE4,
+                ),
+                SizedBox(
+                  height: 25,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -149,14 +163,15 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                         ),
                         InkWell(
                           onTap: () {
-                            _selectDate(context, selectedStartDate);
+                            controller.selectDate(
+                                context, controller.selectedStartDate);
                           },
                           child: Obx(() => Row(
                                 children: [
                                   Text(
-                                    selectedStartDate.value != null
-                                        ? '${selectedStartDate.value!.month}/${selectedStartDate.value!.day}/${selectedStartDate.value!.year}'
-                                        : 'May 7, 2018',
+                                    controller.selectedStartDate.value != null
+                                        ? '${controller.selectedStartDate.value!.month}/${controller.selectedStartDate.value!.day}/${controller.selectedStartDate.value!.year}'
+                                        : 'Select Date',
                                     style: PMT.style(0).copyWith(
                                         color: ColorConstant.primaryBlack,
                                         fontWeight: FontWeight.bold,
@@ -167,7 +182,7 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                                   ),
                                   const Icon(
                                     Icons.calendar_today_outlined,
-                                    color: ColorConstant.blueF9,
+                                    color: ColorConstant.primaryBlue,
                                   )
                                 ],
                               )),
@@ -197,14 +212,15 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                         ),
                         InkWell(
                           onTap: () {
-                            _selectDate(context, selectedEndDate);
+                            controller.selectDate(
+                                context, controller.selectedEndDate);
                           },
                           child: Obx(() => Row(
                                 children: [
                                   Text(
-                                    selectedEndDate.value != null
-                                        ? '${selectedEndDate.value!.month}/${selectedEndDate.value!.day}/${selectedEndDate.value!.year}'
-                                        : 'May 7, 2018',
+                                    controller.selectedEndDate.value != null
+                                        ? '${controller.selectedEndDate.value!.month}/${controller.selectedEndDate.value!.day}/${controller.selectedEndDate.value!.year}'
+                                        : 'Select Date',
                                     style: PMT.style(0).copyWith(
                                         color: ColorConstant.primaryBlack,
                                         fontWeight: FontWeight.bold,
@@ -215,7 +231,7 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                                   ),
                                   const Icon(
                                     Icons.calendar_today_outlined,
-                                    color: ColorConstant.blueF9,
+                                    color: ColorConstant.primaryBlue,
                                   )
                                 ],
                               )),
@@ -243,20 +259,22 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                       fontSize: getFontSize(17)),
                 ),
                 SizedBox(
-                  height: getHeight(12),
+                  height: getHeight(5),
                 ),
-                Text(
-                  'Dear Sir,\n'
-                  'I Am Not Feeling Well Today So I Wont Able To Come Today. Kindly Grant Me A Leave, Thanks',
-                  style: PMT.style(0).copyWith(
-                      color: ColorConstant.primaryBlack,
-                      fontWeight: FontWeight.w500,
-                      fontSize: getFontSize(12)),
+                TextFormField(
+                  maxLines: 4,
+                  controller: controller.descriptionController,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: AppString.enterDes,
+                      hintStyle: PMT.appStyle(14)),
                 ),
-                const Divider(
-                    height: 40, color: ColorConstant.greyE4, thickness: 2),
+                Container(
+                  height: 2,
+                  color: ColorConstant.greyE4,
+                ),
                 SizedBox(
-                  height: getHeight(12),
+                  height: 25,
                 ),
                 Text(
                   AppString.attachments,
@@ -306,7 +324,8 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                                                 TextSpan(
                                                   text: 'Choose Your File ',
                                                   style: TextStyle(
-                                                      color: Colors.blue,
+                                                      color: ColorConstant
+                                                          .primaryBlue,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 15),
@@ -343,94 +362,124 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                   height: getHeight(20),
                 ),
                 Obx(
-                  () => controller.selectedImage.value != null
-                      ? Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: ColorConstant.greyE4.withOpacity(0.4),
-                          ),
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    CustomImageView(
-                                      svgPath: ImageConstant.icPdf,
-                                      height: getHeight(35),
-                                      width: getWidth(35),
-                                    ),
-                                    SizedBox(width: getWidth(20)),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          controller.selectedImage.value!.path
-                                              .split('/')
-                                              .last,
-                                          style: PMT.style(0).copyWith(
-                                                color:
-                                                    ColorConstant.primaryBlack,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: getFontSize(13),
-                                              ),
-                                        ),
-                                        Text(
-                                          '${(controller.selectedImage.value!.lengthSync() / 1024).toStringAsFixed(0)} KB',
-                                          style: PMT.style(0).copyWith(
-                                                color: ColorConstant.grey7A,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: getFontSize(12),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Column(
-                                      children: [
-                                        const Icon(
-                                          Icons.close,
-                                          color: ColorConstant.primaryBlack,
-                                          size: 24,
-                                        ),
-                                        Text(
-                                          '${(controller.progress.value * 100).toStringAsFixed(0)}%',
-                                          style: PMT.style(0).copyWith(
-                                                color: ColorConstant.grey7A,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: getFontSize(12),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getHeight(15),
-                                ),
-                                LinearProgressIndicator(
-                                  value: controller.progress.value,
-                                  minHeight: 6.0,
-                                  backgroundColor: Colors.white,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.blueAccent),
-                                ),
-                                SizedBox(height: 10),
-                              ],
+                  () {
+                    return controller.selectedImage.value != null &&
+                            controller.progress.value < 1.8
+                        ? Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: ColorConstant.greyE4.withOpacity(0.4),
                             ),
-                          ),
-                        )
-                      : SizedBox.shrink(),
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomImageView(
+                                        svgPath: ImageConstant.icPdf,
+                                        height: getHeight(35),
+                                        width: getWidth(35),
+                                      ),
+                                      SizedBox(width: getWidth(20)),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            controller.selectedImage.value!.path
+                                                .split('/')
+                                                .last,
+                                            style: PMT.style(0).copyWith(
+                                                  color: ColorConstant
+                                                      .primaryBlack,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: getFontSize(13),
+                                                ),
+                                          ),
+                                          Text(
+                                            '${(controller.selectedImage.value!.lengthSync() / 1024).toStringAsFixed(0)} KB',
+                                            style: PMT.style(0).copyWith(
+                                                  color: ColorConstant.grey7A,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: getFontSize(12),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              controller.removeImage();
+                                            },
+                                            child: const Icon(
+                                              Icons.close,
+                                              color: ColorConstant.primaryBlack,
+                                              size: 24,
+                                            ),
+                                          ),
+                                          (controller.progress.value * 100)
+                                                      .toStringAsFixed(0) ==
+                                                  '100'
+                                              ? SizedBox.shrink()
+                                              : Text(
+                                                  '${(controller.progress.value * 100).toStringAsFixed(0)}%',
+                                                  style: PMT.style(0).copyWith(
+                                                        color: ColorConstant
+                                                            .grey7A,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize:
+                                                            getFontSize(12),
+                                                      ),
+                                                ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(15),
+                                  ),
+                                  (controller.progress.value * 100)
+                                              .toStringAsFixed(0) ==
+                                          '100'
+                                      ? SizedBox.shrink()
+                                      : LinearProgressIndicator(
+                                          value: controller.progress.value,
+                                          minHeight: 6.0,
+                                          backgroundColor: Colors.white,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            ColorConstant.primaryBlue,
+                                          ),
+                                        ),
+                                  (controller.progress.value * 100)
+                                              .toStringAsFixed(0) ==
+                                          '100'
+                                      ? SizedBox.shrink()
+                                      : SizedBox(height: 10),
+                                ],
+                              ),
+                            ),
+                          )
+                        : SizedBox.shrink();
+                  },
                 ),
                 SizedBox(
                   height: getHeight(40),
                 ),
-                AppElevatedButton(
-                  buttonName: AppString.applyLeave,
-                  onPressed: () {},
-                  buttonColor: ColorConstant.blueColor42,
+                Obx(
+                  () => AppElevatedButton(
+                    buttonName: AppString.applyLeave,
+                    onPressed: () {
+                      controller.next();
+                    },
+                    isLoading: controller.isUpdateLoading.value,
+                    buttonColor: ColorConstant.yellow39,
+                  ),
                 )
               ],
             ),

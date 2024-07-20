@@ -23,6 +23,7 @@ class LoginScreen extends GetWidget<LoginScreenController> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60.0), // height of appbar
             child: CommonAppBar(
+              title: AppString.logIn,
               elevation: 0,
             )),
         body: Form(
@@ -146,7 +147,7 @@ class LoginScreen extends GetWidget<LoginScreenController> {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      AppString.forgotPassword,
+                      AppString.forgetPassword,
                       style: PMT.style(15).copyWith(
                           color: ColorConstant.primaryBlue,
                           fontWeight: FontWeight.w400,

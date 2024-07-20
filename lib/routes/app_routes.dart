@@ -18,6 +18,8 @@ import 'package:schoolxon/presentation/home_work_screen/home_work_screen.dart';
 import 'package:schoolxon/presentation/language_select_screen/language_select_screen.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/binding/leave_dashboard_screen_binding.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/leave_dashboard_screen.dart';
+import 'package:schoolxon/presentation/leave_details_screen/binding/leave_details_screen_binding.dart';
+import 'package:schoolxon/presentation/leave_details_screen/leave_details_screen.dart';
 import 'package:schoolxon/presentation/login_screen/binding/login_screen_binding.dart';
 import 'package:schoolxon/presentation/login_screen/login_screen.dart';
 import 'package:schoolxon/presentation/attendance/attendance_screen.dart';
@@ -59,6 +61,7 @@ class AppRoutes {
   static const String writeNoteScreenRout = '/write_note_screen';
   static const String noteShowScreenRout = '/note_show_screen';
   static const String dashBoardScreenRout = '/dashboard_screen';
+  static const String leaveDetailsScreenRout = '/leave_details_screen';
 
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String applyLeaveScreenRout = '/applyLeaveScreenRout';
@@ -104,7 +107,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: loginScreenRout,
-        page: () => LoginScreen(),
+        page: () => const LoginScreen(),
         bindings: [
           LoginScreenBinding(),
         ],
@@ -118,7 +121,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: languageSelectScreenRout,
-        page: () => LanguageSelectScreen(),
+        page: () => const LanguageSelectScreen(),
         bindings: [
           LanguageSelectScreenBinding(),
         ],
@@ -153,21 +156,21 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeWorkScreenRout,
-        page: () => HomeWorkScreen(),
+        page: () => const HomeWorkScreen(),
         bindings: [
           HomeWorkScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeWorkDetailScreenRout,
-        page: () => HomeWorkDetailScreen(),
+        page: () => const HomeWorkDetailScreen(),
         bindings: [
           HomeWorkDetailScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: homeScreenRout,
-        page: () => HomeScreen(),
+        page: () => const HomeScreen(),
         bindings: [
           HomeScreenBinding(),
         ],
@@ -202,7 +205,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: writeNoteScreenRout,
-        page: () => WriteNoteScreen(),
+        page: () => const WriteNoteScreen(),
         bindings: [
           WriteNoteScreenBinding(),
         ],
@@ -216,16 +219,23 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: noteShowScreenRout,
-        page: () => NoteShowScreen(),
+        page: () => const NoteShowScreen(),
         bindings: [
           NoteShowScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: dashBoardScreenRout,
-        page: () => DashBoardScreen(),
+        page: () => const DashBoardScreen(),
         bindings: [
           DashBoardScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: leaveDetailsScreenRout,
+        page: () => const LeaveDetailsScreen(),
+        bindings: [
+          LeaveDetailsScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];

@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:schoolxon/presentation/account_screen/widget/account_common_listTile.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/widgets/leave_card.dart';
-import 'package:schoolxon/widgets/bouncing_button.dart';
+import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/common_appBar.dart';
 import 'package:schoolxon/widgets/custom_elavated_button.dart';
-
 import '../../core/app_export.dart';
 import 'controller/leave_dashboard_screen_controller.dart';
 
@@ -28,9 +24,11 @@ class LeaveDashBoardScreen extends GetWidget<LeaveDashBoardScreenController> {
               SizedBox(
                 height: getHeight(25),
               ),
-              Text(
-                '${controller.getGreeting()}, Praveen',
-                style: PMT.appStyle(14, fontColor: ColorConstant.textGray6D),
+              Obx(
+                () => Text(
+                  '${controller.getGreeting()}, ${controller.loginData.value.student?.username ?? ''}',
+                  style: PMT.appStyle(14, fontColor: ColorConstant.textGray6D),
+                ),
               ),
               SizedBox(
                 height: getHeight(8),
@@ -42,39 +40,41 @@ class LeaveDashBoardScreen extends GetWidget<LeaveDashBoardScreenController> {
                     fontColor: ColorConstant.blackOF),
               ),
               SizedBox(
-                height: getHeight(25),
+                height: getHeight(15),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${controller.currentLeaves.toInt()} ${AppString.leaves}',
-                    style: PMT.appStyle(
-                      14,
-                    ),
-                  ),
-                  Text(
-                    '${controller.totalLeaves.toInt()} ${AppString.leaves}',
-                    style: PMT.appStyle(
-                      14,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: getHeight(6)),
-              LinearProgressIndicator(
-                value: controller.currentLeaves.value /
-                    controller.totalLeaves.value,
-                borderRadius: BorderRadius.circular(28),
-                backgroundColor: ColorConstant.greyF4,
-                color: ColorConstant.green2D,
-                minHeight: 6.0,
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Text(
+              //       '${controller.currentLeaves.toInt()} ${AppString.leaves}',
+              //       style: PMT.appStyle(
+              //         14,
+              //       ),
+              //     ),
+              //     Text(
+              //       '${controller.totalLeaves.toInt()} ${AppString.leaves}',
+              //       style: PMT.appStyle(
+              //         14,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(height: getHeight(6)),
+              // LinearProgressIndicator(
+              //   value: controller.currentLeaves.value /
+              //       controller.totalLeaves.value,
+              //   borderRadius: BorderRadius.circular(28),
+              //   backgroundColor: ColorConstant.greyF4,
+              //   color: ColorConstant.green2D,
+              //   minHeight: 6.0,
+              // ),
               SizedBox(height: getHeight(25)),
               AppElevatedButton(
-                buttonColor: ColorConstant.blueSecondary,
+                buttonColor: ColorConstant.yellow39,
                 buttonName: AppString.applyLeaves,
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.applyLeaveScreenRout);
+                },
               ),
               SizedBox(
                 height: getHeight(55),
@@ -87,11 +87,15 @@ class LeaveDashBoardScreen extends GetWidget<LeaveDashBoardScreenController> {
                 height: getHeight(16),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: controller.leaveHistory.length,
-                  itemBuilder: (context, index) {
-                    return LeaveCard(leave: controller.leaveHistory[index]);
-                  },
+                child: Obx(
+                  () => ListView.builder(
+                    itemCount:
+                        controller.allLeaveList.value.results?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return LeaveCard(
+                          leave: controller.allLeaveList.value.results![index]);
+                    },
+                  ),
                 ),
               )
             ],

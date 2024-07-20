@@ -7,18 +7,18 @@ import '../core/utils/progress_dialog_utils.dart';
 // For checking internet connectivity
 abstract class NetworkInfo {
   static Future<bool> checkNetwork() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
+    List connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult.contains(ConnectivityResult.mobile)) {
       Get.closeAllSnackbars();
       return true;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
+    } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
       Get.closeAllSnackbars();
       return true;
     } else {
-      if (connectivityResult == ConnectivityResult.none) {
+      if (connectivityResult.contains(ConnectivityResult.none)) {
         ProgressDialogUtils.hideProgressDialog();
         Get.snackbar("ERROR MESSAGE".tr, "NO INTERNET CONNECTION".tr,
-            backgroundColor: ColorConstant.lightOrangeOutline,
+            backgroundColor: ColorConstant.primaryBlue,
             snackPosition: SnackPosition.BOTTOM);
         checkNetwork();
         return false;

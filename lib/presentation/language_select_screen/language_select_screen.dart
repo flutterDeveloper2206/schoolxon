@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
 import 'package:schoolxon/routes/app_routes.dart';
+import 'package:schoolxon/widgets/common_appBar.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
 import '../../core/utils/image_constant.dart';
@@ -21,28 +22,20 @@ class LanguageSelectScreen extends GetWidget<LanguageSelectScreenController> {
     sizeCalculate(context);
     return Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(60.0), // height of appbar
+            child: CommonAppBar(
+              title: AppString.language,
+              elevation: 0,
+            )),
         body: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Padding(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Icon(
-                        Icons.close,
-                        size: 25,
-                      )),
-                ),
-              ),
-              SizedBox(height: getHeight(30)),
+              SizedBox(height: getHeight(50)),
               CustomImageView(
                 svgPath: ImageConstant.imgAlphaLogo,
-                height: 75,
+                height: 80,
                 width: double.infinity,
               ),
               SizedBox(
@@ -101,7 +94,7 @@ class LanguageSelectScreen extends GetWidget<LanguageSelectScreenController> {
                   radius: 8.0,
                   buttonColor: ColorConstant.primaryBlue,
                   onPressed: () {
-                    Get.offAllNamed(AppRoutes.homeScreenRout);
+                    Get.offAllNamed(AppRoutes.dashBoardScreenRout);
                   },
                 ),
               ),
