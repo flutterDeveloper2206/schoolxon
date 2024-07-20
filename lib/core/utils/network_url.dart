@@ -8,6 +8,8 @@ class NetworkUrl {
   static const String applyLeaveUrl = '${baseUrl}leave/apply/';
   static const String removeLeaveUrl = '${baseUrl}leave/removeleave/';
   static const String leaveDetailsUrl = '${baseUrl}leave/leave_details/';
+  static const String submitHomeworkUrl = '${baseUrl}homework/upload_homework/';
+  static const String attendanceUrl = '${baseUrl}Attendance/getattendance/';
   static const String showAllHomeWorkUrl =
       '${baseUrl}homework/showallhomeworks/';
   static const String homeWorkDetailsUrl =
