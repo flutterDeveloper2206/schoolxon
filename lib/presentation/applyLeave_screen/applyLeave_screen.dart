@@ -276,6 +276,8 @@ class ApplyLeaveScreen extends GetWidget<ApplyLeaveScreenController> {
                 SizedBox(
                   height: 25,
                 ),
+
+
                 Text(
                   AppString.attachments,
                   style: PMT.style(0).copyWith(
