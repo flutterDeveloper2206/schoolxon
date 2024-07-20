@@ -74,7 +74,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                         SizedBox(
                           height: getHeight(8),
                         ),
-                        Text('Wed, 11th Mar 2019 10.00 AM',
+                        Text(controller.attendanceModel.first.date.toString(),
                             style: PMT.style(0).copyWith(
                                 color: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w600,
@@ -158,7 +158,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(3),
                                         child: Text(
-                                          '15 Sun',
+                                          controller.attendanceModel[index].date.toString(),
                                           style: PMT.style(0).copyWith(
                                               color: ColorConstant.primaryBlack,
                                               fontWeight: FontWeight.w400,
@@ -181,7 +181,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '15 Sunday',
+                controller.attendanceModel[index].date.toString(),
                                     style: PMT.style(0).copyWith(
                                         color: ColorConstant.primaryBlack,
                                         fontWeight: FontWeight.w600,
@@ -221,7 +221,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                               ),
                                               SizedBox(width: getWidth(5)),
                                               Text(
-                                                '10.00 AM',
+                                                  controller.attendanceModel[index].punchtime.toString(),
                                                 style: PMT.style(0).copyWith(
                                                     color: ColorConstant
                                                         .primaryBlack,
@@ -251,7 +251,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                               ),
                                               SizedBox(width: getWidth(5)),
                                               Text(
-                                                '06.00 AM',
+                                                  controller.attendanceModel[index].exittime.toString(),
                                                 style: PMT.style(0).copyWith(
                                                     color: ColorConstant
                                                         .primaryBlack,

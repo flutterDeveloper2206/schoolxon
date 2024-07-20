@@ -26,7 +26,7 @@ class AttendanceScreenController extends GetxController {
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
     String studentId = PrefUtils.getString(PrefsKey.studentID);
 
-  /*  try {*/
+    try {
       await ApiService()
           .callGetApi(
           body: FormData({}),
@@ -47,7 +47,6 @@ class AttendanceScreenController extends GetxController {
                 .map((data) => AttendanceModel.fromJson(data))
                 .toList();
             isLoading.value = false;
-
           } else {
             isLoading.value = false;
 
@@ -58,13 +57,13 @@ class AttendanceScreenController extends GetxController {
           }
         }
       });
-    /*} catch (error) {
+    } catch (error) {
       isLoading.value = false;
 
       ProgressDialogUtils.showTitleSnackBar(
           headerText: AppString.something, error: true);
       print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
-    }*/
+    }
   }
 
 
