@@ -340,12 +340,18 @@ class SubmitHomeWorkScreen extends GetWidget<SubmitHomeWorkScreenController> {
                           SizedBox(
                             height: getHeight(80),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: AppElevatedButton(
-                              buttonName: AppString.applyLeave,
-                              onPressed: () {},
-                              buttonColor: ColorConstant.primaryBlue,
+                          Obx(()=>
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: AppElevatedButton(
+
+                                buttonName: AppString.submit,
+                                onPressed: () {
+                                  controller.submit();
+                                },
+                                isLoading: controller.isUpdateLoading.value,
+                                buttonColor: ColorConstant.primaryBlue,
+                              ),
                             ),
                           ),
                         ],
