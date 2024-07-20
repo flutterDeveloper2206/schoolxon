@@ -3,172 +3,157 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
+import '../../../ApiServices/api_service.dart';
 import '../../../core/app_export.dart';
 import '../../../core/utils/app_prefs_key.dart';
 import '../../../core/utils/network_url.dart';
 import '../../../core/utils/pref_utils.dart';
 import '../../../core/utils/progress_dialog_utils.dart';
+import '../model/leave_details_model.dart';
 
 class LeaveDetailsScreenController extends GetxController {
-  var progress = 0.0.obs;
-  final Rx<DateTime?> selectedStartDate = Rx<DateTime?>(null);
-  final Rx<DateTime?> selectedEndDate = Rx<DateTime?>(null);
-  RxBool isUpdateLoading = false.obs;
-  Timer? timer;
-  TextEditingController subjectController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  RxBool isLoading = false.obs;
+  RxBool isRemoveLoading = false.obs;
+  RxString startDate = ''.obs;
+  RxString endDate = ''.obs;
+  Rx<TextEditingController> subjectController = TextEditingController().obs;
+  Rx<TextEditingController> descriptionController = TextEditingController().obs;
+  Rx<LeaveDetailsModel> leaveDetailsModel = LeaveDetailsModel().obs;
 
   @override
   void onInit() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getLeaveDetailsApi();
+    });
     super.onInit();
   }
 
-  void removeImage() {
-    timer?.cancel();
-    progress.value = 0.0;
-    selectedImage.value = null;
-  }
-
-  void startProgress() {
-    progress.value = 0.0;
-
-    timer = Timer.periodic(Duration(microseconds: 100000), (timer) {
-      if (progress.value >= 1) {
-        timer.cancel();
-      } else {
-        progress.value += 0.01;
-      }
-    });
-  }
-
-  Future<void> selectDate(
-      BuildContext context, Rx<DateTime?> selectedDate) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1980),
-      lastDate: DateTime.now(),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData(
-            colorScheme:
-                ColorScheme.light(primary: ColorConstant.blueSecondary),
-            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
-          ),
-          child: child!,
-        );
-      },
-    );
-
-    if (pickedDate != null) {
-      selectedDate.value = pickedDate;
-    }
-  }
-
-  final ImagePicker _picker = ImagePicker();
-  RxInt isSickLeaveSelected = 0.obs;
-  var imagePath = ''.obs;
-  var selectedImage = Rx<File?>(null);
-
-  Future<void> pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      selectedImage.value = File(pickedFile.path);
-      startProgress();
-    }
-  }
-
-  void selectCasualLeave(int index) {
-    isSickLeaveSelected.value = index;
-  }
-
-  void next() {
-    if (subjectController.text.isEmpty) {
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.enterUserSubject);
-    } else if (selectedStartDate.value == null) {
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.selectStartDate);
-    } else if (selectedEndDate.value == null) {
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.selectEndDate);
-    } else if (descriptionController.text.isEmpty) {
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.enterDescription);
-    } else if (selectedImage.value == null &&
-        selectedImage.value?.path == null) {
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.selectDocument);
-    } else {
-      applyLeave();
-    }
-  }
-
-  Future<void> applyLeave() async {
+  Future<void> getLeaveDetailsApi() async {
+    isLoading.value = true;
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
     String studentId = PrefUtils.getString(PrefsKey.studentID);
-    isUpdateLoading.value = true;
+
     try {
-      final headers = {
-        'Content-Type': 'application/json',
-      };
-      var request = http.MultipartRequest(
-          'POST', Uri.parse('${NetworkUrl.applyLeaveUrl}$schoolId/$studentId'));
-      request.headers.addAll(headers);
+      await ApiService()
+          .callGetApi(
+              body: FormData({}),
+              headerWithToken: false,
+              showLoader: true,
+              url: '${NetworkUrl.leaveDetailsUrl}722/2630/3')
+          // url: '${NetworkUrl.leaveDetailsUrl}${schoolId}/$studentId')
+          .then((value) async {
+        print('value.runtimeType == String ${value}');
+        print('value.runtimeType == String ${value.statusCode}');
+        if (value.runtimeType == String) {
+          isLoading.value = false;
 
-      request.fields['from_date'] =
-          '${selectedStartDate.value!.day}-${selectedStartDate.value!.month}-${selectedStartDate.value!.year}';
-
-      request.fields['to_date'] =
-          '${selectedEndDate.value!.day}-${selectedEndDate.value!.month}-${selectedEndDate.value!.year}';
-      request.fields['reason'] = descriptionController.text;
-      request.fields['subject'] = subjectController.text;
-
-      request.files.add(await http.MultipartFile.fromPath(
-          "file", selectedImage.value?.path ?? ''));
-
-      log('URL===> ${Uri.parse('${NetworkUrl.updateProfileUrl}$schoolId/$studentId')}');
-      log('PARAMS===> ${request.fields.toString()}');
-
-      await request.send().then(
-        (values) async {
-          var responsed = await http.Response.fromStream(values);
-          final value = json.decode(responsed.body);
-
-          print('value.runtimeType == String ${value} ${responsed.statusCode}');
-          // print('value.runtimeType == String ${value.statusCode}');
-          if (value.runtimeType == String) {
-            isUpdateLoading.value = false;
-            ProgressDialogUtils.showTitleSnackBar(
-                headerText: value.toString(), error: true);
-          } else {
-            if (responsed.statusCode == 200) {
-              if (value['status'] == 'success') {
-                isUpdateLoading.value = false;
-                Get.back();
-                ProgressDialogUtils.showTitleSnackBar(
-                    headerText: AppString.profileSuccessfully);
-              } else {
-                isUpdateLoading.value = false;
-                ProgressDialogUtils.showTitleSnackBar(
-                    headerText: AppString.something);
-              }
+          ProgressDialogUtils.showTitleSnackBar(
+              headerText: value.toString(), error: true);
+        } else {
+          if (value.statusCode == 200) {
+            isRemoveLoading.value = false;
+            if (value.body['status'] == 'success') {
+              isLoading.value = false;
+              leaveDetailsModel.value = LeaveDetailsModel.fromJson(value.body);
+              subjectController.value.text =
+                  leaveDetailsModel.value.subject ?? '';
+              descriptionController.value.text =
+                  leaveDetailsModel.value.reason ?? '';
+              startDate.value = leaveDetailsModel.value.fromDate ?? '';
+              endDate.value = leaveDetailsModel.value.toDate ?? '';
             } else {
-              isUpdateLoading.value = false;
-
+              isRemoveLoading.value = false;
               ProgressDialogUtils.showTitleSnackBar(
-                  headerText: AppString.something, error: true);
+                  headerText: AppString.something);
             }
+          } else {
+            isLoading.value = false;
+
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.something, error: true);
           }
-        },
-      );
+        }
+      });
     } catch (error) {
-      isUpdateLoading.value = false;
+      isLoading.value = false;
+
+      ProgressDialogUtils.showTitleSnackBar(
+          headerText: AppString.something, error: true);
+    }
+  }
+
+  Future<void> downloadDocument() async {
+    if (await Permission.storage.request().isGranted) {
+      // Get the directory to save the file
+      final directory = await getExternalStorageDirectory();
+      print('directory.path ${directory?.path}');
+      if (directory != null) {
+        // Start the download
+        final taskId = await FlutterDownloader.enqueue(
+          url:
+              'https://api.aischoolara.com/api/homework/download_docs/705/342/174',
+          savedDir: directory.path,
+          saveInPublicStorage: true,
+          showNotification:
+              true, // show download progress in status bar (for Android)
+          openFileFromNotification:
+              true, // click on notification to open downloaded file (for Android)
+        );
+        print('Download started: $taskId');
+      }
+    }
+  }
+
+  Future<void> getLeaveRemoveApi() async {
+    isRemoveLoading.value = true;
+    String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
+    String studentId = PrefUtils.getString(PrefsKey.studentID);
+
+    try {
+      await ApiService()
+          .callGetApi(
+              body: FormData({}),
+              headerWithToken: false,
+              showLoader: false,
+              url: '${NetworkUrl.removeLeaveUrl}722/2630/4')
+          // url: '${NetworkUrl.leaveDetailsUrl}${schoolId}/$studentId')
+          .then((value) async {
+        print('value.runtimeType == String ${value.body}');
+        print('value.runtimeType == String ${value.statusCode}');
+        if (value.runtimeType == String) {
+          isRemoveLoading.value = false;
+
+          ProgressDialogUtils.showTitleSnackBar(
+              headerText: value.toString(), error: true);
+        } else {
+          if (value.statusCode == 200) {
+            if (value.body['status'] == 'success') {
+              isRemoveLoading.value = false;
+              Get.back();
+              ProgressDialogUtils.showTitleSnackBar(
+                  headerText: value.body['message']);
+            } else {
+              isRemoveLoading.value = false;
+              ProgressDialogUtils.showTitleSnackBar(
+                  headerText: AppString.something);
+            }
+          } else {
+            isRemoveLoading.value = false;
+
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.something, error: true);
+          }
+        }
+      });
+    } catch (error) {
+      isRemoveLoading.value = false;
 
       ProgressDialogUtils.showTitleSnackBar(
           headerText: AppString.something, error: true);

@@ -48,7 +48,7 @@ class LeaveDashBoardScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: true,
-              url: '${NetworkUrl.allLeaveGetUrl}${schoolId}/722/2630')
+              url: '${NetworkUrl.allLeaveGetUrl}722/2630')
           // '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/${homeWorkId}')
           .then((value) async {
         print('value.runtimeType == String ${value}');

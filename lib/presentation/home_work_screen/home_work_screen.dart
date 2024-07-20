@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:schoolxon/presentation/home_work_screen/controller/home_work_screen_controller.dart';
 import 'package:schoolxon/routes/app_routes.dart';
@@ -78,178 +79,209 @@ class HomeWorkScreen extends GetWidget<HomeWorkScreenController> {
                             ),
                             child: Container(
                               width: MediaQuery.sizeOf(context).width,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 18),
-                                    child: Text(
-                                      'Home Works For You',
-                                      style: PMT.style(16,
-                                          fontColor: ColorConstant.primaryBlack,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Obx(
-                                      () => ListView.builder(
-                                        itemCount: controller.homeWorkModelList
-                                                .value.homeworklist?.length ??
-                                            0,
-                                        itemBuilder: (context, index) {
-                                          return Bounce(
-                                            onTap: () {
-                                              Get.toNamed(
-                                                  AppRoutes
-                                                      .homeWorkDetailScreenRout,
-                                                  arguments: [
-                                                    {
-                                                      "homeWorkID": controller
-                                                              .homeWorkModelList
-                                                              .value
-                                                              .homeworklist?[
-                                                                  index]
-                                                              .id ??
-                                                          '',
-                                                    },
-                                                  ]);
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 18, left: 18),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(
-                                                        height: getHeight(20),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                                .homeWorkModelList
-                                                                .value
-                                                                .homeworklist?[
-                                                                    index]
-                                                                .subjectName ??
-                                                            '',
-                                                        style: PMT.style(19,
-                                                            fontColor:
-                                                                ColorConstant
-                                                                    .primaryBlack,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                      ),
-                                                      SizedBox(
-                                                        height: getHeight(5),
-                                                      ),
-                                                      Text(
-                                                        'Home Work ',
-                                                        // 'Home Work | Assignment | Test',
-                                                        style: PMT.style(14,
-                                                            fontColor:
-                                                                ColorConstant
-                                                                    .grey9A,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      SizedBox(
-                                                        height: getHeight(15),
-                                                      ),
-                                                      // Container(
-                                                      //   decoration: BoxDecoration(
-                                                      //     borderRadius:
-                                                      //         BorderRadius
-                                                      //             .circular(5),
-                                                      //     color: ColorConstant
-                                                      //         .blueFC
-                                                      //         .withOpacity(.4),
-                                                      //   ),
-                                                      //   child: Padding(
-                                                      //     padding:
-                                                      //         const EdgeInsets
-                                                      //             .symmetric(
-                                                      //             horizontal: 10,
-                                                      //             vertical: 5),
-                                                      //     child: Row(
-                                                      //       mainAxisSize:
-                                                      //           MainAxisSize.min,
-                                                      //       children: [
-                                                      //         CustomImageView(
-                                                      //           svgPath:
-                                                      //               ImageConstant
-                                                      //                   .icBook,
-                                                      //           height:
-                                                      //               getHeight(15),
-                                                      //           width:
-                                                      //               getWidth(15),
-                                                      //         ),
-                                                      //         SizedBox(
-                                                      //           width:
-                                                      //               getWidth(10),
-                                                      //         ),
-                                                      //         Text(
-                                                      //           'Read Ch. 16.1 - 16.2, Ex A1 - A5',
-                                                      //           style: PMT.style(
-                                                      //               13,
-                                                      //               fontColor:
-                                                      //                   ColorConstant
-                                                      //                       .blueF9,
-                                                      //               fontWeight:
-                                                      //                   FontWeight
-                                                      //                       .bold),
-                                                      //         ),
-                                                      //       ],
-                                                      //     ),
-                                                      //   ),
-                                                      // ),
-                                                      // Divider(
-                                                      //     height: 40,
-                                                      //     color: ColorConstant
-                                                      //         .blueFC
-                                                      //         .withOpacity(.4),
-                                                      //     thickness: 1),
-                                                      // Text(
-                                                      //   'If Need Any Help Ping Me On Chat I Will Help You',
-                                                      //   style: PMT.style(14,
-                                                      //       fontColor:
-                                                      //           ColorConstant
-                                                      //               .grey9A,
-                                                      //       fontWeight:
-                                                      //           FontWeight.bold),
-                                                      // ),
-                                                      Html(
-                                                          shrinkWrap: true,
-                                                          data: controller
-                                                                  .homeWorkModelList
-                                                                  .value
-                                                                  .homeworklist?[
-                                                                      index]
-                                                                  .description ??
-                                                              ''),
-                                                    ],
-                                                  ),
+                              child: Obx(
+                                () => controller.isLoading.value
+                                    ? SizedBox.shrink()
+                                    : controller.homeWorkModelList.value
+                                                    .homeworklist !=
+                                                null &&
+                                            controller.homeWorkModelList.value
+                                                .homeworklist!.isEmpty
+                                        ? Center(
+                                            child: Text('No Data Found'),
+                                          )
+                                        : Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 18),
+                                                child: Text(
+                                                  'Home Works For You',
+                                                  style: PMT.style(16,
+                                                      fontColor: ColorConstant
+                                                          .primaryBlack,
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
-                                                SizedBox(
-                                                  height: getHeight(20),
+                                              ),
+                                              Expanded(
+                                                child: ListView.builder(
+                                                  itemCount: controller
+                                                          .homeWorkModelList
+                                                          .value
+                                                          .homeworklist
+                                                          ?.length ??
+                                                      0,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Bounce(
+                                                      onTap: () {
+                                                        Get.toNamed(
+                                                            AppRoutes
+                                                                .homeWorkDetailScreenRout,
+                                                            arguments: [
+                                                              {
+                                                                "homeWorkID": controller
+                                                                        .homeWorkModelList
+                                                                        .value
+                                                                        .homeworklist?[
+                                                                            index]
+                                                                        .id ??
+                                                                    '',
+                                                              },
+                                                            ]);
+                                                      },
+                                                      child: Column(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    right: 18,
+                                                                    left: 18),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  height:
+                                                                      getHeight(
+                                                                          20),
+                                                                ),
+                                                                Text(
+                                                                  controller
+                                                                          .homeWorkModelList
+                                                                          .value
+                                                                          .homeworklist?[
+                                                                              index]
+                                                                          .subjectName ??
+                                                                      '',
+                                                                  style: PMT.style(
+                                                                      19,
+                                                                      fontColor:
+                                                                          ColorConstant
+                                                                              .primaryBlack,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w800),
+                                                                ),
+                                                                SizedBox(
+                                                                  height:
+                                                                      getHeight(
+                                                                          5),
+                                                                ),
+                                                                Text(
+                                                                  'Home Work ',
+                                                                  // 'Home Work | Assignment | Test',
+                                                                  style: PMT.style(
+                                                                      14,
+                                                                      fontColor:
+                                                                          ColorConstant
+                                                                              .grey9A,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                                SizedBox(
+                                                                  height:
+                                                                      getHeight(
+                                                                          15),
+                                                                ),
+                                                                // Container(
+                                                                //   decoration: BoxDecoration(
+                                                                //     borderRadius:
+                                                                //         BorderRadius
+                                                                //             .circular(5),
+                                                                //     color: ColorConstant
+                                                                //         .blueFC
+                                                                //         .withOpacity(.4),
+                                                                //   ),
+                                                                //   child: Padding(
+                                                                //     padding:
+                                                                //         const EdgeInsets
+                                                                //             .symmetric(
+                                                                //             horizontal: 10,
+                                                                //             vertical: 5),
+                                                                //     child: Row(
+                                                                //       mainAxisSize:
+                                                                //           MainAxisSize.min,
+                                                                //       children: [
+                                                                //         CustomImageView(
+                                                                //           svgPath:
+                                                                //               ImageConstant
+                                                                //                   .icBook,
+                                                                //           height:
+                                                                //               getHeight(15),
+                                                                //           width:
+                                                                //               getWidth(15),
+                                                                //         ),
+                                                                //         SizedBox(
+                                                                //           width:
+                                                                //               getWidth(10),
+                                                                //         ),
+                                                                //         Text(
+                                                                //           'Read Ch. 16.1 - 16.2, Ex A1 - A5',
+                                                                //           style: PMT.style(
+                                                                //               13,
+                                                                //               fontColor:
+                                                                //                   ColorConstant
+                                                                //                       .blueF9,
+                                                                //               fontWeight:
+                                                                //                   FontWeight
+                                                                //                       .bold),
+                                                                //         ),
+                                                                //       ],
+                                                                //     ),
+                                                                //   ),
+                                                                // ),
+                                                                // Divider(
+                                                                //     height: 40,
+                                                                //     color: ColorConstant
+                                                                //         .blueFC
+                                                                //         .withOpacity(.4),
+                                                                //     thickness: 1),
+                                                                // Text(
+                                                                //   'If Need Any Help Ping Me On Chat I Will Help You',
+                                                                //   style: PMT.style(14,
+                                                                //       fontColor:
+                                                                //           ColorConstant
+                                                                //               .grey9A,
+                                                                //       fontWeight:
+                                                                //           FontWeight.bold),
+                                                                // ),
+                                                                Html(
+                                                                    shrinkWrap:
+                                                                        true,
+                                                                    data: controller
+                                                                            .homeWorkModelList
+                                                                            .value
+                                                                            .homeworklist?[index]
+                                                                            .description ??
+                                                                        ''),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getHeight(20),
+                                                          ),
+                                                          Divider(
+                                                              height: 20,
+                                                              color:
+                                                                  ColorConstant
+                                                                      .greyF3,
+                                                              thickness: 5),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
-                                                Divider(
-                                                    height: 20,
-                                                    color: ColorConstant.greyF3,
-                                                    thickness: 5),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                              ),
+                                            ],
+                                          ),
                               ),
                             ),
                           ),
