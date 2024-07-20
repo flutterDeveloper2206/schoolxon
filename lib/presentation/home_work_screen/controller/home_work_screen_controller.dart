@@ -33,11 +33,9 @@ class HomeWorkScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: true,
-              url: '${NetworkUrl.showAllHomeWorkUrl}${schoolId}/342')
+              url: '${NetworkUrl.showAllHomeWorkUrl}${schoolId}/${studentId}')
           // url: '${NetworkUrl.getStudentByIdUrl}${schoolId}/$studentId')
           .then((value) async {
-        print('value.runtimeType == String ${value}');
-        print('value.runtimeType == String ${value.statusCode}');
         if (value.runtimeType == String) {
           isLoading.value = false;
 
@@ -47,6 +45,10 @@ class HomeWorkScreenController extends GetxController {
           if (value.statusCode == 200) {
             isLoading.value = false;
             homeWorkModelList.value = HomeWorkListModel.fromJson(value.body);
+            print('value.runtimeType == String ${homeWorkModelList.value}');
+            print(
+                'value.runtimeType == String ${homeWorkModelList.value.homeworklist}');
+            update();
           } else {
             isLoading.value = false;
 

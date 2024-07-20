@@ -3,11 +3,17 @@ import 'package:schoolxon/widgets/error_screen.dart';
 
 import 'core/app_export.dart';
 import 'core/utils/initial_bindings.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
+  await FlutterDownloader.initialize(
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl:
+          true // option: set to false to disable working with http links (default: false)
+      );
   ErrorWidget.builder =
       (FlutterErrorDetails details) => AppFlutterErrorScreen(details: details);
   runApp(const MyApp());
@@ -29,7 +35,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       title: 'SCHOOL XON',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.submitHomeWorkScreenRout,
+      initialRoute: AppRoutes.splashScreenRoute,
       getPages: AppRoutes.pages,
       // ),
     );

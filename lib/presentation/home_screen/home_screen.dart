@@ -370,33 +370,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    height: getHeight(50),
-                                    width: getWidth(50),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                      color:
-                                          ColorConstant.blueFC.withOpacity(.2),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(14),
-                                      child: CustomImageView(
-                                        svgPath: ImageConstant.icLeave,
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(
+                                      AppRoutes.leaveDashboardScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icLeave,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: getHeight(6),
-                                  ),
-                                  Text(
-                                    AppString.leave,
-                                    style: PMT.style(15,
-                                        fontColor: ColorConstant.grey9A,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.leave,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Column(
                                 children: [
