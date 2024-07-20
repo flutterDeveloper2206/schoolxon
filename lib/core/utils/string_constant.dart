@@ -31,6 +31,7 @@ class AppString {
   static const String viewDetails = "View Details";
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
+  static const String addDescription = "Add Description";
   static const String all = "All";
   static const String homework = "Home Work";
   static const String thisMonth = "This Month";
@@ -217,6 +218,9 @@ class AppString {
   static const String max = "Max";
   static const String vacayType = "Vacay type";
   static const String apply = "Apply";
+  static const String chooseFile = 'Choose Your File';
+  static const String toUpload = ' To Upload';
+  static const String imgOrDoc = 'Img Or Doc';
   static const String searchForMore = "Search for more";
   static const String viewMore = "View more";
   static const String daySchedule = "Day schedule";

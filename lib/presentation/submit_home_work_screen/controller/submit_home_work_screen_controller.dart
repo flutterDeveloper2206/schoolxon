@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/app_export.dart';
+
 class SubmitHomeWorkScreenController extends GetxController {
+  TextEditingController descriptionController = TextEditingController();
   var progress = 0.0.obs;
   var imageFile = Rx<XFile?>(null);
   Timer? timer;
@@ -26,20 +29,10 @@ class SubmitHomeWorkScreenController extends GetxController {
     selectedImage.value = null;
 
   }
-
-  Future<void> pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      selectedImage.value = File(pickedFile.path);
-      startProgress();
-    }
-  }
-
-
   void startProgress() {
-  timer=  Timer.periodic(Duration(microseconds: 100000), (timer) {
+    progress.value = 0.0;
+
+    timer=  Timer.periodic(Duration(microseconds: 100000), (timer) {
       if (progress.value >= 1) {
         timer.cancel();
       } else {
@@ -47,4 +40,17 @@ class SubmitHomeWorkScreenController extends GetxController {
       }
     });
   }
+  Future<void> pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      selectedImage.value = File(pickedFile.path);
+
+      startProgress();
+    }
+  }
+
+
+
 }
