@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:schoolxon/core/utils/network_url.dart';
+import 'package:schoolxon/core/utils/progress_dialog_utils.dart';
 import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
 import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
@@ -713,33 +714,38 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: getWidth(5),
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    height: getHeight(50),
-                                    width: getWidth(50),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                      color:
-                                          ColorConstant.blueFC.withOpacity(.2),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(14),
-                                      child: CustomImageView(
-                                        svgPath: ImageConstant.icAttendance,
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.attendanceScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icAttendance,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: getHeight(6),
-                                  ),
-                                  Text(
-                                    AppString.attendence,
-                                    style: PMT.style(15,
-                                        fontColor: ColorConstant.grey9A,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.attendence,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

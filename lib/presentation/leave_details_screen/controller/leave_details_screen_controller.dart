@@ -19,8 +19,11 @@ import '../../../core/utils/progress_dialog_utils.dart';
 import '../model/leave_details_model.dart';
 
 class LeaveDetailsScreenController extends GetxController {
+  dynamic argumentData = Get.arguments;
+
   RxBool isLoading = false.obs;
   RxBool isRemoveLoading = false.obs;
+  RxString leaveID = ''.obs;
   RxString startDate = ''.obs;
   RxString endDate = ''.obs;
   Rx<TextEditingController> subjectController = TextEditingController().obs;
@@ -29,6 +32,7 @@ class LeaveDetailsScreenController extends GetxController {
 
   @override
   void onInit() {
+    leaveID.value = argumentData[0]['leaveId'];
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getLeaveDetailsApi();
     });
@@ -46,7 +50,8 @@ class LeaveDetailsScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: true,
-              url: '${NetworkUrl.leaveDetailsUrl}722/2630/3')
+              url:
+                  '${NetworkUrl.leaveDetailsUrl}${schoolId}/${studentId}/${leaveID.value}')
           // url: '${NetworkUrl.leaveDetailsUrl}${schoolId}/$studentId')
           .then((value) async {
         print('value.runtimeType == String ${value}');
@@ -59,20 +64,14 @@ class LeaveDetailsScreenController extends GetxController {
         } else {
           if (value.statusCode == 200) {
             isRemoveLoading.value = false;
-            if (value.body['status'] == 'success') {
-              isLoading.value = false;
-              leaveDetailsModel.value = LeaveDetailsModel.fromJson(value.body);
-              subjectController.value.text =
-                  leaveDetailsModel.value.subject ?? '';
-              descriptionController.value.text =
-                  leaveDetailsModel.value.reason ?? '';
-              startDate.value = leaveDetailsModel.value.fromDate ?? '';
-              endDate.value = leaveDetailsModel.value.toDate ?? '';
-            } else {
-              isRemoveLoading.value = false;
-              ProgressDialogUtils.showTitleSnackBar(
-                  headerText: AppString.something);
-            }
+
+            leaveDetailsModel.value = LeaveDetailsModel.fromJson(value.body);
+            subjectController.value.text =
+                leaveDetailsModel.value.subject ?? '';
+            descriptionController.value.text =
+                leaveDetailsModel.value.reason ?? '';
+            startDate.value = leaveDetailsModel.value.fromDate ?? '';
+            endDate.value = leaveDetailsModel.value.toDate ?? '';
           } else {
             isLoading.value = false;
 
@@ -90,6 +89,8 @@ class LeaveDetailsScreenController extends GetxController {
   }
 
   Future<void> downloadDocument() async {
+    String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
+    String studentId = PrefUtils.getString(PrefsKey.studentID);
     if (await Permission.storage.request().isGranted) {
       // Get the directory to save the file
       final directory = await getExternalStorageDirectory();
@@ -98,7 +99,7 @@ class LeaveDetailsScreenController extends GetxController {
         // Start the download
         final taskId = await FlutterDownloader.enqueue(
           url:
-              'https://api.aischoolara.com/api/homework/download_docs/705/342/174',
+              '${NetworkUrl.leaveDownloadUrl}${schoolId}/${studentId}/${leaveID.value}',
           savedDir: directory.path,
           saveInPublicStorage: true,
           showNotification:
@@ -122,8 +123,9 @@ class LeaveDetailsScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: false,
-              url: '${NetworkUrl.removeLeaveUrl}722/2630/4')
-          // url: '${NetworkUrl.leaveDetailsUrl}${schoolId}/$studentId')
+              // url: '${NetworkUrl.removeLeaveUrl}722/2630/4')
+              url:
+                  '${NetworkUrl.removeLeaveUrl}${schoolId}/$studentId/${leaveID.value}')
           .then((value) async {
         print('value.runtimeType == String ${value.body}');
         print('value.runtimeType == String ${value.statusCode}');

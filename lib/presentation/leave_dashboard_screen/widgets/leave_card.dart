@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
 import 'package:schoolxon/presentation/leave_dashboard_screen/model/all_leave_model.dart';
@@ -18,7 +19,9 @@ class LeaveCard extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 10),
       child: Bounce(
         onTap: () {
-          Get.toNamed(AppRoutes.leaveDetailsScreenRout);
+          Get.toNamed(AppRoutes.leaveDetailsScreenRout, arguments: [
+            {'leaveId': leave.id}
+          ]);
         },
         child: Container(
           decoration: BoxDecoration(
@@ -33,11 +36,14 @@ class LeaveCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      leave.reason ?? '',
-                      style: PMT.appStyle(14,
-                          fontColor: ColorConstant.grey81,
-                          fontWeight: FontWeight.w400),
+                    Expanded(
+                      child: Text(
+                        leave.reason ?? '',
+                        maxLines: 2,
+                        style: PMT.appStyle(14,
+                            fontColor: ColorConstant.grey81,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                     Container(
                       padding:

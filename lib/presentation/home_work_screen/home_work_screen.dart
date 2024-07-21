@@ -134,6 +134,9 @@ class HomeWorkScreen extends GetWidget<HomeWorkScreenController> {
                                                             ]);
                                                       },
                                                       child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Padding(
                                                             padding:

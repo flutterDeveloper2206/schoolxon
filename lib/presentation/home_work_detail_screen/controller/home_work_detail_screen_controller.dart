@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:schoolxon/ApiServices/api_service.dart';
 import 'package:schoolxon/core/utils/app_prefs_key.dart';
@@ -24,6 +28,7 @@ class HomeWorkDetailScreenController extends GetxController {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getHomeWorkListApi();
     });
+
     startProgress();
     super.onInit();
   }
@@ -55,6 +60,31 @@ class HomeWorkDetailScreenController extends GetxController {
     });
   }
 
+  Future<void> downloadDocument() async {
+    String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
+    String studentId = PrefUtils.getString(PrefsKey.studentID);
+    if (await Permission.storage.request().isGranted) {
+      // Get the directory to save the file
+      final directory = await getExternalStorageDirectory();
+      print('directory.path ${directory?.path}');
+      if (directory != null) {
+        // Start the download
+        final taskId = await FlutterDownloader.enqueue(
+          url:
+              '${NetworkUrl.homeWorkDownloadUrl}${schoolId}/${studentId}/${homeWorkId}',
+          savedDir: directory.path,
+          saveInPublicStorage: true,
+          showNotification:
+              true, // show download progress in status bar (for Android)
+          openFileFromNotification:
+              true, // click on notification to open downloaded file (for Android)
+        );
+
+        print('Download started: $taskId');
+      }
+    }
+  }
+
   Future<void> getHomeWorkListApi() async {
     isLoading.value = true;
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
@@ -66,7 +96,8 @@ class HomeWorkDetailScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: true,
-              url: '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/172')
+              url:
+                  '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/${studentId}/${homeWorkId}')
           // '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/${homeWorkId}')
           .then((value) async {
         print('value.runtimeType == String ${value}');

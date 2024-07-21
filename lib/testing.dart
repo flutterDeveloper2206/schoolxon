@@ -350,3 +350,92 @@ class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
   @override
   String get name => '2x3 (customized)';
 }
+// import 'package:flutter/material.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:permission_handler/permission_handler.dart';
+//
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await FlutterDownloader.initialize(debug: true);
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: DownloadScreen(),
+//     );
+//   }
+// }
+//
+// class DownloadScreen extends StatefulWidget {
+//   @override
+//   _DownloadScreenState createState() => _DownloadScreenState();
+// }
+//
+// class _DownloadScreenState extends State<DownloadScreen> {
+//   String? _taskId;
+//   double _progress = 0.0;
+//   String _status = 'Idle';
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     FlutterDownloader.registerCallback(downloadCallback);
+//   }
+//
+//   static void downloadCallback(String id, int status, int progress) {
+//     print('status ${status}');
+//     print('progress ${progress}');
+//   }
+//
+//   Future<void> _startDownload() async {
+//     final status = await Permission.storage.request();
+//
+//     if (status.isGranted) {
+//       final dir = await getExternalStorageDirectory();
+//       if (dir != null) {
+//         _taskId = await FlutterDownloader.enqueue(
+//           url:
+//               'https://api.aischoolara.com/api/homework/download_docs/705/342/174',
+//           savedDir: dir.path,
+//           showNotification: true,
+//           openFileFromNotification: true,
+//         );
+//
+//         setState(() {
+//           _status = 'Downloading...';
+//         });
+//       }
+//     } else {
+//       // Handle the case when permission is not granted
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Download Example'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Text('Status: $_status'),
+//             Text('Progress: ${_progress.toStringAsFixed(0)}%'),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: _startDownload,
+//               child: Text('Start Download'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

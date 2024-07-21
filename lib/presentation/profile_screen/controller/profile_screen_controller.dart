@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:schoolxon/presentation/profile_screen/model/student_model.dart';
 
@@ -23,6 +25,7 @@ class ProfileScreenController extends GetxController {
   RxString gender = 'Male'.obs;
   Rx<DateTime> initialDate = DateTime.now().obs;
   RxString selectedDate = 'Tap to select date'.obs;
+  CroppedFile? _croppedFile;
 
   Rx<TextEditingController> nameController = TextEditingController().obs;
   Rx<TextEditingController> lastController = TextEditingController().obs;
@@ -42,6 +45,53 @@ class ProfileScreenController extends GetxController {
   DateTime parseDate(String dateString) {
     DateFormat dateFormat = DateFormat("dd-MM-yyyy");
     return dateFormat.parse(dateString);
+  }
+
+  Future<String> cropImage(XFile? _pickedFile) async {
+    if (_pickedFile != null) {
+      final croppedFile = await ImageCropper().cropImage(
+        sourcePath: _pickedFile!.path,
+        compressFormat: ImageCompressFormat.jpg,
+        compressQuality: 100,
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: ColorConstant.primaryBlue,
+            toolbarWidgetColor: Colors.white,
+            activeControlsWidgetColor: ColorConstant.primaryBlue,
+            initAspectRatio: CropAspectRatioPreset.square,
+            lockAspectRatio: false,
+            aspectRatioPresets: [
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.square,
+              CropAspectRatioPreset.ratio4x3,
+              CropAspectRatioPresetCustom(),
+            ],
+          ),
+          IOSUiSettings(
+            title: 'Cropper',
+            aspectRatioPresets: [
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.square,
+              CropAspectRatioPreset.ratio4x3,
+              CropAspectRatioPresetCustom(),
+            ],
+          ),
+          WebUiSettings(
+            context: Get.overlayContext as BuildContext,
+            presentStyle: WebPresentStyle.dialog,
+            size: const CropperSize(
+              width: 520,
+              height: 520,
+            ),
+          ),
+        ],
+      );
+      if (croppedFile != null) {
+        return croppedFile.path;
+      }
+    }
+    return _croppedFile?.path ?? '';
   }
 
   void next() {
@@ -240,4 +290,12 @@ class ProfileScreenController extends GetxController {
           headerText: AppString.something, error: true);
     }
   }
+}
+
+class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
+  @override
+  (int, int)? get data => (2, 3);
+
+  @override
+  String get name => '2x3 (customized)';
 }

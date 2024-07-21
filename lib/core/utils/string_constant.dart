@@ -85,6 +85,7 @@ class AppString {
 
   static const String loginSuccessfully = 'Login Successfully.';
   static const String profileSuccessfully = 'Profile Update Successfully.';
+  static const String homeWorkSuccessfully = 'HomeWork Added Successfully.';
 
   static const String needHelpText =
       "No problem. tell us how we can help and\n we’ll get back to you in a few days";

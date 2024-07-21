@@ -1,14 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/packages/horizontal_week_calendar.dart';
 import 'package:schoolxon/presentation/attendance/controller/attendance_screen_controller.dart';
-import 'package:schoolxon/widgets/custom_image_view.dart';
-
 import '../../core/app_export.dart';
-import '../../core/utils/size_utils.dart';
 import '../../widgets/common_appBar.dart';
 
 class AttendanceScreen extends GetWidget<AttendanceScreenController> {
@@ -25,7 +17,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 18,left: 18,top: 18),
+            padding: const EdgeInsets.only(right: 18, left: 18, top: 18),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -136,7 +128,8 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                 color: ColorConstant.whiteFB,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 5),
                                 child: Column(
                                   children: [
                                     SizedBox(
@@ -203,7 +196,9 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                   ///Not Absent
                                   Row(
                                     children: [
-                                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             AppString.Punchin,
@@ -233,7 +228,9 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                         ],
                                       ),
                                       SizedBox(width: getWidth(40)),
-                                      Column( crossAxisAlignment: CrossAxisAlignment.start,
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             AppString.Punchout,
@@ -272,9 +269,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                       ),
                     ),
                     Divider(
-                        height: 40,
-                        color: ColorConstant.greyE4,
-                        thickness: 1),
+                        height: 40, color: ColorConstant.greyE4, thickness: 1),
                   ],
                 );
               },

@@ -17,9 +17,8 @@ abstract class NetworkInfo {
     } else {
       if (connectivityResult.contains(ConnectivityResult.none)) {
         ProgressDialogUtils.hideProgressDialog();
-        Get.snackbar("ERROR MESSAGE".tr, "NO INTERNET CONNECTION".tr,
-            backgroundColor: ColorConstant.primaryBlue,
-            snackPosition: SnackPosition.BOTTOM);
+        ProgressDialogUtils.showTitleSnackBar(
+            headerText: 'NO INTERNET CONNECTION');
         checkNetwork();
         return false;
       } else {
