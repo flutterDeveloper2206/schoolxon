@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:intl/intl.dart';
 import 'package:schoolxon/presentation/attendance/model/attendance_model.dart';
 
 import '../../../ApiServices/api_service.dart';
@@ -11,7 +13,7 @@ import '../../../core/utils/string_constant.dart';
 
 class AttendanceScreenController extends GetxController {
   RxBool isLoading = false.obs;
-  List<AttendanceModel> attendanceModel = <AttendanceModel>[].obs;
+  RxList<AttendanceModel> attendanceModel = <AttendanceModel>[].obs;
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -25,44 +27,42 @@ class AttendanceScreenController extends GetxController {
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
     String studentId = PrefUtils.getString(PrefsKey.studentID);
 
-    /*  try {*/
-    await ApiService()
-        .callGetApi(
-            body: FormData({}),
-            headerWithToken: false,
-            showLoader: true,
-            url: '${NetworkUrl.attendanceUrl}${schoolId}/${studentId}')
-        // '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/${homeWorkId}')
-        .then((value) async {
-      print('value.runtimeType == String ${value}');
-      print('value.runtimeType == String ${value.statusCode}');
-      if (value.runtimeType == String) {
-        isLoading.value = false;
-        ProgressDialogUtils.showTitleSnackBar(
-            headerText: value.toString(), error: true);
-      } else {
-        if (value.statusCode == 200) {
-          attendanceModel = (value.body as List)
-              .map((data) => AttendanceModel.fromJson(data))
-              .toList();
+    try {
+      await ApiService()
+          .callGetApi(
+              body: FormData({}),
+              headerWithToken: false,
+              showLoader: true,
+              url: '${NetworkUrl.attendanceUrl}${schoolId}/${studentId}')
+          // '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/${homeWorkId}')
+          .then((value) async {
+        print('value.runtimeType == String ${value}');
+        print('value.runtimeType == String ${value.statusCode}');
+        if (value.runtimeType == String) {
           isLoading.value = false;
-        } else {
-          isLoading.value = false;
-
           ProgressDialogUtils.showTitleSnackBar(
-              headerText: AppString.something, error: true);
-          print('==============================================');
+              headerText: value.toString(), error: true);
+        } else {
+          if (value.statusCode == 200) {
+            attendanceModel.value = (value.body as List)
+                .map((data) => AttendanceModel.fromJson(data))
+                .toList();
+            isLoading.value = false;
+          } else {
+            isLoading.value = false;
+
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.something, error: true);
+            print('==============================================');
+          }
         }
-      }
-    });
-    /*} catch (error) {
+      });
+    } catch (error) {
       isLoading.value = false;
 
       ProgressDialogUtils.showTitleSnackBar(
           headerText: AppString.something, error: true);
       print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
-    }*/
+    }
   }
-
-
 }
