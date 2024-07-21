@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,6 +16,8 @@ import '../../home_work_detail_screen/model/home_work_details_model.dart';
 
 class SubmitHomeWorkScreenController extends GetxController {
   TextEditingController descriptionController = TextEditingController();
+  dynamic argumentData = Get.arguments;
+
   var progress = 0.0.obs;
   var imageFile = Rx<XFile?>(null);
   RxBool isUpdateLoading = false.obs;
@@ -25,6 +27,7 @@ class SubmitHomeWorkScreenController extends GetxController {
   Rx<HomeWorkDetailsModel> homeWorkDetailsModel = HomeWorkDetailsModel().obs;
   @override
   void onInit() {
+    homeWorkId = argumentData[0]['homeWorkID'];
 
     super.onInit();
   }
@@ -34,17 +37,16 @@ class SubmitHomeWorkScreenController extends GetxController {
   var imagePath = ''.obs;
   var selectedImage = Rx<File?>(null);
 
-
   void removeImage() {
     timer?.cancel();
     progress.value = 0.0;
     selectedImage.value = null;
-
   }
+
   void startProgress() {
     progress.value = 0.0;
 
-    timer=  Timer.periodic(Duration(microseconds: 100000), (timer) {
+    timer = Timer.periodic(Duration(microseconds: 100000), (timer) {
       if (progress.value >= 1) {
         timer.cancel();
       } else {
@@ -52,6 +54,7 @@ class SubmitHomeWorkScreenController extends GetxController {
       }
     });
   }
+
   Future<void> pickImage() async {
     final ImagePicker _picker = ImagePicker();
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -63,22 +66,18 @@ class SubmitHomeWorkScreenController extends GetxController {
     }
   }
 
-
   void submit() {
-  if (descriptionController.text.isEmpty) {
+    if (descriptionController.text.isEmpty) {
       ProgressDialogUtils.showTitleSnackBar(
           headerText: AppString.enterDescription);
     } else if (selectedImage.value == null &&
         selectedImage.value?.path == null) {
       ProgressDialogUtils.showTitleSnackBar(
           headerText: AppString.selectDocument);
-    }
-  else {
+    } else {
       submitHomeWork();
     }
   }
-
-
 
   Future<void> submitHomeWork() async {
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
@@ -92,11 +91,9 @@ class SubmitHomeWorkScreenController extends GetxController {
           'POST', Uri.parse('${NetworkUrl.submitHomeworkUrl}$schoolId'));
       request.headers.addAll(headers);
 
-      request.fields['student_id'] =
-      '342';
+      request.fields['student_id'] = studentId;
 
-      request.fields['homework_id'] =
-      '172';
+      request.fields['homework_id'] = homeWorkId;
       request.fields['message'] = descriptionController.text;
       request.files.add(await http.MultipartFile.fromPath(
           "file", selectedImage.value?.path ?? ''));
@@ -105,7 +102,7 @@ class SubmitHomeWorkScreenController extends GetxController {
       log('PARAMS===> ${request.fields.toString()}');
 
       await request.send().then(
-            (values) async {
+        (values) async {
           var responsed = await http.Response.fromStream(values);
           final value = json.decode(responsed.body);
 
@@ -121,7 +118,7 @@ class SubmitHomeWorkScreenController extends GetxController {
                 isUpdateLoading.value = false;
                 Get.back();
                 ProgressDialogUtils.showTitleSnackBar(
-                    headerText: AppString.profileSuccessfully);
+                    headerText: AppString.homeWorkSuccessfully);
               } else {
                 isUpdateLoading.value = false;
                 ProgressDialogUtils.showTitleSnackBar(
@@ -143,5 +140,4 @@ class SubmitHomeWorkScreenController extends GetxController {
           headerText: AppString.something, error: true);
     }
   }
-
 }

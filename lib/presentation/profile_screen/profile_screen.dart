@@ -1,28 +1,12 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:get/state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:schoolxon/core/app_export.dart';
-import 'package:schoolxon/core/utils/image_constant.dart';
-import 'package:schoolxon/core/utils/network_url.dart';
 import 'package:schoolxon/presentation/profile_screen/widgets/text_field_title.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
-import '../../core/utils/app_fonts.dart';
-import '../../core/utils/color_constant.dart';
 import '../../core/utils/common_constant.dart';
-import '../../core/utils/size_utils.dart';
-import '../../core/utils/string_constant.dart';
 import '../../widgets/common_appBar.dart';
 import '../../widgets/custom_elavated_button.dart';
-import '../../widgets/custom_image_view.dart';
 import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends GetWidget<ProfileScreenController> {
@@ -54,34 +38,50 @@ class ProfileScreen extends GetWidget<ProfileScreenController> {
                           alignment: Alignment.bottomRight,
                           children: [
                             Obx(
-                              () => controller.image.value
-                                      .contains('https://api.')
+                              () => controller.image.value == ''
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(100),
-                                      child: CustomImageView(
+                                      child: Image.asset(
+                                        ImageConstant.imgUserPlaceHolder,
                                         fit: BoxFit.cover,
-                                        url: controller.image.value,
                                         // 'https://api.aischoolara.com/uploads/student_images/1712198536-1179694613660e13885ca6e!WhatsApp%20Image%202024-04-04%20at%208.03.20%20AM%20(1).jpeg',
                                         // '${NetworkUrl.imageBaseUrl}${controller.studentModel.value.studentInfo?.image ?? ''}',
                                         // imagePath: ImageConstant.imgPerson,
-                                        placeHolder:
-                                            ImageConstant.imgUserPlaceHolder,
+
                                         height: getHeight(100),
                                         width: getHeight(100),
                                       ))
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: CustomImageView(
-                                        fit: BoxFit.cover,
-                                        file: File(controller.image.value),
-                                        // 'https://api.aischoolara.com/uploads/student_images/1712198536-1179694613660e13885ca6e!WhatsApp%20Image%202024-04-04%20at%208.03.20%20AM%20(1).jpeg',
-                                        // '${NetworkUrl.imageBaseUrl}${controller.studentModel.value.studentInfo?.image ?? ''}',
-                                        // imagePath: ImageConstant.imgPerson,
-                                        placeHolder:
-                                            ImageConstant.imgUserPlaceHolder,
-                                        height: getHeight(100),
-                                        width: getHeight(100),
-                                      )),
+                                  : controller.image.value.isEmpty ||
+                                          controller.image.value
+                                              .contains('https://api.')
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: CustomImageView(
+                                            fit: BoxFit.cover,
+                                            url: controller.image.value,
+                                            // 'https://api.aischoolara.com/uploads/student_images/1712198536-1179694613660e13885ca6e!WhatsApp%20Image%202024-04-04%20at%208.03.20%20AM%20(1).jpeg',
+                                            // '${NetworkUrl.imageBaseUrl}${controller.studentModel.value.studentInfo?.image ?? ''}',
+                                            // imagePath: ImageConstant.imgPerson,
+                                            placeHolder: ImageConstant
+                                                .imgUserPlaceHolder,
+                                            height: getHeight(100),
+                                            width: getHeight(100),
+                                          ))
+                                      : ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: CustomImageView(
+                                            fit: BoxFit.cover,
+                                            file: File(controller.image.value),
+                                            // 'https://api.aischoolara.com/uploads/student_images/1712198536-1179694613660e13885ca6e!WhatsApp%20Image%202024-04-04%20at%208.03.20%20AM%20(1).jpeg',
+                                            // '${NetworkUrl.imageBaseUrl}${controller.studentModel.value.studentInfo?.image ?? ''}',
+                                            // imagePath: ImageConstant.imgPerson,
+                                            placeHolder: ImageConstant
+                                                .imgUserPlaceHolder,
+                                            height: getHeight(100),
+                                            width: getHeight(100),
+                                          )),
                             ),
                             Obx(
                               () => !controller.hasEdit.value
@@ -105,9 +105,12 @@ class ProfileScreen extends GetWidget<ProfileScreenController> {
                                                             .selectImageFromSystem(
                                                                 ImageSource
                                                                     .camera);
-
                                                     controller.image.value =
-                                                        resultImage?.path ?? '';
+                                                        await controller
+                                                            .cropImage(
+                                                                resultImage);
+                                                    // controller.image.value =
+                                                    //     resultImage?.path ?? '';
                                                   },
                                                   secondText: AppString.gallery,
                                                   secondTextOnTap: () async {
@@ -118,9 +121,13 @@ class ProfileScreen extends GetWidget<ProfileScreenController> {
                                                             .selectImageFromSystem(
                                                                 ImageSource
                                                                     .gallery);
-
                                                     controller.image.value =
-                                                        resultImage?.path ?? '';
+                                                        await controller
+                                                            .cropImage(
+                                                                resultImage);
+
+                                                    // controller.image.value =
+                                                    //     resultImage?.path ?? '';
                                                   });
                                         } else {
                                           CommonConstant.instance
@@ -334,7 +341,8 @@ class ProfileScreen extends GetWidget<ProfileScreenController> {
                         () => !controller.hasEdit.value
                             ? Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: getWidth(16),vertical: getHeight(5)),
+                                    horizontal: getWidth(16),
+                                    vertical: getHeight(5)),
                                 child: AppElevatedButton(
                                   isLoading: controller.isUpdateLoading.value,
                                   buttonName: AppString.update,

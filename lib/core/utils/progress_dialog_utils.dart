@@ -76,15 +76,30 @@ class ProgressDialogUtils {
 
     Get.rawSnackbar(
         duration: duration,
-        snackPosition: SnackPosition.TOP,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundColor: error
             ? ColorConstant.primaryRed
-            : color ?? ColorConstant.primaryBlue,
+            : color ?? ColorConstant.primaryBlack,
         borderRadius: getWidth(12),
-        messageText: Text(
-          headerText,
-          style: const TextStyle(color: Colors.white),
+        messageText: InkWell(
+          onTap: () {
+            Get.closeAllSnackbars();
+            print('object');
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                headerText,
+                style: const TextStyle(color: Colors.white),
+              ),
+              Icon(
+                Icons.close,
+                color: ColorConstant.primaryWhite,
+              )
+            ],
+          ),
         ),
-        margin: const EdgeInsets.only(top: 60, left: 16, right: 16));
+        margin: const EdgeInsets.only(bottom: 30, left: 16, right: 16));
   }
 }

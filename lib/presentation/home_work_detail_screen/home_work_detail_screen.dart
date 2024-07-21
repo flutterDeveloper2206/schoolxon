@@ -1,5 +1,6 @@
 import 'package:flutter_html/flutter_html.dart';
 import 'package:schoolxon/core/app_export.dart';
+import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
 import 'package:schoolxon/widgets/custom_elavated_button.dart';
 
@@ -199,496 +200,566 @@ class HomeWorkDetailScreen extends GetWidget<HomeWorkDetailScreenController> {
                                     SizedBox(
                                       height: getHeight(15),
                                     ),
-                                    Obx(
-                                      () => ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        itemCount: controller
-                                                .homeWorkDetailsModel
-                                                .value
-                                                .homeworkdocs
-                                                ?.length ??
-                                            0,
-                                        itemBuilder: (context, index) {
-                                          return Bounce(
-                                            onTap: () async {},
-                                            child: Container(
-                                              width: double.infinity,
-                                              margin:
-                                                  EdgeInsets.only(bottom: 10),
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color:
-                                                          ColorConstant.greyE4),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      height: getHeight(40),
-                                                      width: getWidth(40),
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                          color: ColorConstant
-                                                              .primaryBlue
-                                                              .withOpacity(.2)),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(12),
-                                                        child: CustomImageView(
-                                                          color: ColorConstant
-                                                              .primaryBlue,
-                                                          svgPath: ImageConstant
-                                                              .icClip,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: getWidth(15),
-                                                    ),
-                                                    Text(
-                                                      // 'Read Ch. 16.1 - 16.2,\nEx A1 - A5',
-                                                      'Document ${index + 1}',
-                                                      style: PMT.style(15,
-                                                          fontColor:
-                                                              ColorConstant
-                                                                  .grey9A,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                    const Spacer(),
-                                                    const Icon(
-                                                      Icons
-                                                          .file_download_outlined,
-                                                      color: ColorConstant
-                                                          .primaryBlue,
-                                                      size: 35,
-                                                    )
-                                                  ],
+                                    Bounce(
+                                      onTap: () async {
+                                        controller.downloadDocument();
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.only(bottom: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: ColorConstant.greyE4),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                height: getHeight(40),
+                                                width: getWidth(40),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                    color: ColorConstant
+                                                        .primaryBlue
+                                                        .withOpacity(.2)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(12),
+                                                  child: CustomImageView(
+                                                    color: ColorConstant
+                                                        .primaryBlue,
+                                                    svgPath:
+                                                        ImageConstant.icClip,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
+                                              SizedBox(
+                                                width: getWidth(15),
+                                              ),
+                                              Text(
+                                                // 'Read Ch. 16.1 - 16.2,\nEx A1 - A5',
+                                                'Document',
+                                                style: PMT.style(15,
+                                                    fontColor:
+                                                        ColorConstant.grey9A,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const Spacer(),
+                                              const Icon(
+                                                Icons.file_download_outlined,
+                                                color:
+                                                    ColorConstant.primaryBlue,
+                                                size: 35,
+                                              )
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
+                                    //     ListView.builder(
+                                    //   shrinkWrap: true,
+                                    //   physics: NeverScrollableScrollPhysics(),
+                                    //   itemCount: controller
+                                    //           .homeWorkDetailsModel
+                                    //           .value
+                                    //           .homeworkdocs
+                                    //           ?.length ??
+                                    //       0,
+                                    //   itemBuilder: (context, index) {
+                                    //     return Bounce(
+                                    //       onTap: () async {},
+                                    //       child: Container(
+                                    //         width: double.infinity,
+                                    //         margin:
+                                    //             EdgeInsets.only(bottom: 10),
+                                    //         decoration: BoxDecoration(
+                                    //             border: Border.all(
+                                    //                 color:
+                                    //                     ColorConstant.greyE4),
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(
+                                    //                     10)),
+                                    //         child: Padding(
+                                    //           padding:
+                                    //               const EdgeInsets.all(10),
+                                    //           child: Row(
+                                    //             children: [
+                                    //               Container(
+                                    //                 height: getHeight(40),
+                                    //                 width: getWidth(40),
+                                    //                 decoration: BoxDecoration(
+                                    //                     borderRadius:
+                                    //                         BorderRadius
+                                    //                             .circular(50),
+                                    //                     color: ColorConstant
+                                    //                         .primaryBlue
+                                    //                         .withOpacity(.2)),
+                                    //                 child: Padding(
+                                    //                   padding:
+                                    //                       const EdgeInsets
+                                    //                           .all(12),
+                                    //                   child: CustomImageView(
+                                    //                     color: ColorConstant
+                                    //                         .primaryBlue,
+                                    //                     svgPath: ImageConstant
+                                    //                         .icClip,
+                                    //                   ),
+                                    //                 ),
+                                    //               ),
+                                    //               SizedBox(
+                                    //                 width: getWidth(15),
+                                    //               ),
+                                    //               Text(
+                                    //                 // 'Read Ch. 16.1 - 16.2,\nEx A1 - A5',
+                                    //                 'Document ${index + 1}',
+                                    //                 style: PMT.style(15,
+                                    //                     fontColor:
+                                    //                         ColorConstant
+                                    //                             .grey9A,
+                                    //                     fontWeight:
+                                    //                         FontWeight.bold),
+                                    //               ),
+                                    //               const Spacer(),
+                                    //               const Icon(
+                                    //                 Icons
+                                    //                     .file_download_outlined,
+                                    //                 color: ColorConstant
+                                    //                     .primaryBlue,
+                                    //                 size: 35,
+                                    //               )
+                                    //             ],
+                                    //           ),
+                                    //         ),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    // ),
+
                                     SizedBox(
                                       height: getHeight(15),
                                     ),
                                     AppElevatedButton(
                                       buttonName: AppString.uploadYourFile,
                                       onPressed: () {
-                                        showModalBottomSheet(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(0)),
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 35),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: <Widget>[
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height:
-                                                                getHeight(50),
-                                                            width:
-                                                                getHeight(50),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: ColorConstant
-                                                                          .primaryBlack,
-                                                                    )),
-                                                            child: IconButton(
-                                                              icon: const Icon(Icons
-                                                                  .camera_alt_outlined),
-                                                              onPressed: () {
-                                                                controller
-                                                                    .openCamera();
-                                                              },
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height:
-                                                                getHeight(15),
-                                                          ),
-                                                          Text(
-                                                            AppString.camera,
-                                                            style: PMT.style(16,
-                                                                fontColor:
-                                                                    ColorConstant
-                                                                        .grey9A,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height:
-                                                                getHeight(50),
-                                                            width:
-                                                                getHeight(50),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: ColorConstant
-                                                                          .primaryBlack,
-                                                                    )),
-                                                            child: IconButton(
-                                                              icon: const Icon(Icons
-                                                                  .file_upload_outlined),
-                                                              onPressed: () {
-                                                                Get.back();
-                                                                showModalBottomSheet(
-                                                                  isScrollControlled:
-                                                                      true,
-                                                                  backgroundColor:
-                                                                      ColorConstant
-                                                                          .primaryWhite,
-                                                                  shape: const RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.only(
-                                                                          topLeft: Radius.circular(
-                                                                              20),
-                                                                          topRight:
-                                                                              Radius.circular(20))),
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (BuildContext
-                                                                          context) {
-                                                                    return Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsets
-                                                                              .only(
-                                                                              right: 18,
-                                                                              left: 18,
-                                                                              top: 20,
-                                                                              bottom: 10),
-                                                                          child:
-                                                                              Text(
-                                                                            AppString.yourWorks,
-                                                                            style: PMT.style(16,
-                                                                                fontColor: ColorConstant.primaryBlack,
-                                                                                fontWeight: FontWeight.bold),
-                                                                          ),
-                                                                        ),
-                                                                        const Divider(
-                                                                          color:
-                                                                              ColorConstant.greyE4,
-                                                                          thickness:
-                                                                              4,
-                                                                        ),
-                                                                        Column(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 18),
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  border: Border.all(color: ColorConstant.greyE4),
-                                                                                  borderRadius: BorderRadius.circular(10),
-                                                                                ),
-                                                                                width: double.infinity,
-                                                                                child: Padding(
-                                                                                  padding: const EdgeInsets.all(10),
-                                                                                  child: Row(
-                                                                                    children: [
-                                                                                      CustomImageView(
-                                                                                        imagePath: ImageConstant.pdf1,
-                                                                                        height: getHeight(35),
-                                                                                        width: getWidth(35),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: getWidth(10),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        child: Column(
-                                                                                          children: [
-                                                                                            SizedBox(
-                                                                                              width: getWidth(10),
-                                                                                            ),
-                                                                                            Row(
-                                                                                              children: [
-                                                                                                Text(
-                                                                                                  'My Work.Pdf',
-                                                                                                  style: PMT.style(0).copyWith(
-                                                                                                        color: ColorConstant.primaryBlack,
-                                                                                                        fontWeight: FontWeight.bold,
-                                                                                                        fontSize: getFontSize(13),
-                                                                                                      ),
-                                                                                                ),
-                                                                                                SizedBox(
-                                                                                                  width: getWidth(10),
-                                                                                                ),
-                                                                                                Text(
-                                                                                                  '7.5 Mb',
-                                                                                                  style: PMT.style(0).copyWith(
-                                                                                                        color: ColorConstant.grey7A,
-                                                                                                        fontWeight: FontWeight.w400,
-                                                                                                        fontSize: getFontSize(12),
-                                                                                                      ),
-                                                                                                ),
-                                                                                                const Spacer(),
-                                                                                                Obx(
-                                                                                                  () => Text(
-                                                                                                    '${(controller.progress.value * 100).toStringAsFixed(0)}%',
-                                                                                                    style: PMT.style(0).copyWith(
-                                                                                                          color: ColorConstant.grey7A,
-                                                                                                          fontWeight: FontWeight.bold,
-                                                                                                          fontSize: getFontSize(12),
-                                                                                                        ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ],
-                                                                                            ),
-                                                                                            SizedBox(
-                                                                                              height: getHeight(10),
-                                                                                            ),
-                                                                                            LinearProgressIndicator(
-                                                                                              borderRadius: BorderRadius.circular(20),
-                                                                                              value: controller.progress.value,
-                                                                                              minHeight: 6.0,
-                                                                                              backgroundColor: ColorConstant.greyE4,
-                                                                                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: getHeight(15),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 18),
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(
-                                                                                  border: Border.all(color: ColorConstant.greyE4),
-                                                                                  borderRadius: BorderRadius.circular(10),
-                                                                                ),
-                                                                                width: double.infinity,
-                                                                                child: Padding(
-                                                                                  padding: const EdgeInsets.all(10),
-                                                                                  child: Row(
-                                                                                    children: [
-                                                                                      CustomImageView(
-                                                                                        imagePath: ImageConstant.image,
-                                                                                        height: getHeight(35),
-                                                                                        width: getWidth(35),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: getWidth(10),
-                                                                                      ),
-                                                                                      Expanded(
-                                                                                        child: Column(
-                                                                                          children: [
-                                                                                            SizedBox(
-                                                                                              width: getWidth(10),
-                                                                                            ),
-                                                                                            Row(
-                                                                                              children: [
-                                                                                                Text(
-                                                                                                  'My Work.Pdf',
-                                                                                                  style: PMT.style(0).copyWith(
-                                                                                                        color: ColorConstant.primaryBlack,
-                                                                                                        fontWeight: FontWeight.bold,
-                                                                                                        fontSize: getFontSize(13),
-                                                                                                      ),
-                                                                                                ),
-                                                                                                SizedBox(
-                                                                                                  width: getWidth(10),
-                                                                                                ),
-                                                                                                Text(
-                                                                                                  '7.5 Mb',
-                                                                                                  style: PMT.style(0).copyWith(
-                                                                                                        color: ColorConstant.grey7A,
-                                                                                                        fontWeight: FontWeight.w400,
-                                                                                                        fontSize: getFontSize(12),
-                                                                                                      ),
-                                                                                                ),
-                                                                                                const Spacer(),
-                                                                                                Obx(
-                                                                                                  () => Text(
-                                                                                                    '${(controller.progress.value * 100).toStringAsFixed(0)}%',
-                                                                                                    style: PMT.style(0).copyWith(
-                                                                                                          color: ColorConstant.grey7A,
-                                                                                                          fontWeight: FontWeight.bold,
-                                                                                                          fontSize: getFontSize(12),
-                                                                                                        ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ],
-                                                                                            ),
-                                                                                            SizedBox(
-                                                                                              height: getHeight(10),
-                                                                                            ),
-                                                                                            LinearProgressIndicator(
-                                                                                              borderRadius: BorderRadius.circular(20),
-                                                                                              value: controller.progress.value,
-                                                                                              minHeight: 6.0,
-                                                                                              backgroundColor: ColorConstant.greyE4,
-                                                                                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: getHeight(160),
-                                                                            ),
-                                                                            Container(
-                                                                                width: double.infinity,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: Colors.white,
-                                                                                  boxShadow: [
-                                                                                    BoxShadow(
-                                                                                      color: Colors.grey.withOpacity(0.5),
-                                                                                      spreadRadius: 1,
-                                                                                      blurRadius: 5,
-                                                                                      offset: const Offset(0, -3), // changes position of shadow
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                                child: Padding(
-                                                                                    padding: const EdgeInsets.all(20.0),
-                                                                                    child: Column(
-                                                                                      mainAxisSize: MainAxisSize.min,
-                                                                                      children: [
-                                                                                        AppElevatedButton(
-                                                                                          textColor: ColorConstant.grey9A,
-                                                                                          buttonName: AppString.uploadFiles,
-                                                                                          onPressed: () {},
-                                                                                          buttonColor: ColorConstant.primaryWhite,
-                                                                                        ),
-                                                                                        const SizedBox(height: 10),
-                                                                                        AppElevatedButton(
-                                                                                          buttonName: AppString.handIn,
-                                                                                          onPressed: () {},
-                                                                                          buttonColor: ColorConstant.blueF9,
-                                                                                        )
-                                                                                      ],
-                                                                                    ))),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height:
-                                                                getHeight(15),
-                                                          ),
-                                                          Text(
-                                                            AppString.upload,
-                                                            style: PMT.style(16,
-                                                                fontColor:
-                                                                    ColorConstant
-                                                                        .grey9A,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height:
-                                                                getHeight(50),
-                                                            width:
-                                                                getHeight(50),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: ColorConstant
-                                                                          .primaryBlack,
-                                                                    )),
-                                                            child: IconButton(
-                                                              icon: const Icon(Icons
-                                                                  .photo_outlined),
-                                                              onPressed: () {
-                                                                controller
-                                                                    .openGallery();
-                                                                // Implement gallery functionality
-                                                              },
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height:
-                                                                getHeight(15),
-                                                          ),
-                                                          Text(
-                                                            AppString.gallery,
-                                                            style: PMT.style(16,
-                                                                fontColor:
-                                                                    ColorConstant
-                                                                        .grey9A,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
+                                        Get.toNamed(
+                                            AppRoutes.submitHomeWorkScreenRout,
+                                            arguments: [
+                                              {
+                                                "homeWorkID":
+                                                    controller.homeWorkId,
+                                              },
+                                            ]);
                                       },
+                                      // onPressed: () {
+                                      //   showModalBottomSheet(
+                                      //     shape: RoundedRectangleBorder(
+                                      //         borderRadius:
+                                      //             BorderRadius.circular(0)),
+                                      //     context: context,
+                                      //     builder: (BuildContext context) {
+                                      //       return Column(
+                                      //         mainAxisSize: MainAxisSize.min,
+                                      //         children: [
+                                      //           Container(
+                                      //             padding: const EdgeInsets
+                                      //                 .symmetric(
+                                      //                 horizontal: 16,
+                                      //                 vertical: 35),
+                                      //             child: Row(
+                                      //               mainAxisAlignment:
+                                      //                   MainAxisAlignment
+                                      //                       .spaceAround,
+                                      //               children: <Widget>[
+                                      //                 Column(
+                                      //                   children: [
+                                      //                     Container(
+                                      //                       height:
+                                      //                           getHeight(50),
+                                      //                       width:
+                                      //                           getHeight(50),
+                                      //                       decoration:
+                                      //                           BoxDecoration(
+                                      //                               borderRadius:
+                                      //                                   BorderRadius.circular(
+                                      //                                       50),
+                                      //                               border:
+                                      //                                   Border
+                                      //                                       .all(
+                                      //                                 color: ColorConstant
+                                      //                                     .primaryBlack,
+                                      //                               )),
+                                      //                       child: IconButton(
+                                      //                         icon: const Icon(Icons
+                                      //                             .camera_alt_outlined),
+                                      //                         onPressed: () {
+                                      //                           controller
+                                      //                               .openCamera();
+                                      //                         },
+                                      //                       ),
+                                      //                     ),
+                                      //                     SizedBox(
+                                      //                       height:
+                                      //                           getHeight(15),
+                                      //                     ),
+                                      //                     Text(
+                                      //                       AppString.camera,
+                                      //                       style: PMT.style(16,
+                                      //                           fontColor:
+                                      //                               ColorConstant
+                                      //                                   .grey9A,
+                                      //                           fontWeight:
+                                      //                               FontWeight
+                                      //                                   .bold),
+                                      //                     ),
+                                      //                   ],
+                                      //                 ),
+                                      //                 Column(
+                                      //                   children: [
+                                      //                     Container(
+                                      //                       height:
+                                      //                           getHeight(50),
+                                      //                       width:
+                                      //                           getHeight(50),
+                                      //                       decoration:
+                                      //                           BoxDecoration(
+                                      //                               borderRadius:
+                                      //                                   BorderRadius.circular(
+                                      //                                       50),
+                                      //                               border:
+                                      //                                   Border
+                                      //                                       .all(
+                                      //                                 color: ColorConstant
+                                      //                                     .primaryBlack,
+                                      //                               )),
+                                      //                       child: IconButton(
+                                      //                         icon: const Icon(Icons
+                                      //                             .file_upload_outlined),
+                                      //                         onPressed: () {
+                                      //                           Get.back();
+                                      //                           showModalBottomSheet(
+                                      //                             isScrollControlled:
+                                      //                                 true,
+                                      //                             backgroundColor:
+                                      //                                 ColorConstant
+                                      //                                     .primaryWhite,
+                                      //                             shape: const RoundedRectangleBorder(
+                                      //                                 borderRadius: BorderRadius.only(
+                                      //                                     topLeft: Radius.circular(
+                                      //                                         20),
+                                      //                                     topRight:
+                                      //                                         Radius.circular(20))),
+                                      //                             context:
+                                      //                                 context,
+                                      //                             builder:
+                                      //                                 (BuildContext
+                                      //                                     context) {
+                                      //                               return Column(
+                                      //                                 mainAxisSize:
+                                      //                                     MainAxisSize
+                                      //                                         .min,
+                                      //                                 crossAxisAlignment:
+                                      //                                     CrossAxisAlignment
+                                      //                                         .start,
+                                      //                                 children: [
+                                      //                                   Padding(
+                                      //                                     padding: const EdgeInsets
+                                      //                                         .only(
+                                      //                                         right: 18,
+                                      //                                         left: 18,
+                                      //                                         top: 20,
+                                      //                                         bottom: 10),
+                                      //                                     child:
+                                      //                                         Text(
+                                      //                                       AppString.yourWorks,
+                                      //                                       style: PMT.style(16,
+                                      //                                           fontColor: ColorConstant.primaryBlack,
+                                      //                                           fontWeight: FontWeight.bold),
+                                      //                                     ),
+                                      //                                   ),
+                                      //                                   const Divider(
+                                      //                                     color:
+                                      //                                         ColorConstant.greyE4,
+                                      //                                     thickness:
+                                      //                                         4,
+                                      //                                   ),
+                                      //                                   Column(
+                                      //                                     children: [
+                                      //                                       Padding(
+                                      //                                         padding: const EdgeInsets.symmetric(horizontal: 18),
+                                      //                                         child: Container(
+                                      //                                           decoration: BoxDecoration(
+                                      //                                             border: Border.all(color: ColorConstant.greyE4),
+                                      //                                             borderRadius: BorderRadius.circular(10),
+                                      //                                           ),
+                                      //                                           width: double.infinity,
+                                      //                                           child: Padding(
+                                      //                                             padding: const EdgeInsets.all(10),
+                                      //                                             child: Row(
+                                      //                                               children: [
+                                      //                                                 CustomImageView(
+                                      //                                                   imagePath: ImageConstant.pdf1,
+                                      //                                                   height: getHeight(35),
+                                      //                                                   width: getWidth(35),
+                                      //                                                 ),
+                                      //                                                 SizedBox(
+                                      //                                                   width: getWidth(10),
+                                      //                                                 ),
+                                      //                                                 Expanded(
+                                      //                                                   child: Column(
+                                      //                                                     children: [
+                                      //                                                       SizedBox(
+                                      //                                                         width: getWidth(10),
+                                      //                                                       ),
+                                      //                                                       Row(
+                                      //                                                         children: [
+                                      //                                                           Text(
+                                      //                                                             'My Work.Pdf',
+                                      //                                                             style: PMT.style(0).copyWith(
+                                      //                                                                   color: ColorConstant.primaryBlack,
+                                      //                                                                   fontWeight: FontWeight.bold,
+                                      //                                                                   fontSize: getFontSize(13),
+                                      //                                                                 ),
+                                      //                                                           ),
+                                      //                                                           SizedBox(
+                                      //                                                             width: getWidth(10),
+                                      //                                                           ),
+                                      //                                                           Text(
+                                      //                                                             '7.5 Mb',
+                                      //                                                             style: PMT.style(0).copyWith(
+                                      //                                                                   color: ColorConstant.grey7A,
+                                      //                                                                   fontWeight: FontWeight.w400,
+                                      //                                                                   fontSize: getFontSize(12),
+                                      //                                                                 ),
+                                      //                                                           ),
+                                      //                                                           const Spacer(),
+                                      //                                                           Obx(
+                                      //                                                             () => Text(
+                                      //                                                               '${(controller.progress.value * 100).toStringAsFixed(0)}%',
+                                      //                                                               style: PMT.style(0).copyWith(
+                                      //                                                                     color: ColorConstant.grey7A,
+                                      //                                                                     fontWeight: FontWeight.bold,
+                                      //                                                                     fontSize: getFontSize(12),
+                                      //                                                                   ),
+                                      //                                                             ),
+                                      //                                                           ),
+                                      //                                                         ],
+                                      //                                                       ),
+                                      //                                                       SizedBox(
+                                      //                                                         height: getHeight(10),
+                                      //                                                       ),
+                                      //                                                       LinearProgressIndicator(
+                                      //                                                         borderRadius: BorderRadius.circular(20),
+                                      //                                                         value: controller.progress.value,
+                                      //                                                         minHeight: 6.0,
+                                      //                                                         backgroundColor: ColorConstant.greyE4,
+                                      //                                                         valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                                      //                                                       ),
+                                      //                                                     ],
+                                      //                                                   ),
+                                      //                                                 ),
+                                      //                                               ],
+                                      //                                             ),
+                                      //                                           ),
+                                      //                                         ),
+                                      //                                       ),
+                                      //                                       SizedBox(
+                                      //                                         height: getHeight(15),
+                                      //                                       ),
+                                      //                                       Padding(
+                                      //                                         padding: const EdgeInsets.symmetric(horizontal: 18),
+                                      //                                         child: Container(
+                                      //                                           decoration: BoxDecoration(
+                                      //                                             border: Border.all(color: ColorConstant.greyE4),
+                                      //                                             borderRadius: BorderRadius.circular(10),
+                                      //                                           ),
+                                      //                                           width: double.infinity,
+                                      //                                           child: Padding(
+                                      //                                             padding: const EdgeInsets.all(10),
+                                      //                                             child: Row(
+                                      //                                               children: [
+                                      //                                                 CustomImageView(
+                                      //                                                   imagePath: ImageConstant.image,
+                                      //                                                   height: getHeight(35),
+                                      //                                                   width: getWidth(35),
+                                      //                                                 ),
+                                      //                                                 SizedBox(
+                                      //                                                   width: getWidth(10),
+                                      //                                                 ),
+                                      //                                                 Expanded(
+                                      //                                                   child: Column(
+                                      //                                                     children: [
+                                      //                                                       SizedBox(
+                                      //                                                         width: getWidth(10),
+                                      //                                                       ),
+                                      //                                                       Row(
+                                      //                                                         children: [
+                                      //                                                           Text(
+                                      //                                                             'My Work.Pdf',
+                                      //                                                             style: PMT.style(0).copyWith(
+                                      //                                                                   color: ColorConstant.primaryBlack,
+                                      //                                                                   fontWeight: FontWeight.bold,
+                                      //                                                                   fontSize: getFontSize(13),
+                                      //                                                                 ),
+                                      //                                                           ),
+                                      //                                                           SizedBox(
+                                      //                                                             width: getWidth(10),
+                                      //                                                           ),
+                                      //                                                           Text(
+                                      //                                                             '7.5 Mb',
+                                      //                                                             style: PMT.style(0).copyWith(
+                                      //                                                                   color: ColorConstant.grey7A,
+                                      //                                                                   fontWeight: FontWeight.w400,
+                                      //                                                                   fontSize: getFontSize(12),
+                                      //                                                                 ),
+                                      //                                                           ),
+                                      //                                                           const Spacer(),
+                                      //                                                           Obx(
+                                      //                                                             () => Text(
+                                      //                                                               '${(controller.progress.value * 100).toStringAsFixed(0)}%',
+                                      //                                                               style: PMT.style(0).copyWith(
+                                      //                                                                     color: ColorConstant.grey7A,
+                                      //                                                                     fontWeight: FontWeight.bold,
+                                      //                                                                     fontSize: getFontSize(12),
+                                      //                                                                   ),
+                                      //                                                             ),
+                                      //                                                           ),
+                                      //                                                         ],
+                                      //                                                       ),
+                                      //                                                       SizedBox(
+                                      //                                                         height: getHeight(10),
+                                      //                                                       ),
+                                      //                                                       LinearProgressIndicator(
+                                      //                                                         borderRadius: BorderRadius.circular(20),
+                                      //                                                         value: controller.progress.value,
+                                      //                                                         minHeight: 6.0,
+                                      //                                                         backgroundColor: ColorConstant.greyE4,
+                                      //                                                         valueColor: const AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                                      //                                                       ),
+                                      //                                                     ],
+                                      //                                                   ),
+                                      //                                                 ),
+                                      //                                               ],
+                                      //                                             ),
+                                      //                                           ),
+                                      //                                         ),
+                                      //                                       ),
+                                      //                                       SizedBox(
+                                      //                                         height: getHeight(160),
+                                      //                                       ),
+                                      //                                       Container(
+                                      //                                           width: double.infinity,
+                                      //                                           decoration: BoxDecoration(
+                                      //                                             color: Colors.white,
+                                      //                                             boxShadow: [
+                                      //                                               BoxShadow(
+                                      //                                                 color: Colors.grey.withOpacity(0.5),
+                                      //                                                 spreadRadius: 1,
+                                      //                                                 blurRadius: 5,
+                                      //                                                 offset: const Offset(0, -3), // changes position of shadow
+                                      //                                               ),
+                                      //                                             ],
+                                      //                                           ),
+                                      //                                           child: Padding(
+                                      //                                               padding: const EdgeInsets.all(20.0),
+                                      //                                               child: Column(
+                                      //                                                 mainAxisSize: MainAxisSize.min,
+                                      //                                                 children: [
+                                      //                                                   AppElevatedButton(
+                                      //                                                     textColor: ColorConstant.grey9A,
+                                      //                                                     buttonName: AppString.uploadFiles,
+                                      //                                                     onPressed: () {},
+                                      //                                                     buttonColor: ColorConstant.primaryWhite,
+                                      //                                                   ),
+                                      //                                                   const SizedBox(height: 10),
+                                      //                                                   AppElevatedButton(
+                                      //                                                     buttonName: AppString.handIn,
+                                      //                                                     onPressed: () {},
+                                      //                                                     buttonColor: ColorConstant.blueF9,
+                                      //                                                   )
+                                      //                                                 ],
+                                      //                                               ))),
+                                      //                                     ],
+                                      //                                   ),
+                                      //                                 ],
+                                      //                               );
+                                      //                             },
+                                      //                           );
+                                      //                         },
+                                      //                       ),
+                                      //                     ),
+                                      //                     SizedBox(
+                                      //                       height:
+                                      //                           getHeight(15),
+                                      //                     ),
+                                      //                     Text(
+                                      //                       AppString.upload,
+                                      //                       style: PMT.style(16,
+                                      //                           fontColor:
+                                      //                               ColorConstant
+                                      //                                   .grey9A,
+                                      //                           fontWeight:
+                                      //                               FontWeight
+                                      //                                   .bold),
+                                      //                     ),
+                                      //                   ],
+                                      //                 ),
+                                      //                 Column(
+                                      //                   children: [
+                                      //                     Container(
+                                      //                       height:
+                                      //                           getHeight(50),
+                                      //                       width:
+                                      //                           getHeight(50),
+                                      //                       decoration:
+                                      //                           BoxDecoration(
+                                      //                               borderRadius:
+                                      //                                   BorderRadius.circular(
+                                      //                                       50),
+                                      //                               border:
+                                      //                                   Border
+                                      //                                       .all(
+                                      //                                 color: ColorConstant
+                                      //                                     .primaryBlack,
+                                      //                               )),
+                                      //                       child: IconButton(
+                                      //                         icon: const Icon(Icons
+                                      //                             .photo_outlined),
+                                      //                         onPressed: () {
+                                      //                           controller
+                                      //                               .openGallery();
+                                      //                           // Implement gallery functionality
+                                      //                         },
+                                      //                       ),
+                                      //                     ),
+                                      //                     SizedBox(
+                                      //                       height:
+                                      //                           getHeight(15),
+                                      //                     ),
+                                      //                     Text(
+                                      //                       AppString.gallery,
+                                      //                       style: PMT.style(16,
+                                      //                           fontColor:
+                                      //                               ColorConstant
+                                      //                                   .grey9A,
+                                      //                           fontWeight:
+                                      //                               FontWeight
+                                      //                                   .bold),
+                                      //                     ),
+                                      //                   ],
+                                      //                 ),
+                                      //               ],
+                                      //             ),
+                                      //           ),
+                                      //         ],
+                                      //       );
+                                      //     },
+                                      //   );
+                                      // },
                                     ),
                                     SizedBox(
                                       height: getHeight(15),
