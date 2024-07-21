@@ -1,10 +1,9 @@
-import 'dart:async';
+
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:schoolxon/presentation/profile_screen/model/student_model.dart';
-
 import '../../../ApiServices/api_service.dart';
 import '../../../core/app_export.dart';
 import '../../../core/utils/app_date_format.dart';
@@ -13,7 +12,6 @@ import '../../../core/utils/network_url.dart';
 import '../../../core/utils/pref_utils.dart';
 import '../../../core/utils/progress_dialog_utils.dart';
 import '../../../core/utils/string_constant.dart';
-import '../../../routes/app_routes.dart';
 
 class ProfileScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -240,4 +238,6 @@ class ProfileScreenController extends GetxController {
           headerText: AppString.something, error: true);
     }
   }
-}
+
+
+  }
