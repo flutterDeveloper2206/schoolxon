@@ -63,4 +63,6 @@ class AttendanceScreenController extends GetxController {
       print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
     }*/
   }
+
+
 }
