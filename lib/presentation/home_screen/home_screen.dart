@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:schoolxon/core/utils/network_url.dart';
 import 'package:schoolxon/core/utils/progress_dialog_utils.dart';
 import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
@@ -11,6 +12,8 @@ import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
 
 import '../../core/app_export.dart';
+import '../../core/utils/app_prefs_key.dart';
+import '../../core/utils/pref_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: getHeight(335),
+          expandedHeight: getHeight(345),
           floating: false,
           pinned: false,
           flexibleSpace: FlexibleSpaceBar(
@@ -68,14 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           svgPath: ImageConstant.icLogo,
                         ),
                         Bounce(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.notificationScreenRout);
+                          },
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   border:
                                       Border.all(color: Colors.transparent)),
                               padding: const EdgeInsets.all(8),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.notifications_none,
                                 color: ColorConstant.primaryWhite,
                               )
@@ -248,46 +253,71 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             right: 10, top: 15, left: 16, bottom: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomImageView(
-                              svgPath: ImageConstant.icClock,
-                              height: getHeight(30),
-                              width: getWidth(30),
-                            ),
-                            SizedBox(
-                              width: getWidth(10),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(AppString.PunchIn,
-                                    style: PMT.style(0).copyWith(
-                                        color: ColorConstant.greyColorB1,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: getFontSize(11))),
-                                SizedBox(
-                                  height: getHeight(10),
-                                ),
-                                Text('10.00 AM Wed, 11th Mar 2019 ',
-                                    style: PMT.style(0).copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: getFontSize(12))),
-                              ],
-                            ),
-                            SizedBox(
-                              width: getWidth(40),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  color: ColorConstant.greyE4,
-                                  size: 15,
-                                ))
-                          ],
+                        child: Bounce(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.attendanceScreenRout,
+                                arguments: [
+                                  {
+                                    'attendanceModel':
+                                        controller.attendanceModel
+                                  }
+                                ]);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: CustomImageView(
+                                    svgPath: ImageConstant.icClock,
+                                    height: getHeight(30),
+                                    width: getWidth(30),
+                                  )),
+                              SizedBox(
+                                width: getWidth(15),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(AppString.PunchIn,
+                                      style: PMT.style(0).copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(13))),
+                                  SizedBox(
+                                    height: getHeight(8),
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                        controller.attendanceModel.isNotEmpty
+                                            ? DateFormat(
+                                                    'EEE, dd MMM yyyy hh:mm a')
+                                                .format(controller
+                                                        .attendanceModel
+                                                        .first
+                                                        .date ??
+                                                    DateTime.now())
+                                            : '',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: getFontSize(14))),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(8),
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                        'Todday ${PrefUtils.getString(PrefsKey.studentName)} is ${controller.attendanceModel.isNotEmpty && controller.attendanceModel.first.type != null ? controller.attendanceModel.first.type ?? '' : ''}',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(13))),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -648,9 +678,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 25, top: 25, right: 70),
+                              left: 25, top: 25, right: 25),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Column(
                                 children: [
@@ -740,6 +770,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     Text(
                                       AppString.attendence,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: getWidth(5),
+                              ),
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.noticeBoardScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icAttendance,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.noticeBoard,
+                                      maxLines: 2,
                                       style: PMT.style(15,
                                           fontColor: ColorConstant.grey9A,
                                           fontWeight: FontWeight.bold),

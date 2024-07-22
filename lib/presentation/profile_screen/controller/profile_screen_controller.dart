@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
 import 'package:schoolxon/presentation/profile_screen/model/student_model.dart';
 
 import '../../../ApiServices/api_service.dart';
@@ -212,6 +213,7 @@ class ProfileScreenController extends GetxController {
         } else {
           if (responsed.statusCode == 200) {
             isUpdateLoading.value = false;
+            Get.put(HomeScreenController()).getStudentApi(false);
             // loginModel.value = LoginModel.fromJson(value.body);
             // await PrefUtils.putObject(PrefsKey.loginModel, loginModel.value);
             // await PrefUtils.setString(PrefsKey.isLogin, '1');

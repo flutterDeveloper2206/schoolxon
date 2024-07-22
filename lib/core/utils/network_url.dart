@@ -11,6 +11,8 @@ class NetworkUrl {
   static const String submitHomeworkUrl = '${baseUrl}homework/upload_homework/';
   static const String attendanceUrl = '${baseUrl}Attendance/getattendance/';
   static const String homeWorkDownloadUrl = '${baseUrl}homework/download_docs/';
+  static const String notificationUrl = '${baseUrl}notice/showallnotification/';
+  static const String noticeBoardUrl = '${baseUrl}notice/showallnotice/';
   static const String leaveDownloadUrl = '${baseUrl}leave/download_docs/';
   static const String showAllHomeWorkUrl =
       '${baseUrl}homework/showallhomeworks/';

@@ -32,6 +32,8 @@ import 'package:schoolxon/presentation/note_show_screen/binding/note_show_screen
 import 'package:schoolxon/presentation/note_show_screen/note_show_screen.dart';
 import 'package:schoolxon/presentation/notice_board_screen/binding/notice_board_screen_binding.dart';
 import 'package:schoolxon/presentation/notice_board_screen/notice_board_screen.dart';
+import 'package:schoolxon/presentation/notification_screen/binding/notification_screen_binding.dart';
+import 'package:schoolxon/presentation/notification_screen/notification_screen.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/onBoarding_screen.dart';
 import 'package:schoolxon/presentation/profile_screen/binding/profile_screen_binding.dart';
@@ -64,6 +66,7 @@ class AppRoutes {
   static const String noteShowScreenRout = '/note_show_screen';
   static const String dashBoardScreenRout = '/dashboard_screen';
   static const String leaveDetailsScreenRout = '/leave_details_screen';
+  static const String notificationScreenRout = '/notification_screen';
 
   static const String onBoardingScreenRout = '/onBoardingScreenRout';
   static const String applyLeaveScreenRout = '/applyLeaveScreenRout';
@@ -246,6 +249,13 @@ class AppRoutes {
         page: () => SubmitHomeWorkScreen(),
         bindings: [
           SubmitHomeWorkScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: notificationScreenRout,
+        page: () => const NotificationScreen(),
+        bindings: [
+          NotificationScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];

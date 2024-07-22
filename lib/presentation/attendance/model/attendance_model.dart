@@ -4,12 +4,11 @@
 
 import 'dart:convert';
 
-List<AttendanceModel> attendanceModelFromJson(String str) =>
-    List<AttendanceModel>.from(
-        json.decode(str).map((x) => AttendanceModel.fromJson(x)));
+AttendanceModel attendanceModelFromJson(String str) =>
+    AttendanceModel.fromJson(json.decode(str));
 
-String attendanceModelToJson(List<AttendanceModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String attendanceModelToJson(AttendanceModel data) =>
+    json.encode(data.toJson());
 
 class AttendanceModel {
   final String? type;
@@ -20,11 +19,11 @@ class AttendanceModel {
   final String? biometricAttendence;
   final String? qrcodeAttendance;
   final DateTime? date;
-  final dynamic punchtime;
-  final String? exittime;
+  final DateTime? punchtime;
+  final DateTime? exittime;
   final String? attendenceTypeId;
   final String? remark;
-  final dynamic biometricDeviceData;
+  final String? biometricDeviceData;
   final dynamic userAgent;
   final String? isActive;
   final DateTime? createdAt;
@@ -60,8 +59,16 @@ class AttendanceModel {
         biometricAttendence: json["biometric_attendence"],
         qrcodeAttendance: json["qrcode_attendance"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        punchtime: json["punchtime"],
-        exittime: json["exittime"],
+        punchtime: json["punchtime"] == null ||
+                json["punchtime"] == '' ||
+                json["punchtime"] == 'null'
+            ? null
+            : DateTime.parse(json["punchtime"]),
+        exittime: json["exittime"] == null ||
+                json["exittime"] == '' ||
+                json["exittime"] == 'null'
+            ? null
+            : DateTime.parse(json["exittime"]),
         attendenceTypeId: json["attendence_type_id"],
         remark: json["remark"],
         biometricDeviceData: json["biometric_device_data"],
@@ -83,8 +90,8 @@ class AttendanceModel {
         "qrcode_attendance": qrcodeAttendance,
         "date":
             "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
-        "punchtime": punchtime,
-        "exittime": exittime,
+        "punchtime": punchtime?.toIso8601String(),
+        "exittime": exittime?.toIso8601String(),
         "attendence_type_id": attendenceTypeId,
         "remark": remark,
         "biometric_device_data": biometricDeviceData,

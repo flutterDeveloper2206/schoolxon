@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class ColorConstant {
   static const Color primaryWhite = Color(0xFFffffff);
   static const Color primaryRed = Color(0xFFF14A4A);
-  static const Color primaryBlue = Color(0xFF199477);
+  static const Color primaryBlue = Color(0xFF497E78);
+
   static const Color primaryBlack = Color(0xFF000000);
   static const Color yellowFA = Color(0xFFFAE789);
   static const Color grey63 = Color(0xFF636268);

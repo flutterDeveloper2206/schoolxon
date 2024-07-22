@@ -12,57 +12,51 @@ import '../../../core/utils/progress_dialog_utils.dart';
 import '../../../core/utils/string_constant.dart';
 
 class AttendanceScreenController extends GetxController {
-  RxBool isLoading = false.obs;
+  dynamic argumentData = Get.arguments;
+
   RxList<AttendanceModel> attendanceModel = <AttendanceModel>[].obs;
   @override
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getAttendanceApi();
+      attendanceModel.value = argumentData[0]['attendanceModel'];
     });
     super.onInit();
   }
 
-  Future<void> getAttendanceApi() async {
-    isLoading.value = true;
-    String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
-    String studentId = PrefUtils.getString(PrefsKey.studentID);
-
-    try {
-      await ApiService()
-          .callGetApi(
-              body: FormData({}),
-              headerWithToken: false,
-              showLoader: true,
-              url: '${NetworkUrl.attendanceUrl}${schoolId}/${studentId}')
-          // '${NetworkUrl.homeWorkDetailsUrl}${schoolId}/342/${homeWorkId}')
-          .then((value) async {
-        print('value.runtimeType == String ${value}');
-        print('value.runtimeType == String ${value.statusCode}');
-        if (value.runtimeType == String) {
-          isLoading.value = false;
-          ProgressDialogUtils.showTitleSnackBar(
-              headerText: value.toString(), error: true);
-        } else {
-          if (value.statusCode == 200) {
-            attendanceModel.value = (value.body as List)
-                .map((data) => AttendanceModel.fromJson(data))
-                .toList();
-            isLoading.value = false;
-          } else {
-            isLoading.value = false;
-
-            ProgressDialogUtils.showTitleSnackBar(
-                headerText: AppString.something, error: true);
-            print('==============================================');
-          }
+  String status(status) {
+    switch (status) {
+      case "1":
+        {
+          return 'Present';
         }
-      });
-    } catch (error) {
-      isLoading.value = false;
 
-      ProgressDialogUtils.showTitleSnackBar(
-          headerText: AppString.something, error: true);
-      print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
+      case "2":
+        {
+          return 'Present';
+        }
+
+      case "3":
+        {
+          return 'Late';
+        }
+
+      case "4":
+        {
+          return 'Absent';
+        }
+      case "5":
+        {
+          return 'Holiday';
+        }
+      case "6":
+        {
+          return 'Half Day';
+        }
+
+      default:
+        {
+          return 'Absent';
+        }
     }
   }
 }

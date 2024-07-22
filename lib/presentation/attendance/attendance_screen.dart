@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:schoolxon/packages/horizontal_week_calendar.dart';
 import 'package:schoolxon/presentation/attendance/controller/attendance_screen_controller.dart';
 import '../../core/app_export.dart';
+import '../../core/utils/app_prefs_key.dart';
+import '../../core/utils/pref_utils.dart';
 import '../../widgets/common_appBar.dart';
 
 class AttendanceScreen extends GetWidget<AttendanceScreenController> {
@@ -80,6 +83,17 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                   color: ColorConstant.primaryWhite,
                                   fontWeight: FontWeight.w600,
                                   fontSize: getFontSize(14))),
+                        ),
+                        SizedBox(
+                          height: getHeight(8),
+                        ),
+                        Obx(
+                          () => Text(
+                              'Todday ${PrefUtils.getString(PrefsKey.studentName)} is ${controller.attendanceModel.isNotEmpty && controller.attendanceModel.first.type != null ? controller.attendanceModel.first.type ?? '' : ''}',
+                              style: PMT.style(0).copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(13))),
                         ),
                       ],
                     ),
@@ -215,84 +229,142 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                     ],
                                   ),*/
                                     ///Not Absent
-                                    Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              AppString.Punchin,
+                                    Obx(
+                                      () => controller.attendanceModel[index]
+                                                  .attendenceTypeId !=
+                                              '1'
+                                          ? Text(
+                                              controller.status(controller
+                                                  .attendanceModel[index]
+                                                  .attendenceTypeId),
                                               style: PMT.style(0).copyWith(
-                                                  color: ColorConstant.greyB3,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: getFontSize(13)),
-                                            ),
-                                            Row(
+                                                  color:
+                                                      ColorConstant.primaryBlue,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(14)),
+                                            )
+                                          : SizedBox.shrink(),
+                                    ),
+                                    Obx(
+                                      () => controller.attendanceModel[index]
+                                                      .attendenceTypeId ==
+                                                  '1' &&
+                                              controller.attendanceModel[index]
+                                                      .punchtime !=
+                                                  null
+                                          ? Row(
                                               children: [
-                                                Icon(
-                                                  Icons.circle_sharp,
-                                                  size: 10,
-                                                  color: Colors.greenAccent,
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      AppString.Punchin,
+                                                      style: PMT
+                                                          .style(0)
+                                                          .copyWith(
+                                                              color:
+                                                                  ColorConstant
+                                                                      .greyB3,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      13)),
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.circle_sharp,
+                                                          size: 10,
+                                                          color: Colors
+                                                              .greenAccent,
+                                                        ),
+                                                        SizedBox(
+                                                            width: getWidth(5)),
+                                                        Text(
+                                                          DateFormat('hh:mm a')
+                                                              .format(controller
+                                                                      .attendanceModel[
+                                                                          index]
+                                                                      .punchtime ??
+                                                                  DateTime
+                                                                      .now()),
+                                                          // controller
+                                                          //         .attendanceModel[
+                                                          //             index]
+                                                          //         .punchtime ??
+                                                          //     '',
+                                                          style: PMT.style(0).copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      14)),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
                                                 ),
-                                                SizedBox(width: getWidth(5)),
-                                                Text(
-                                                  controller
-                                                          .attendanceModel[
-                                                              index]
-                                                          .punchtime ??
-                                                      '',
-                                                  style: PMT.style(0).copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize:
-                                                          getFontSize(14)),
+                                                SizedBox(width: getWidth(40)),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      AppString.Punchout,
+                                                      style: PMT
+                                                          .style(0)
+                                                          .copyWith(
+                                                              color:
+                                                                  ColorConstant
+                                                                      .greyB3,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      13)),
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.circle_sharp,
+                                                          size: 10,
+                                                          color: Colors
+                                                              .orangeAccent,
+                                                        ),
+                                                        SizedBox(
+                                                            width: getWidth(5)),
+                                                        Text(
+                                                          DateFormat('hh:mm a')
+                                                              .format(controller
+                                                                      .attendanceModel[
+                                                                          index]
+                                                                      .exittime ??
+                                                                  DateTime
+                                                                      .now()),
+                                                          style: PMT.style(0).copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      14)),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
                                                 ),
                                               ],
                                             )
-                                          ],
-                                        ),
-                                        SizedBox(width: getWidth(40)),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              AppString.Punchout,
-                                              style: PMT.style(0).copyWith(
-                                                  color: ColorConstant.greyB3,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: getFontSize(13)),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.circle_sharp,
-                                                  size: 10,
-                                                  color: Colors.orangeAccent,
-                                                ),
-                                                SizedBox(width: getWidth(5)),
-                                                Text(
-                                                  controller
-                                                          .attendanceModel[
-                                                              index]
-                                                          .exittime ??
-                                                      '',
-                                                  style: PMT.style(0).copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize:
-                                                          getFontSize(14)),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ],
+                                          : SizedBox.shrink(),
                                     ),
                                   ],
                                 ),
