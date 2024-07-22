@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/widgets.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/widgets/common_appBar.dart';
 
@@ -49,20 +50,25 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
           child: CommonAppBar(
             title: AppString.noticeBoard,
           )),
-      body: FutureBuilder<ReportCardModel>(
-        future: reportCard,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData) {
-            return Center(child: Text('No data found'));
-          } else {
-            ReportCardModel reportCardData = snapshot.data!;
-            return buildReportCard(reportCardData);
-          }
-        },
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
+        child: SingleChildScrollView(
+          child: FutureBuilder<ReportCardModel>(
+            future: reportCard,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData) {
+                return Center(child: Text('No data found'));
+              } else {
+                ReportCardModel reportCardData = snapshot.data!;
+                return buildReportCard(reportCardData);
+              }
+            },
+          ),
+        ),
       ),
     );
   }
@@ -74,9 +80,9 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildHeader(data),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           buildSubjectTable(data),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           buildFooter(data),
         ],
       ),
@@ -87,6 +93,9 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 15,
+        ),
         Center(
           child: CustomImageView(
             imagePath: ImageConstant.imgPerson,
@@ -94,12 +103,18 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
             width: getHeight(100),
           ),
         ),
+        const SizedBox(
+          height: 30,
+        ),
         rowText('Mr/Ms', data.name),
         rowText('Class', data.className),
         rowText('Father\'s Name', data.fatherName),
         rowText('Mother\'s Name', data.motherName),
         rowText('Roll No / ADM No.', data.rollNo),
         rowText('DOB', data.dob),
+        const SizedBox(
+          height: 15,
+        ),
       ],
     );
   }
@@ -108,27 +123,21 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Text(
-              '$title',
-              style: PMT.appStyle(
-                13,
-              ),
+        Expanded(
+          child: Text(
+            '$title',
+            style: PMT.appStyle(
+              13,
             ),
-            Text(
-              ' : ',
-              style: PMT.appStyle(
-                13,
-              ),
-            ),
-          ],
+          ),
         ),
-        Text(
-          '${name}',
-          style: PMT.appStyle(
-            13,
-            fontWeight: FontWeight.w600,
+        Expanded(
+          child: Text(
+            ' : ${name}',
+            style: PMT.appStyle(
+              13,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
@@ -150,6 +159,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
             ''
           ]);
         }).toList(),
+        buildTableRowFooter(['', '', '', '', '']),
         buildTableRowFooter(
             ['Total Marks', data.totalMarks, data.marksObtained, '', '']),
         buildTableRowFooter(['Percentage', '', data.percentage, '', '']),
