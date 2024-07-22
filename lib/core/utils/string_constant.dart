@@ -8,6 +8,7 @@ class AppString {
   static const String termsAndService = "Terms of Service";
   static const String privacyPolicy = "Privacy Policy";
   static const String logOut = "Log Out";
+  static const String timetable = "Time Table";
   static const String contactSupport = "Contact Support";
   static const String leaveInfo = "Leave Info";
   static const String needHelp = "Need Help?";

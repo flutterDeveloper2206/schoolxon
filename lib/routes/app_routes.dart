@@ -42,6 +42,8 @@ import 'package:schoolxon/presentation/select_school_screen/binding/select_schoo
 import 'package:schoolxon/presentation/select_school_screen/select_school_screen.dart';
 import 'package:schoolxon/presentation/submit_home_work_screen/binding/submit_home_work_screen_binding.dart';
 import 'package:schoolxon/presentation/submit_home_work_screen/submit_home_work_screen.dart';
+import 'package:schoolxon/presentation/time_table_screen/binding/time_table_screen_binding.dart';
+import 'package:schoolxon/presentation/time_table_screen/time_table_screen.dart';
 import 'package:schoolxon/presentation/write_note_screen/binding/write_note_screen_binding.dart';
 import 'package:schoolxon/presentation/write_note_screen/write_note_screen.dart';
 
@@ -77,6 +79,7 @@ class AppRoutes {
   static const String languageSelectScreenRout = '/languageSelectScreenRout';
   static const String examResourcesScreenRout = '/examResourcesScreenRout';
   static const String submitHomeWorkScreenRout = '/submitHomeWorkScreenRout';
+  static const String timeTableScreenRout = '/timeTableScreenRout';
 
   static const String attendanceScreenRout = '/attendanceScreenRout';
 
@@ -249,6 +252,13 @@ class AppRoutes {
         page: () => SubmitHomeWorkScreen(),
         bindings: [
           SubmitHomeWorkScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: timeTableScreenRout,
+        page: () => TimeTableScreen(),
+        bindings: [
+          TimeTableScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
