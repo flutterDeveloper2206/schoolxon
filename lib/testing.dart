@@ -205,7 +205,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
           child: Text(
             cell,
             textAlign: TextAlign.center,
-            style: PMT.appStyle(12,
+            style: PMT.appStyle(14,
                 fontWeight: FontWeight.w600,
                 fontColor: ColorConstant.primaryBlue),
           ),
