@@ -1,16 +1,15 @@
+import 'package:schoolxon/presentation/notification_screen/model/notification_model.dart';
 import 'package:intl/intl.dart';
-
 import '../../../core/app_export.dart';
-import '../model/noticce_board_model.dart';
 
-class NoticeBoardScreenController extends GetxController {
+class NotificationScreenController extends GetxController {
   RxInt index = 0.obs;
   RxBool isLoading = false.obs;
-  Rx<NoticeBoardModel> noticeBoardModel = NoticeBoardModel().obs;
+  Rx<NotificationModel> notificationModel = NotificationModel().obs;
   @override
   onInit() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getNoticeboardApi();
+      getNotificationApi();
     });
     super.onInit();
   }
@@ -29,7 +28,7 @@ class NoticeBoardScreenController extends GetxController {
     }
   }
 
-  Future<void> getNoticeboardApi() async {
+  Future<void> getNotificationApi() async {
     isLoading.value = true;
     String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
     String studentId = PrefUtils.getString(PrefsKey.studentID);
@@ -40,7 +39,7 @@ class NoticeBoardScreenController extends GetxController {
               body: FormData({}),
               headerWithToken: false,
               showLoader: true,
-              url: '${NetworkUrl.noticeBoardUrl}${schoolId}/$studentId')
+              url: '${NetworkUrl.notificationUrl}${schoolId}/$studentId')
           .then((value) async {
         print('value.runtimeType == String ${value}');
         print('value.runtimeType == String ${value.statusCode}');
@@ -52,7 +51,7 @@ class NoticeBoardScreenController extends GetxController {
         } else {
           if (value.statusCode == 200) {
             isLoading.value = false;
-            noticeBoardModel.value = NoticeBoardModel.fromJson(value.body);
+            notificationModel.value = NotificationModel.fromJson(value.body);
           } else {
             isLoading.value = false;
 

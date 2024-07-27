@@ -4,12 +4,16 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:schoolxon/core/utils/network_url.dart';
+import 'package:schoolxon/core/utils/progress_dialog_utils.dart';
 import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
 import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
 
 import '../../core/app_export.dart';
+import '../../core/utils/app_prefs_key.dart';
+import '../../core/utils/pref_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: getHeight(335),
+          expandedHeight: getHeight(345),
           floating: false,
           pinned: false,
           flexibleSpace: FlexibleSpaceBar(
@@ -67,14 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           svgPath: ImageConstant.icLogo,
                         ),
                         Bounce(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.notificationScreenRout);
+                          },
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   border:
                                       Border.all(color: Colors.transparent)),
                               padding: const EdgeInsets.all(8),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.notifications_none,
                                 color: ColorConstant.primaryWhite,
                               )
@@ -247,46 +253,71 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             right: 10, top: 15, left: 16, bottom: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomImageView(
-                              svgPath: ImageConstant.icClock,
-                              height: getHeight(30),
-                              width: getWidth(30),
-                            ),
-                            SizedBox(
-                              width: getWidth(10),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(AppString.PunchIn,
-                                    style: PMT.style(0).copyWith(
-                                        color: ColorConstant.greyColorB1,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: getFontSize(11))),
-                                SizedBox(
-                                  height: getHeight(10),
-                                ),
-                                Text('10.00 AM Wed, 11th Mar 2019 ',
-                                    style: PMT.style(0).copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: getFontSize(12))),
-                              ],
-                            ),
-                            SizedBox(
-                              width: getWidth(40),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  color: ColorConstant.greyE4,
-                                  size: 15,
-                                ))
-                          ],
+                        child: Bounce(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.attendanceScreenRout,
+                                arguments: [
+                                  {
+                                    'attendanceModel':
+                                        controller.attendanceModel
+                                  }
+                                ]);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: CustomImageView(
+                                    svgPath: ImageConstant.icClock,
+                                    height: getHeight(30),
+                                    width: getWidth(30),
+                                  )),
+                              SizedBox(
+                                width: getWidth(15),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(AppString.PunchIn,
+                                      style: PMT.style(0).copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(13))),
+                                  SizedBox(
+                                    height: getHeight(8),
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                        controller.attendanceModel.isNotEmpty
+                                            ? DateFormat(
+                                                    'EEE, dd MMM yyyy hh:mm a')
+                                                .format(controller
+                                                        .attendanceModel
+                                                        .first
+                                                        .date ??
+                                                    DateTime.now())
+                                            : '',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: getFontSize(14))),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(8),
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                        'Todday ${PrefUtils.getString(PrefsKey.studentName)} is ${controller.attendanceModel.isNotEmpty && controller.attendanceModel.first.type != null ? controller.attendanceModel.first.type ?? '' : ''}',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(13))),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -302,156 +333,211 @@ class _HomeScreenState extends State<HomeScreen> {
         SliverToBoxAdapter(
           child: Container(
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
-              ),
-              color: ColorConstant.primaryWhite,
-            ),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                ),
+                color: ColorConstant.primaryWhite),
             child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Column(
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    child: Column(
+              padding: const EdgeInsets.only(
+                top: 20,
+              ),
+              child: Container(
+                width: MediaQuery.sizeOf(context).width,
+                child: Column(
+                  children: [
+                    Container(
+                      height: getHeight(5),
+                      width: getWidth(70),
+                      color: ColorConstant.greyE4,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Row(
+                        children: [
+                          Text(
+                            AppString.menu,
+                            style: PMT.style(18,
+                                fontColor: ColorConstant.primaryBlack,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
                       children: [
-                        Container(
-                          height: getHeight(5),
-                          width: getWidth(70),
-                          color: ColorConstant.greyE4,
-                        ),
                         Padding(
-                          padding: const EdgeInsets.all(18),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 18,
+                          ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
-                                AppString.menu,
-                                style: PMT.style(18,
-                                    fontColor: ColorConstant.primaryBlack,
-                                    fontWeight: FontWeight.bold),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icFees,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.fees,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(
+                                      AppRoutes.leaveDashboardScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icLeave,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.leave,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icNotepad,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.notePad,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icBus,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.bus,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        GridView.count(
-                          crossAxisCount: 4,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            buildGridItem(
-                              svgPath: ImageConstant.icFees,
-                              label: AppString.fees,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icLeave,
-                              label: AppString.leave,
-                              onTap: () {
-                                Get.toNamed(AppRoutes.leaveDashboardScreenRout);
-                              },
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icNotepad,
-                              label: AppString.notePad,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icBus,
-                              label: AppString.bus,
-                              onTap: (){},
-                            ),
-
-
-
-
-                            buildGridItem(
-                              svgPath: ImageConstant.icHomeWork,
-                              label: AppString.homework,
-                              onTap: () {
-                                Get.toNamed(AppRoutes.homeWorkScreenRout);
-                              },
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icLiveClass,
-                              label: AppString.livClass,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icMarks,
-                              label: AppString.marks,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icDiary,
-                              label: AppString.dairy,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icTimeTable,
-                              label: AppString.timeTable,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icExam,
-                              label: AppString.exam,
-                              onTap: (){},
-                            ),
-                            buildGridItem(
-                              svgPath: ImageConstant.icAttendance,
-                              label: AppString.attendence,
-                              onTap: () {
-                                Get.toNamed(AppRoutes.attendanceScreenRout);
-                              },
-                            ),
-                          ],
-                        ),
                         Padding(
                           padding: const EdgeInsets.all(18),
                           child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: ColorConstant.crimC7,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25, right: 10, top: 20, bottom: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Diwali',
-                                      style: PMT.style(0).copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: getFontSize(14))),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          'there will be no classes on 14th\nand will resume on 15th ',
-                                          style: PMT.style(0).copyWith(
-                                              color: ColorConstant.grey9A,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: getFontSize(13))),
-                                      SizedBox(
-                                        width: getWidth(10),
-                                      ),
-                                      CustomImageView(
-                                        svgPath: ImageConstant.icSpeaker,
-                                      ),
-                                    ],
-                                  ),
-                                  Text('Read More',
-                                      style: PMT.style(0).copyWith(
-                                          color: ColorConstant.blueF9,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: getFontSize(12))),
-                                ],
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: ColorConstant.crimC7,
                               ),
-                            ),
-                          ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25, right: 10, top: 20, bottom: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Diwali',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: getFontSize(14))),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            'there will be no classes on 14th\nand will resume on 15th ',
+                                            style: PMT.style(0).copyWith(
+                                                color: ColorConstant.grey9A,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: getFontSize(13))),
+                                        SizedBox(
+                                          width: getWidth(10),
+                                        ),
+                                        CustomImageView(
+                                          svgPath: ImageConstant.icSpeaker,
+                                        ),
+                                      ],
+                                    ),
+                                    Text('Read More',
+                                        style: PMT.style(0).copyWith(
+                                            color: ColorConstant.blueF9,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: getFontSize(12))),
+                                  ],
+                                ),
+                              )),
                         ),
-
-                        /*Padding(
+                        Padding(
                           padding: const EdgeInsets.only(
                               left: 18, right: 18, bottom: 18, top: 10),
                           child: Row(
@@ -465,15 +551,279 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.homeWorkScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icHomeWork,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.homework,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icLiveClass,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.livClass,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icMarks,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.marks,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icDiary,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.dairy,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25, top: 25, right: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icTimeTable,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.timeTable,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: getWidth(5),
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    height: getHeight(50),
+                                    width: getWidth(50),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(18),
+                                      color:
+                                          ColorConstant.blueFC.withOpacity(.2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(14),
+                                      child: CustomImageView(
+                                        svgPath: ImageConstant.icExam,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHeight(6),
+                                  ),
+                                  Text(
+                                    AppString.exam,
+                                    style: PMT.style(15,
+                                        fontColor: ColorConstant.grey9A,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: getWidth(5),
+                              ),
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.attendanceScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icAttendance,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.attendence,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: getWidth(5),
+                              ),
+                              Bounce(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.noticeBoardScreenRout);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: getHeight(50),
+                                      width: getWidth(50),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        color: ColorConstant.blueFC
+                                            .withOpacity(.2),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(14),
+                                        child: CustomImageView(
+                                          svgPath: ImageConstant.icAttendance,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getHeight(6),
+                                    ),
+                                    Text(
+                                      AppString.noticeBoard,
+                                      maxLines: 2,
+                                      style: PMT.style(15,
+                                          fontColor: ColorConstant.grey9A,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(
                           height: getHeight(30),
-                        ),*/
-
+                        ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -481,36 +831,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     ));
   }
-  Widget buildGridItem({String?svgPath, String? label, required Function() onTap}) {
-    return GestureDetector(
-      onTap:onTap,
-      child: Column(
-        children: [
-          Container(
-            height: getHeight(50),
-            width: getWidth(50),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              color: ColorConstant.blueFC.withOpacity(.2),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(14),
-              child: CustomImageView(
-                svgPath: svgPath,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: getHeight(6),
-          ),
-          Text(
-            label!,
-            style: PMT.style(15,
-                fontColor: ColorConstant.grey9A, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    );
-  }
-
 }

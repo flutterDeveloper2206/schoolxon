@@ -1,5 +1,7 @@
 class ImageConstant {
   static String imageNotFound = 'assets/images/image_not_found.png';
+  static String imageSchoolPlaceHolder =
+      'assets/images/svg/placeholder_school.jpg';
   static String imgSplashLogo = 'assets/images/svg/splashLogo.svg';
   static String icBack = 'assets/icons/svg/ic_back.svg';
   static String icFilterSearch = 'assets/icons/svg/ic_filter_search.svg';
@@ -53,6 +55,7 @@ class ImageConstant {
   static String imageNoticeBoardEmpty =
       'assets/images/png/img_empty_notice_board.png';
   static String imgAlphaLogo = 'assets/icons/svg/alpha_letter.svg';
+
   ///Testing
   static String imgPerson = 'assets/images/png/person.jpg';
 }

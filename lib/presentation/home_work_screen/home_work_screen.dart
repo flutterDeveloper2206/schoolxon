@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:schoolxon/presentation/home_work_screen/controller/home_work_screen_controller.dart';
 import 'package:schoolxon/routes/app_routes.dart';
@@ -255,15 +256,24 @@ class HomeWorkScreen extends GetWidget<HomeWorkScreenController> {
                                                                 //       fontWeight:
                                                                 //           FontWeight.bold),
                                                                 // ),
-                                                                Html(
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    data: controller
-                                                                            .homeWorkModelList
-                                                                            .value
-                                                                            .homeworklist?[index]
-                                                                            .description ??
-                                                                        ''),
+                                                                Container(
+                                                                  constraints: BoxConstraints(
+                                                                      maxHeight:
+                                                                          getHeight(
+                                                                              70)),
+                                                                  height:
+                                                                      getHeight(
+                                                                          100),
+                                                                  child: Html(
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      data: controller
+                                                                              .homeWorkModelList
+                                                                              .value
+                                                                              .homeworklist?[index]
+                                                                              .description ??
+                                                                          ''),
+                                                                ),
                                                               ],
                                                             ),
                                                           ),

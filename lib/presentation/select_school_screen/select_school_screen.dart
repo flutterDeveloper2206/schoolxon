@@ -73,6 +73,8 @@ class SelectSchoolScreen extends GetWidget<SelectSchoolScreenController> {
                           ),
                           itemCount: controller.filterSchool.length,
                           itemBuilder: (context, index) {
+                            print(
+                                'SCHOOL NAME = ${controller.filterSchool[index].name}  ${controller.filterSchool[index].baseUrl ?? ''}uploads/school_content/logo/app_logo/${controller.filterSchool[index].appLogo ?? ''}');
                             SchoolModel item = controller.filterSchool[index];
 
                             return Bounce(
@@ -99,13 +101,13 @@ class SelectSchoolScreen extends GetWidget<SelectSchoolScreenController> {
                                     children: [
                                       CustomImageView(
                                         height: getHeight(65),
-                                        placeHolder:
-                                            ImageConstant.imgPlaceHolder,
+                                        placeHolder: ImageConstant
+                                            .imageSchoolPlaceHolder,
                                         width: getHeight(65),
                                         radius: BorderRadius.circular(18),
                                         url:
-                                            // '${controller.filterSchool[index].baseUrl ?? ''}uploads/school_content/admin_logo/${controller.filterSchool[index].image ?? ''}',
-                                            'https://tis.schoolxon.com/uploads/school_content/admin_logo/1710573352-207163710965f54728a00dc!LOGO.jpeg',
+                                            '${controller.filterSchool[index].baseUrl ?? ''}uploads/school_content/logo/app_logo/${controller.filterSchool[index].appLogo ?? ''}',
+                                        // 'https://tis.schoolxon.com/uploads/school_content/admin_logo/1710573352-207163710965f54728a00dc!LOGO.jpeg',
                                       ),
                                       SizedBox(
                                         height: 10,

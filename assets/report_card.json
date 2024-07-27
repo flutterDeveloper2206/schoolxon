@@ -1,0 +1,20 @@
+{
+  "name": "Aarif Ali",
+  "className": "Class 9 (A)",
+  "fatherName": "Ahmed Ansari",
+  "motherName": "Amina Khatun",
+  "rollNo": "04 / 99",
+  "dob": "26-12-2010",
+  "subjects": [
+    {"name": "ENGLISH", "maxMarks": "40.00", "marksObtained": "27", "grade": "B"},
+    {"name": "SST", "maxMarks": "40.00", "marksObtained": "33", "grade": "A"},
+    {"name": "MATHEMATICS", "maxMarks": "40.00", "marksObtained": "21", "grade": "C+"},
+    {"name": "HINDI", "maxMarks": "40.00", "marksObtained": "37", "grade": "A+"},
+    {"name": "SCIENCE", "maxMarks": "40.00", "marksObtained": "30", "grade": "B+"}
+  ],
+  "totalMarks": "200",
+  "marksObtained": "148",
+  "percentage": "74%",
+  "rank": "8",
+  "date": "09-07-2024"
+}

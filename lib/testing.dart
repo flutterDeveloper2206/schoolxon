@@ -1,304 +1,320 @@
-import 'dart:io';
-
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/widgets.dart';
+import 'package:schoolxon/core/app_export.dart';
+import 'package:schoolxon/widgets/common_appBar.dart';
+
+import 'core/utils/app_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-
-      home: const HomePage(title: 'Image Cropper Demo'),
+      home: ReportCardScreen(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  final String title;
-
-  const HomePage({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
+class ReportCardScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _ReportCardScreenState createState() => _ReportCardScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
-  XFile? _pickedFile;
-  CroppedFile? _croppedFile;
+class _ReportCardScreenState extends State<ReportCardScreen> {
+  late Future<ReportCardModel> reportCard;
+
+  @override
+  void initState() {
+    super.initState();
+    reportCard = loadReportCard();
+  }
+
+  Future<ReportCardModel> loadReportCard() async {
+    String jsonString = await rootBundle.loadString('assets/report_card.json');
+    final jsonResponse = json.decode(jsonString);
+    return ReportCardModel.fromJson(jsonResponse);
+  }
 
   @override
   Widget build(BuildContext context) {
+    sizeCalculate(context);
     return Scaffold(
-      appBar: !kIsWeb ? AppBar(title: Text(widget.title)) : null,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(60.0), // height of appbar
+          child: CommonAppBar(
+            title: AppString.noticeBoard,
+          )),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
+        child: SingleChildScrollView(
+          child: FutureBuilder<ReportCardModel>(
+            future: reportCard,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData) {
+                return Center(child: Text('No data found'));
+              } else {
+                ReportCardModel reportCardData = snapshot.data!;
+                return buildReportCard(reportCardData);
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildReportCard(ReportCardModel data) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (kIsWeb)
-            Padding(
-              padding: const EdgeInsets.all(kIsWeb ? 24.0 : 16.0),
-              child: Text(
-                widget.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayMedium!
-                    .copyWith(color: Theme.of(context).highlightColor),
-              ),
-            ),
-          Expanded(child: _body()),
+          buildHeader(data),
+          SizedBox(height: 30),
+          buildSubjectTable(data),
+          SizedBox(height: 30),
+          buildFooter(data),
         ],
       ),
     );
   }
 
-  Widget _body() {
-    if (_croppedFile != null || _pickedFile != null) {
-      return _imageCard();
-    } else {
-      return _uploaderCard();
-    }
-  }
-
-  Widget _imageCard() {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: kIsWeb ? 24.0 : 16.0),
-            child: Card(
-              elevation: 4.0,
-              child: Padding(
-                padding: const EdgeInsets.all(kIsWeb ? 24.0 : 16.0),
-                child: _image(),
-              ),
-            ),
-          ),
-          const SizedBox(height: 24.0),
-          _menu(),
-        ],
-      ),
-    );
-  }
-
-  Widget _image() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    if (_croppedFile != null) {
-      final path = _croppedFile!.path;
-      return ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: 0.8 * screenWidth,
-          maxHeight: 0.7 * screenHeight,
-        ),
-        child: kIsWeb ? Image.network(path) : Image.file(File(path)),
-      );
-    } else if (_pickedFile != null) {
-      final path = _pickedFile!.path;
-      return ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: 0.8 * screenWidth,
-          maxHeight: 0.7 * screenHeight,
-        ),
-        child: kIsWeb ? Image.network(path) : Image.file(File(path)),
-      );
-    } else {
-      return const SizedBox.shrink();
-    }
-  }
-
-  Widget _menu() {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+  Widget buildHeader(ReportCardModel data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FloatingActionButton(
-          onPressed: () {
-            _clear();
-          },
-          backgroundColor: Colors.redAccent,
-          tooltip: 'Delete',
-          child: const Icon(Icons.delete),
+        const SizedBox(
+          height: 15,
         ),
-        if (_croppedFile == null)
-          Padding(
-            padding: const EdgeInsets.only(left: 32.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                _cropImage();
-              },
-              backgroundColor: const Color(0xFFBC764A),
-              tooltip: 'Crop',
-              child: const Icon(Icons.crop),
-            ),
-          )
+        Center(
+          child: CustomImageView(
+            imagePath: ImageConstant.imgPerson,
+            height: getHeight(100),
+            width: getHeight(100),
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        rowText('Mr/Ms', data.name),
+        rowText('Class', data.className),
+        rowText('Father\'s Name', data.fatherName),
+        rowText('Mother\'s Name', data.motherName),
+        rowText('Roll No / ADM No.', data.rollNo),
+        rowText('DOB', data.dob),
+        const SizedBox(
+          height: 15,
+        ),
       ],
     );
   }
 
-  Widget _uploaderCard() {
-    return Center(
-      child: Card(
-        elevation: 4.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: SizedBox(
-          width: kIsWeb ? 380.0 : 320.0,
-          height: 300.0,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: DottedBorder(
-                    radius: const Radius.circular(12.0),
-                    borderType: BorderType.RRect,
-                    dashPattern: const [8, 4],
-                    color: Theme.of(context).highlightColor.withOpacity(0.4),
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.image,
-                            color: Theme.of(context).highlightColor,
-                            size: 80.0,
-                          ),
-                          const SizedBox(height: 24.0),
-                          Text(
-                            'Upload an image to start',
-                            style: kIsWeb
-                                ? Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall!
-                                    .copyWith(
-                                        color: Theme.of(context).highlightColor)
-                                : Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        color:
-                                            Theme.of(context).highlightColor),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _uploadImage();
-                  },
-                  style:
-                      ElevatedButton.styleFrom(foregroundColor: Colors.white),
-                  child: const Text('Upload'),
-                ),
-              ),
-            ],
+  Widget rowText(String title, String name) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Text(
+            '$title',
+            style: PMT.appStyle(
+              13,
+            ),
           ),
         ),
-      ),
+        Expanded(
+          child: Text(
+            ' : ${name}',
+            style: PMT.appStyle(
+              13,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-  Future<void> _cropImage() async {
-    if (_pickedFile != null) {
-      final croppedFile = await ImageCropper().cropImage(
-        sourcePath: _pickedFile!.path,
-        compressFormat: ImageCompressFormat.jpg,
-        compressQuality: 100,
-        uiSettings: [
-          AndroidUiSettings(
-            toolbarTitle: 'Cropper',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
-            initAspectRatio: CropAspectRatioPreset.square,
-            lockAspectRatio: false,
-            aspectRatioPresets: [
-              CropAspectRatioPreset.original,
-              CropAspectRatioPreset.square,
-              CropAspectRatioPreset.ratio4x3,
-              CropAspectRatioPresetCustom(),
-            ],
-          ),
-          IOSUiSettings(
-            title: 'Cropper',
-            aspectRatioPresets: [
-              CropAspectRatioPreset.original,
-              CropAspectRatioPreset.square,
-              CropAspectRatioPreset.ratio4x3,
-              CropAspectRatioPresetCustom(),
-            ],
-          ),
-          WebUiSettings(
-            context: context,
-            presentStyle: WebPresentStyle.dialog,
-            size: const CropperSize(
-              width: 520,
-              height: 520,
+  Widget buildSubjectTable(ReportCardModel data) {
+    return Table(
+      border: TableBorder.all(),
+      children: [
+        buildTableRowHeading(
+            ['Subjects', 'Max Marks', 'Mark Obtn.', 'Grade', 'Note']),
+        ...data.subjects.map((subject) {
+          return buildTableRow([
+            subject.name,
+            subject.maxMarks,
+            subject.marksObtained,
+            subject.grade,
+            ''
+          ]);
+        }).toList(),
+        buildTableRowFooter(['', '', '', '', '']),
+        buildTableRowFooter(
+            ['Total Marks', data.totalMarks, data.marksObtained, '', '']),
+        buildTableRowFooter(['Percentage', '', data.percentage, '', '']),
+        buildTableRowFooter(['Rank', '', data.rank, '', '']),
+      ],
+    );
+  }
+
+  TableRow buildTableRow(List<String> cells) {
+    return TableRow(
+      children: cells.map((cell) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(cell, textAlign: TextAlign.center),
+        );
+      }).toList(),
+    );
+  }
+
+  TableRow buildTableRowFooter(List<String> cells) {
+    return TableRow(
+      children: cells.map((cell) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            cell,
+            textAlign: TextAlign.center,
+            style: PMT.appStyle(
+              12,
+              fontWeight: FontWeight.w600,
             ),
           ),
-        ],
-      );
-      if (croppedFile != null) {
-        setState(() {
-          _croppedFile = croppedFile;
-        });
-      }
-    }
+        );
+      }).toList(),
+    );
   }
 
-
-
-  Future<void> _uploadImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _pickedFile = pickedFile;
-      });
-    }
+  TableRow buildTableRowHeading(List<String> cells) {
+    return TableRow(
+      children: cells.map((cell) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            cell,
+            textAlign: TextAlign.center,
+            style: PMT.appStyle(14,
+                fontWeight: FontWeight.w600,
+                fontColor: ColorConstant.primaryBlue),
+          ),
+        );
+      }).toList(),
+    );
   }
 
-
-
-  void _clear() {
-    setState(() {
-      _pickedFile = null;
-      _croppedFile = null;
-    });
+  Widget buildFooter(ReportCardModel data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Date: ${data.date}'),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Signature of Class Teacher'),
+                SizedBox(height: 50),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Signature of Principal'),
+                SizedBox(height: 50),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
 
-class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
-  @override
-  (int, int)? get data => (2, 3);
+class ReportCardModel {
+  final String name;
+  final String className;
+  final String fatherName;
+  final String motherName;
+  final String rollNo;
+  final String dob;
+  final List<Subject> subjects;
+  final String totalMarks;
+  final String marksObtained;
+  final String percentage;
+  final String rank;
+  final String date;
 
-  @override
-  String get name => '2x3 (customized)';
+  ReportCardModel({
+    required this.name,
+    required this.className,
+    required this.fatherName,
+    required this.motherName,
+    required this.rollNo,
+    required this.dob,
+    required this.subjects,
+    required this.totalMarks,
+    required this.marksObtained,
+    required this.percentage,
+    required this.rank,
+    required this.date,
+  });
+
+  factory ReportCardModel.fromJson(Map<String, dynamic> json) {
+    var list = json['subjects'] as List;
+    List<Subject> subjectsList = list.map((i) => Subject.fromJson(i)).toList();
+
+    return ReportCardModel(
+      name: json['name'],
+      className: json['className'],
+      fatherName: json['fatherName'],
+      motherName: json['motherName'],
+      rollNo: json['rollNo'],
+      dob: json['dob'],
+      subjects: subjectsList,
+      totalMarks: json['totalMarks'],
+      marksObtained: json['marksObtained'],
+      percentage: json['percentage'],
+      rank: json['rank'],
+      date: json['date'],
+    );
+  }
+}
+
+class Subject {
+  final String name;
+  final String maxMarks;
+  final String marksObtained;
+  final String grade;
+
+  Subject({
+    required this.name,
+    required this.maxMarks,
+    required this.marksObtained,
+    required this.grade,
+  });
+
+  factory Subject.fromJson(Map<String, dynamic> json) {
+    return Subject(
+      name: json['name'],
+      maxMarks: json['maxMarks'],
+      marksObtained: json['marksObtained'],
+      grade: json['grade'],
+    );
+  }
 }
 // import 'package:flutter/material.dart';
 // import 'package:flutter_downloader/flutter_downloader.dart';
