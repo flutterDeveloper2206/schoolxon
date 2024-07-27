@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class OnBoardingContent extends StatelessWidget {
@@ -10,16 +9,16 @@ class OnBoardingContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children:[
+      children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               image!,
-              width: MediaQuery.of(context).size.width/1,
+              width: MediaQuery.of(context).size.width / 1.2,
+              height: MediaQuery.of(context).size.height / 1.96,
             ),
           ],
         ),

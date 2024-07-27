@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/rendering.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:schoolxon/core/utils/pref_utils.dart';
 import 'package:schoolxon/core/utils/string_constant.dart';
@@ -36,7 +37,7 @@ class ApiService extends GetConnect {
       bool showLoader = true,
       bool headerWithToken = true}) async {
     if (isLogPrint) {
-      log("API :- $url");
+      debugPrint("API :- $url");
     }
 
     if (showLoader) {
@@ -51,18 +52,19 @@ class ApiService extends GetConnect {
       contentType: contentType,
     );
     if (isLogPrint) {
-      log("RESPONSE :- ${response.body}");
+      debugPrint(
+          "STATUSCODE = ${response.statusCode}\nRESPONSE :- ${response.body}");
     }
     if (response.status.hasError) {
       if (showLoader) {
         ProgressDialogUtils.hideProgressDialog();
       }
-      return response.body;
+      return response;
     } else {
       if (showLoader) {
         ProgressDialogUtils.hideProgressDialog();
       }
-      return response.body;
+      return response;
     }
   }
 
@@ -72,8 +74,8 @@ class ApiService extends GetConnect {
       bool showLoader = true,
       bool headerWithToken = true}) async {
     if (isLogPrint) {
-      log("API :- $url");
-      log("API :- ${isLogPrint.toString()}");
+      debugPrint("API :- $url");
+      debugPrint("API :- ${isLogPrint.toString()}");
     }
 
     if (showLoader) {
@@ -87,7 +89,7 @@ class ApiService extends GetConnect {
       contentType: contentType,
     );
     if (isLogPrint) {
-      log("RESPONSE :- ${response.body}");
+      debugPrint("RESPONSE :- ${response.body}");
     }
 
     if (response.status.hasError) {

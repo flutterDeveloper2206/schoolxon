@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/utils/image_constant.dart';
 import '../../../routes/app_routes.dart';
-
-
 
 class OnBoardingScreenController extends GetxController {
   var currentPage = 0.obs;
@@ -24,9 +23,18 @@ class OnBoardingScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  List<Map<String, String>> onBoardingData = [
+    {"image": ImageConstant.imgOnboarding1},
+    {"image": ImageConstant.imgOnboarding2},
+    {"image": ImageConstant.imgOnboarding3},
+  ];
 
-  void onTapOfGetStartedButton() {
-    Get.offAllNamed(AppRoutes.initialRoute);
+  void skipTap() {
+    currentPage.value = 3;
+    pageController.jumpToPage(currentPage.value);
   }
 
+  void onTapOfGetStartedButton() {
+    Get.offAllNamed(AppRoutes.selectSchoolScreenRout);
+  }
 }

@@ -1,29 +1,22 @@
 class NetworkUrl {
+  static const String baseUrl = 'https://api.aischoolara.com/api/';
+  static const String imageBaseUrl = 'https://api.aischoolara.com/';
 
-
-  static const String baseUrl = 'https://petmeet.co/api/auth/';
-
-
-  static const String loginUrl = '${baseUrl}login';
-  static const String registerUrl = '${baseUrl}register';
-  static const String getPetListUrl = "${baseUrl}getPetsList";
-  static const String getPetMyMatchesListUrl = "${baseUrl}getMyMatchesList";
-  static const String getUserReactionUrl = "${baseUrl}userReaction";
-  static const String getGetProfileUrl = "${baseUrl}getProfile";
-  static const String getPassionsListUrl = "${baseUrl}getPassionsList";
-  static const String getNotificationListUrl = "${baseUrl}getNotificationList";
-  static const String getRemoveImageUrl = "${baseUrl}removeImage";
-  static const String updateNotificationSetting = "${baseUrl}updateNotificationSetting";
-  static const String updateShowMeOnPetMeet = "${baseUrl}updateShowMeOnPetMeet";
-  static const String sendTestPushNotification = "${baseUrl}sendTestPushNotification";
-  static const String getDeleteAccountUrl = "${baseUrl}deleteAccount";
-  static const String getMyMatchesList = "${baseUrl}getReactionUserList";
-  static const String getShareYourPhoto = "${baseUrl}sharePhotoRequest";
-  static const String getFilterUrl = "${baseUrl}getMyFilter";
-  static const String getSaveUrl = "${baseUrl}saveFilter";
-  static const String reportUserUrl = "${baseUrl}userReports";
-  static const String unmatchUserUrl = "${baseUrl}unMatchUser";
-  static const String deleteNotificationUrl = "${baseUrl}clearNotification?";
-  static const String logOutUrl = "${baseUrl}logout";
-
+  static const String getSchoolUrl = '${baseUrl}Schdetails/index';
+  static const String loginUrl = '${baseUrl}AuthStudent/loginstudent/';
+  static const String getStudentByIdUrl = '${baseUrl}AuthStudent/getstudent/';
+  static const String applyLeaveUrl = '${baseUrl}leave/apply/';
+  static const String removeLeaveUrl = '${baseUrl}leave/removeleave/';
+  static const String leaveDetailsUrl = '${baseUrl}leave/leave_details/';
+  static const String submitHomeworkUrl = '${baseUrl}homework/upload_homework/';
+  static const String attendanceUrl = '${baseUrl}Attendance/getattendance/';
+  static const String homeWorkDownloadUrl = '${baseUrl}homework/download_docs/';
+  static const String leaveDownloadUrl = '${baseUrl}leave/download_docs/';
+  static const String showAllHomeWorkUrl =
+      '${baseUrl}homework/showallhomeworks/';
+  static const String homeWorkDetailsUrl =
+      '${baseUrl}homework/homework_details/';
+  static const String allLeaveGetUrl = '${baseUrl}leave/showallleaverequest/';
+  static const String getStudentUrl = '${baseUrl}AuthStudent/getstudent/';
+  static const String updateProfileUrl = '${baseUrl}AuthStudent/profileUpdate/';
 }

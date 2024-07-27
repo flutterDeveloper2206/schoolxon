@@ -1,22 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
+import 'package:schoolxon/core/utils/string_constant.dart';
+import 'package:schoolxon/widgets/custom_image_view.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
 import '../../widgets/custom_elavated_button.dart';
 import 'controller/onboarding_screen_controller.dart';
 import 'onBoardingContant_screen.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
   var onBoardingController = Get.find<OnBoardingScreenController>();
-
-  List<Map<String, String>> onBoardingData = [
-    {"image": ImageConstant.imgOnboardind1},
-    {"image": ImageConstant.imgOnboardind2},
-    {"image": ImageConstant.imgOnboardind3},
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,176 +36,166 @@ class OnBoardingScreen extends StatelessWidget {
               curve: Curves.easeIn);
         }
       },
-      child: Scaffold(
-          backgroundColor: ColorConstant.primaryWhite,
-          body: Column(
-            children: [
-              SizedBox(
-                height: getHeight(40),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: ColorConstant.yellow39,
+          body: Obx(
+            () => Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: ColorConstant.yellow39,
+                  borderRadius: BorderRadius.circular(40),
+                  image: DecorationImage(
+                      image:
+                          AssetImage(onBoardingController.currentPage.value == 0
+                              ? ImageConstant.backGround
+                              : onBoardingController.currentPage.value == 1
+                                  ? ImageConstant.backGround1
+                                  : ImageConstant.backGround2),
+                      fit: BoxFit.cover)),
+              child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: (16),),
+                  ///skip button
+                  /* Align(
+                    alignment: Alignment.topRight,
                     child: InkWell(
                       onTap: () {
-                        onBoardingController.onTapOfGetStartedButton();
+                        onBoardingController.skipTap();
                       },
-                      child: Text(
-                        "skip",
-                        style: PMT.style(18).copyWith(
-                            color: ColorConstant.blueFC,
-                            fontWeight: FontWeight.w500,
-                            fontSize: getFontSize(18)),
-                      ),
+                      child: Text(AppString.skip,
+                          style:
+                              PMT.appStyle(14, fontColor: ColorConstant.blueF9)),
+                    ),
+                  ),*/
+                  Flexible(
+                    flex: 2,
+                    child: Stack(
+                      children: [
+                        PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          onPageChanged: (value) {
+                            onBoardingController.currentPage.value = value;
+                            print(onBoardingController.currentPage.value);
+                          },
+                          controller: onBoardingController.pageController,
+                          itemCount: controller.onBoardingData.length,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 369),
+                            child: OnBoardingContent(
+                              image: controller.onBoardingData[index]["image"],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 40,
+                          left: 10,
+                          right: 10,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(
+                                  controller.onBoardingData.length,
+                                  (index) => buildDot(index: index),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(30),
+                              ),
+                              Obx(
+                                () => Text(
+                                  onBoardingController.currentPage.value == 1
+                                      ? "Vamos  embarcar\n    nesta jornada\n          juntos"
+                                      : onBoardingController
+                                                  .currentPage.value ==
+                                              2
+                                          ? "Vamos  embarcar\n    nesta jornada\n          juntos"
+                                          : "Vamos  embarcar\n    nesta jornada\n          juntos",
+                                  style: PMT.style(0).copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(5),
+                              ),
+                              Obx(
+                                () => Text(
+                                  onBoardingController.currentPage.value == 1
+                                      ? "Vamos comecar a jornada rumo\nao conhecimento solidpo"
+                                      : onBoardingController
+                                                  .currentPage.value ==
+                                              2
+                                          ? "Vamos comecar a jornada rumo\nao conhecimento solidpo "
+                                          : "Vamos comecar a jornada rumo\nao conhecimento solidpo",
+                                  textAlign: TextAlign.center,
+                                  style: PMT.style(0).copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: getFontSize(10)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHeight(15),
+                              ),
+                              Obx(
+                                () => Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 60, left: 60, top: 50),
+                                  child: AppElevatedButton(
+                                    buttonShadowColor: Colors.transparent,
+                                    buttonName: onBoardingController
+                                                .currentPage.value ==
+                                            2
+                                        ? AppString.getStarted
+                                        : AppString.next,
+                                    textColor: Colors.white,
+                                    buttonColor: ColorConstant.greyColor78,
+                                    onPressed: () {
+                                      if (onBoardingController
+                                              .currentPage.value ==
+                                          0) {
+                                        onBoardingController.currentPage.value =
+                                            1;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      } else if (onBoardingController
+                                              .currentPage.value ==
+                                          1) {
+                                        onBoardingController.currentPage.value =
+                                            2;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      } else if (onBoardingController
+                                              .currentPage.value ==
+                                          2) {
+                                        onBoardingController
+                                            .onTapOfGetStartedButton();
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-
-              Expanded(
-                child: Stack(
-                  children: [
-                    PageView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (value) {
-                        onBoardingController.currentPage.value = value;
-                        print(onBoardingController.currentPage.value);
-                      },
-                      controller: onBoardingController.pageController,
-                      itemCount: onBoardingData.length,
-                      itemBuilder: (context, index) => OnBoardingContent(
-                        image: onBoardingData[index]["image"],
-                      ),
-                    ),
-
-                    Positioned(top: 200,
-                      child: Container(
-                        height: getHeight(40),
-                        width: double.infinity,
-                        // Below is the code for Linear Gradient.
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.white10, ColorConstant.blueF9],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              onBoardingData.length,
-                                  (index) => buildDot(index: index),
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: getHeight(40),
-                          ),
-                          Container(color: Colors.white,
-                            height: MediaQuery.of(context).size.height / 3,
-                            width: MediaQuery.of(context).size.width,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: (20), right: (20)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height / 50,
-                                  ),
-                                  Obx(
-                                        () => Text(
-                                      onBoardingController.currentPage.value == 1
-                                          ? "walkthrough 1"
-                                          : onBoardingController.currentPage.value ==
-                                          2
-                                          ? "walkthrough 2"
-                                          : "walkthrough 3",
-                                      style: PMT.style(18).copyWith(
-                                          color: ColorConstant.black72,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(18)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: getHeight(10),
-                                  ),
-                                  Obx(
-                                        () => Text(
-                                      onBoardingController.currentPage.value == 1
-                                          ? "Makes easier for users to pay for their purchases by scanning the QR code"
-                                          : onBoardingController.currentPage.value ==
-                                          2
-                                          ? "Supports many types of payments and pay without being complicated"
-                                          : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ",
-                                      textAlign: TextAlign.center,
-                                      style: PMT.style(15).copyWith(
-                                          color: ColorConstant.black72,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: getFontSize(15)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: getHeight(30),
-                                  ),
-                                  Obx(
-                                        () => AppElevatedButton(buttonShadowColor:ColorConstant.transparent ,
-                                      buttonName:
-                                      onBoardingController.currentPage.value == 2
-                                          ? "Get Started"
-                                          : "Next",
-                                      textColor: Colors.white,
-                                      buttonColor: ColorConstant.blueF9,
-                                      radius: 16,
-                                      onPressed: () {
-                                        if (onBoardingController.currentPage.value ==
-                                            0) {
-                                          onBoardingController.currentPage.value = 1;
-                                          onBoardingController.pageController
-                                              .nextPage(
-                                              duration:
-                                              Duration(milliseconds: 250),
-                                              curve: Curves.easeIn);
-                                        } else if (onBoardingController
-                                            .currentPage.value ==
-                                            1) {
-                                          onBoardingController.currentPage.value = 2;
-                                          onBoardingController.pageController
-                                              .nextPage(
-                                              duration:
-                                              Duration(milliseconds: 250),
-                                              curve: Curves.easeIn);
-                                        } else if (onBoardingController
-                                            .currentPage.value ==
-                                            2) {
-                                          onBoardingController
-                                              .onTapOfGetStartedButton();
-                                        }
-                                      },
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-
-            ],
-          )),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -217,13 +204,13 @@ class OnBoardingScreen extends StatelessWidget {
       () => onBoardingController.currentPage.value == index
           ? Container(
               margin: EdgeInsets.only(right: 5),
-              height: getHeight(10),
-              width: getWidth(40),
+              height: getHeight(8),
+              width: getWidth(30),
               child: Padding(
                 padding: EdgeInsets.all(1.5),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ColorConstant.blueF9,
+                    color: ColorConstant.greyColor78,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -231,10 +218,10 @@ class OnBoardingScreen extends StatelessWidget {
             )
           : Container(
               margin: EdgeInsets.only(right: 5),
-              height: getHeight(8),
-              width: getWidth(8),
+              height: getHeight(5),
+              width: getWidth(12),
               decoration: BoxDecoration(
-                color: ColorConstant.blueFC,
+                color: ColorConstant.greyColor78,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

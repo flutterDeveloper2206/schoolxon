@@ -11,10 +11,10 @@ class SplashScreen extends GetWidget<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.black72,
+        backgroundColor: ColorConstant.primaryBlue,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(70),
+            padding: const EdgeInsets.all(100),
             child: CustomImageView(
               svgPath: ImageConstant.imgSplashLogo,
               height: double.infinity,
