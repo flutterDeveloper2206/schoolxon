@@ -62,6 +62,38 @@ class TimeTableScreen extends GetWidget <TimeTableScreenController> {
       ),
       body: Column(
         children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            color: ColorConstant.primaryBlue.withOpacity(.4),
+            child: Row(
+              children: [
+                Icon(Icons.calendar_today, color: ColorConstant.primaryBlack),
+                SizedBox(width: 8),
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: 'Monday',
+                    icon: const Icon(Icons.arrow_drop_down, color: ColorConstant.primaryBlack),
+                    dropdownColor: ColorConstant.whiteFB,
+                    items: <String>['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+                        .map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(color: ColorConstant.primaryBlack, fontSize: 18),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle day change here
+                    },
+                    underline: Container(), // Hide the underline
+                    isExpanded: true, // This makes the dropdown button take the full width of its parent
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: CalendarControllerProvider(
               controller: eventController,
