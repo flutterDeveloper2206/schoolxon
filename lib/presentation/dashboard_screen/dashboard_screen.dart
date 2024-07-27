@@ -16,6 +16,7 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
     sizeCalculate(context);
 
     return Scaffold(
+      backgroundColor: ColorConstant.primaryWhite,
       body: Obx(() => controller.pages[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(

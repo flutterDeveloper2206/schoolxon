@@ -7,6 +7,7 @@ class ImageConstant {
   static String icFilterSearch = 'assets/icons/svg/ic_filter_search.svg';
   static String icFile = 'assets/icons/svg/ic_file.svg';
   static String icHelp = 'assets/icons/svg/ic_help.svg';
+  static String icEditProfile = 'assets/icons/png/ic_edit_profile.png';
   static String icChat = 'assets/icons/svg/ic_chat.svg';
   static String icHome = 'assets/icons/svg/ic_home.svg';
   static String icProfileUser = 'assets/icons/svg/ic_profile.svg';
@@ -30,7 +31,13 @@ class ImageConstant {
   static String icLiveClass = 'assets/icons/svg/ic_livclass.svg';
   static String icMarks = 'assets/icons/svg/ic_marks.svg';
   static String icDiary = 'assets/icons/svg/ic_diary.svg';
+  static String icAddAccount = 'assets/icons/png/ic_add_account.png';
+  static String icSwitchAccount = 'assets/icons/png/ic_swich_account.png';
+  static String icLogOutRight = 'assets/icons/png/ic_logout_right.png';
+  static String icSetting = 'assets/icons/png/ic_setting.png';
+  static String icNotification = 'assets/icons/png/ic_notification.png';
   static String icTimeTable = 'assets/icons/svg/ic_time_table.svg';
+  static String success = 'assets/icons/png/ic_success.png';
   static String icExam = 'assets/icons/svg/ic_exam.svg';
   static String icSpeaker = 'assets/icons/svg/ic_speaker.svg';
   static String icAttendance = 'assets/icons/svg/ic_attendance.svg';

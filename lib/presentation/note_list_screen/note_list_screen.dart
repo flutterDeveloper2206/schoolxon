@@ -29,7 +29,10 @@ class NoteListScreen extends GetWidget<NoteListScreenController> {
                     onPressed: () {
                       Get.toNamed(AppRoutes.writeNoteScreenRout);
                     },
-                    icon: Icon(Icons.add))
+                    icon: Icon(
+                      Icons.add,
+                      color: ColorConstant.primaryWhite,
+                    ))
               ],
             )),
         body: Padding(

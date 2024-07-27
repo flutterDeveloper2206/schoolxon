@@ -9,6 +9,9 @@ class AppString {
   static const String privacyPolicy = "Privacy Policy";
   static const String logOut = "Log Out";
   static const String timetable = "Time Table";
+  static const String markAllRead = "mark all as read";
+  static const String logOutText =
+      "Are You Sure You want to end your session now?";
   static const String contactSupport = "Contact Support";
   static const String leaveInfo = "Leave Info";
   static const String needHelp = "Need Help?";
@@ -33,6 +36,7 @@ class AppString {
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
   static const String logIn = 'Login';
+  static const String due = 'Due';
   static const String addDescription = "Add Description";
   static const String all = "All";
   static const String homework = "Home Work";
@@ -41,8 +45,17 @@ class AppString {
   static const String schools = 'Schools';
   static const String submit = 'Submit';
   static const String terms = ' Terms ';
+  static const String addAccount = 'Add Account';
+  static const String switchAccount = 'Switch Account';
+  static const String notifications = 'Notifications';
+  static const String setting = 'Settings';
+  static const String logOuts = 'Logout';
   static const String mobileNo = 'Mobile Number';
   static const String enterMobileNo = 'Enter Mobile Number';
+  static const String addNewAccountText = 'Add new account for another child';
+  static const String notificationOn = 'Your Notification is on';
+  static const String appSetting = 'Go to app Setting';
+  static const String endYourSession = 'End Your Session';
   static const String aadhaarNo = 'Aadhaar Number';
   static const String enterAadhaarNo = 'Enter Aadhaar Number';
   static const String currentAddress = 'Current Address';
@@ -128,6 +141,8 @@ class AppString {
   static const String chat = "Chat";
   static const String report = "Report";
   static const String profile = "Profile";
+  static const String schoolId = "School ID :";
+  static const String className = "Class :";
   static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
@@ -150,6 +165,7 @@ class AppString {
   static const String searchForMore = "Search for more";
 
   static const String edit = "Edit";
+  static const String editProfile = "Edit Profile";
   static const String error = "ERROR";
   static const String exit = "Tap one more time to exit.";
 

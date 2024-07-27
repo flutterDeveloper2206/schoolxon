@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
@@ -35,6 +36,20 @@ class NotificationScreen extends GetWidget<NotificationScreenController> {
                     SizedBox(
                       height: getHeight(16),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          AppString.markAllRead,
+                          style: PMT
+                              .appStyle(13,
+                                  fontColor: ColorConstant.primaryBlue,
+                                  fontWeight: FontWeight.w600)
+                              .copyWith(decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+
                     // Row(
                     //   children: [
                     //     Obx(
@@ -102,99 +117,116 @@ class NotificationScreen extends GetWidget<NotificationScreenController> {
                     //   height: getHeight(16),
                     // ),
                     Obx(
-                      () => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount:
-                            controller.notificationModel.value.notice?.length ??
-                                0,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          controller
-                                                      .notificationModel
-                                                      .value
-                                                      .notice?[index]
-                                                      .title
-                                                      ?.isEmpty ==
-                                                  true
-                                              ? 'Title'
-                                              : controller
-                                                      .notificationModel
-                                                      .value
-                                                      .notice?[index]
-                                                      .title ??
-                                                  'Title',
-                                          style: PMT.appStyle(16,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        SizedBox(
-                                          height: getHeight(5),
-                                        ),
-                                        Text(
-                                          controller
-                                                  .notificationModel
-                                                  .value
-                                                  .notice?[index]
-                                                  .notification ??
-                                              '',
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: PMT.appStyle(14,
-                                              fontColor: ColorConstant.grey71),
-                                        ),
-                                        SizedBox(
-                                          height: getHeight(5),
-                                        ),
-                                        Text(
-                                          controller.formatRelativeTimeOrDate(
-                                              controller
-                                                      .notificationModel
-                                                      .value
-                                                      .notice?[index]
-                                                      .createdBy ??
-                                                  DateTime.now()),
-                                          style: PMT.appStyle(13,
-                                              fontColor: ColorConstant.greyB8),
-                                        )
-                                      ],
+                      () => Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller
+                                  .notificationModel.value.notice?.length ??
+                              0,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomImageView(
+                                                height: getHeight(45),
+                                                width: getHeight(45),
+                                                imagePath:
+                                                    ImageConstant.success,
+                                              ),
+                                              SizedBox(
+                                                width: getWidth(30),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                                  .notificationModel
+                                                                  .value
+                                                                  .notice?[
+                                                                      index]
+                                                                  .title
+                                                                  ?.isEmpty ==
+                                                              true
+                                                          ? 'Title'
+                                                          : controller
+                                                                  .notificationModel
+                                                                  .value
+                                                                  .notice?[
+                                                                      index]
+                                                                  .title ??
+                                                              'Title',
+                                                      style: PMT.appStyle(13,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(
+                                                      height: getHeight(5),
+                                                    ),
+                                                    Text(
+                                                      controller
+                                                              .notificationModel
+                                                              .value
+                                                              .notice?[index]
+                                                              .notification ??
+                                                          '',
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: PMT.appStyle(12,
+                                                          fontColor:
+                                                              ColorConstant
+                                                                  .grey71,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(
+                                                      height: getHeight(5),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: getWidth(20),
-                                  ),
-                                  CustomImageView(
-                                    height: getHeight(65),
-                                    width: getHeight(65),
-                                    radius: BorderRadius.circular(18),
-                                    imagePath: ImageConstant.imgTestNoticeBoard,
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: getHeight(20),
-                              ),
-                              Container(
-                                height: 1,
-                                color: ColorConstant.greyDD,
-                              ),
-                              SizedBox(
-                                height: getHeight(15),
-                              ),
-                            ],
-                          );
-                        },
+                                    Text(
+                                      controller.formatRelativeTimeOrDate(
+                                          controller.notificationModel.value
+                                                  .notice?[index].createdBy ??
+                                              DateTime.now()),
+                                      style: PMT.appStyle(12,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: getHeight(30),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     )
                   ],
