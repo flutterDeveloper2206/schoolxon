@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:schoolxon/core/app_export.dart';
@@ -19,8 +20,7 @@ class NoticeBoardScreen extends GetWidget<NoticeBoardScreenController> {
           child: CommonAppBar(title: AppString.noticeBoard)),
       body: Obx(
         () => controller.noticeBoardModel.value.notificationlist != null &&
-                controller.noticeBoardModel.value.notificationlist?.isEmpty ==
-                    true
+                controller.noticeBoardModel.value.notificationlist!.isEmpty
             ? Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(50)),
@@ -38,77 +38,85 @@ class NoticeBoardScreen extends GetWidget<NoticeBoardScreenController> {
                       height: getHeight(16),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Obx(
-                          () => Bounce(
-                            onTap: () {
-                              controller.index.value = 0;
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: controller.index.value == 0
-                                          ? ColorConstant.primaryBlue
-                                          : ColorConstant.grey81
-                                              .withOpacity(0.5)),
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: controller.index.value == 0
-                                      ? ColorConstant.primaryBlue
-                                          .withOpacity(0.2)
-                                      : ColorConstant.primaryWhite),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: getWidth(22),
-                                  vertical: getHeight(5)),
-                              child: Text(
-                                AppString.all,
-                                style: PMT.appStyle(15,
-                                    fontColor: controller.index.value == 0
-                                        ? ColorConstant.primaryBlue
-                                        : ColorConstant.grey81,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: getWidth(15),
-                        ),
-                        Obx(
-                          () => Bounce(
-                            onTap: () {
-                              controller.index.value = 1;
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: controller.index.value == 1
-                                          ? ColorConstant.primaryBlue
-                                          : ColorConstant.grey81
-                                              .withOpacity(0.5)),
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: controller.index.value == 1
-                                      ? ColorConstant.primaryBlue
-                                          .withOpacity(0.2)
-                                      : ColorConstant.primaryWhite),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: getWidth(22),
-                                  vertical: getHeight(5)),
-                              child: Text(
-                                AppString.thisMonth,
-                                style: PMT.appStyle(15,
-                                    fontColor: controller.index.value == 1
-                                        ? ColorConstant.primaryBlue
-                                        : ColorConstant.grey81,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
+                        Text(
+                          AppString.markAllRead,
+                          style: PMT
+                              .appStyle(13,
+                                  fontColor: ColorConstant.primaryBlue,
+                                  fontWeight: FontWeight.w600)
+                              .copyWith(decoration: TextDecoration.underline),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: getHeight(16),
-                    ),
+
+                    // Row(
+                    //   children: [
+                    //     Obx(
+                    //       () => Bounce(
+                    //         onTap: () {
+                    //           controller.index.value = 0;
+                    //         },
+                    //         child: Container(
+                    //           decoration: BoxDecoration(
+                    //               border: Border.all(
+                    //                   color: controller.index.value == 0
+                    //                       ? ColorConstant.primaryBlue
+                    //                       : ColorConstant.grey81.withOpacity(0.5)),
+                    //               borderRadius: BorderRadius.circular(20),
+                    //               color: controller.index.value == 0
+                    //                   ? ColorConstant.primaryBlue.withOpacity(0.2)
+                    //                   : ColorConstant.primaryWhite),
+                    //           padding: EdgeInsets.symmetric(
+                    //               horizontal: getWidth(22), vertical: getHeight(5)),
+                    //           child: Text(
+                    //             AppString.all,
+                    //             style: PMT.appStyle(15,
+                    //                 fontColor: controller.index.value == 0
+                    //                     ? ColorConstant.primaryBlue
+                    //                     : ColorConstant.grey81,
+                    //                 fontWeight: FontWeight.w600),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: getWidth(15),
+                    //     ),
+                    //     Obx(
+                    //       () => Bounce(
+                    //         onTap: () {
+                    //           controller.index.value = 1;
+                    //         },
+                    //         child: Container(
+                    //           decoration: BoxDecoration(
+                    //               border: Border.all(
+                    //                   color: controller.index.value == 1
+                    //                       ? ColorConstant.primaryBlue
+                    //                       : ColorConstant.grey81.withOpacity(0.5)),
+                    //               borderRadius: BorderRadius.circular(20),
+                    //               color: controller.index.value == 1
+                    //                   ? ColorConstant.primaryBlue.withOpacity(0.2)
+                    //                   : ColorConstant.primaryWhite),
+                    //           padding: EdgeInsets.symmetric(
+                    //               horizontal: getWidth(22), vertical: getHeight(5)),
+                    //           child: Text(
+                    //             AppString.thisMonth,
+                    //             style: PMT.appStyle(15,
+                    //                 fontColor: controller.index.value == 1
+                    //                     ? ColorConstant.primaryBlue
+                    //                     : ColorConstant.grey81,
+                    //                 fontWeight: FontWeight.w600),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: getHeight(16),
+                    // ),
                     Obx(
                       () => Expanded(
                         child: ListView.builder(
@@ -121,80 +129,115 @@ class NoticeBoardScreen extends GetWidget<NoticeBoardScreenController> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            controller
-                                                    .noticeBoardModel
-                                                    .value
-                                                    .notificationlist?[index]
-                                                    .title ??
-                                                '',
-                                            style: PMT.appStyle(16,
-                                                fontWeight: FontWeight.w600),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomImageView(
+                                                height: getHeight(45),
+                                                width: getHeight(45),
+                                                imagePath:
+                                                    ImageConstant.success,
+                                              ),
+                                              SizedBox(
+                                                width: getWidth(30),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                                  .noticeBoardModel
+                                                                  .value
+                                                                  .notificationlist?[
+                                                                      index]
+                                                                  .title
+                                                                  ?.isEmpty ==
+                                                              true
+                                                          ? 'Title'
+                                                          : controller
+                                                                  .noticeBoardModel
+                                                                  .value
+                                                                  .notificationlist?[
+                                                                      index]
+                                                                  .title ??
+                                                              'Title',
+                                                      style: PMT.appStyle(13,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(
+                                                      height: getHeight(5),
+                                                    ),
+                                                    // Text(
+                                                    //   controller
+                                                    //           .noticeBoardModel
+                                                    //           .value
+                                                    //           .notificationlist?[
+                                                    //               index]
+                                                    //           .message ??
+                                                    //       '',
+                                                    //   maxLines: 2,
+                                                    //   overflow:
+                                                    //       TextOverflow.ellipsis,
+                                                    //   style: PMT.appStyle(12,
+                                                    //       fontColor: ColorConstant
+                                                    //           .grey71,
+                                                    //       fontWeight:
+                                                    //           FontWeight.w600),
+                                                    // ),
+                                                    SizedBox(
+                                                      height: 50,
+                                                      child: Html(
+                                                          shrinkWrap: true,
+                                                          data: controller
+                                                                  .noticeBoardModel
+                                                                  .value
+                                                                  .notificationlist?[
+                                                                      index]
+                                                                  .message ??
+                                                              ''),
+                                                    ),
+                                                    SizedBox(
+                                                      height: getHeight(5),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
-                                            height: getHeight(5),
-                                          ),
-                                          Html(
-                                              data: controller
-                                                      .noticeBoardModel
-                                                      .value
-                                                      .notificationlist?[index]
-                                                      .message ??
-                                                  ''),
-                                          // Text(
-                                          //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                                          //   style: PMT.appStyle(14,
-                                          //       fontColor: ColorConstant.grey71),
-                                          // ),
-                                          SizedBox(
-                                            height: getHeight(5),
-                                          ),
-                                          Text(
-                                            controller.formatRelativeTimeOrDate(
-                                                controller
-                                                        .noticeBoardModel
-                                                        .value
-                                                        .notificationlist?[
-                                                            index]
-                                                        .date ??
-                                                    DateTime.now()),
-                                            style: PMT.appStyle(13,
-                                                fontColor:
-                                                    ColorConstant.greyB8),
+                                            height: 30,
                                           )
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: getWidth(20),
+                                    Text(
+                                      controller.formatRelativeTimeOrDate(
+                                          controller
+                                                  .noticeBoardModel
+                                                  .value
+                                                  .notificationlist?[index]
+                                                  .publishDate ??
+                                              DateTime.now()),
+                                      style: PMT.appStyle(12,
+                                          fontWeight: FontWeight.w600),
                                     ),
-                                    CustomImageView(
-                                      height: getHeight(65),
-                                      width: getHeight(65),
-                                      radius: BorderRadius.circular(18),
-                                      imagePath:
-                                          ImageConstant.imgTestNoticeBoard,
-                                    )
                                   ],
                                 ),
                                 SizedBox(
-                                  height: getHeight(20),
-                                ),
-                                Container(
-                                  height: 1,
-                                  color: ColorConstant.greyDD,
-                                ),
-                                SizedBox(
-                                  height: getHeight(15),
+                                  height: getHeight(30),
                                 ),
                               ],
                             );

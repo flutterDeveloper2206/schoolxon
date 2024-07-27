@@ -49,6 +49,8 @@ class HomeScreenController extends GetxController {
         if (value.statusCode == 200) {
           attendanceModel.value = (value.body as List)
               .map((data) => AttendanceModel.fromJson(data))
+              .toList()
+              .reversed
               .toList();
           isLoading.value = false;
         } else {

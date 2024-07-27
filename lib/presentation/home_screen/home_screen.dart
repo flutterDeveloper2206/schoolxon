@@ -372,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             buildGridItem(
                               svgPath: ImageConstant.icFees,
                               label: AppString.fees,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icLeave,
@@ -384,17 +384,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             buildGridItem(
                               svgPath: ImageConstant.icNotepad,
                               label: AppString.notePad,
-                              onTap: (){},
+                              onTap: () {
+                                Get.toNamed(
+                                    AppRoutes.noteBookSubjectScreenRout);
+                              },
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icBus,
                               label: AppString.bus,
-                              onTap: (){},
+                              onTap: () {},
                             ),
-
-
-
-
                             buildGridItem(
                               svgPath: ImageConstant.icHomeWork,
                               label: AppString.homework,
@@ -405,33 +404,38 @@ class _HomeScreenState extends State<HomeScreen> {
                             buildGridItem(
                               svgPath: ImageConstant.icLiveClass,
                               label: AppString.livClass,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icMarks,
                               label: AppString.marks,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icDiary,
                               label: AppString.dairy,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icTimeTable,
                               label: AppString.timeTable,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icExam,
                               label: AppString.exam,
-                              onTap: (){},
+                              onTap: () {},
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icAttendance,
                               label: AppString.attendence,
+                              onTap: () {},
+                            ),
+                            buildGridItem(
+                              svgPath: ImageConstant.icDiary,
+                              label: AppString.noticeBoard,
                               onTap: () {
-                                Get.toNamed(AppRoutes.attendanceScreenRout);
+                                Get.toNamed(AppRoutes.noticeBoardScreenRout);
                               },
                             ),
                           ],
@@ -499,7 +503,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: getHeight(30),
                         ),*/
-
                       ],
                     ),
                   ),
@@ -511,9 +514,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     ));
   }
-  Widget buildGridItem({String?svgPath, String? label, required Function() onTap}) {
+
+  Widget buildGridItem(
+      {String? svgPath, String? label, required Function() onTap}) {
     return GestureDetector(
-      onTap:onTap,
+      onTap: onTap,
       child: Column(
         children: [
           Container(
@@ -542,5 +547,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }

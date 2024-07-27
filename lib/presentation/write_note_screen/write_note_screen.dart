@@ -29,6 +29,7 @@ class WriteNoteScreen extends GetWidget<WriteNoteScreenController> {
                     onPressed: () {},
                     icon: CustomImageView(
                       svgPath: ImageConstant.icFilterSearch,
+                      color: ColorConstant.primaryWhite,
                     ))
               ],
             )),

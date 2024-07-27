@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ColorConstant {
   static const Color primaryWhite = Color(0xFFffffff);
-  static const Color primaryRed = Color(0xFFF14A4A);
+  static const Color primaryRed = Color(0xFFFB6C6C);
   static const Color primaryBlue = Color(0xFF497E78);
 
   static const Color primaryBlack = Color(0xFF000000);
@@ -21,6 +21,9 @@ class ColorConstant {
   static const Color grey71 = Color(0xFF717171);
   static const Color greyB8 = Color(0xFFB8B8B8);
   static const Color greyDD = Color(0xFFDDE4EA);
+  static const Color greyD9 = Color(0xFFD9D9D9);
+  static const Color grey9D = Color(0xFF9D8D8D);
+  static const Color greyF1 = Color(0xFFF1F2F4);
 
   static Color appBarShadow = const Color(0xFF8BA1B7).withOpacity(0.80);
   static Color cardColor = const Color.fromRGBO(0, 34, 66, 0.03);

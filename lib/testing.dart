@@ -1,12 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter/widgets.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/widgets/common_appBar.dart';
-
-import 'core/utils/app_fonts.dart';
 
 void main() {
   runApp(MyApp());
