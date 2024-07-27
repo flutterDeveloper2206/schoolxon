@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:schoolxon/core/utils/network_url.dart';
+import 'package:schoolxon/core/utils/progress_dialog_utils.dart';
 import 'package:schoolxon/presentation/home_screen/controller/home_screen_controller.dart';
 import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/bouncing_button.dart';
@@ -487,8 +488,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         /*Padding(
                           padding: const EdgeInsets.only(
+<<<<<<<<< Temporary merge branch 1
                               left: 18, right: 18, bottom: 18, top: 10),
                           child: Row(
+=========
+                              left: 25, top: 25, right: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+>>>>>>>>> Temporary merge branch 2
                             children: [
                               Text(
                                 AppString.academics,
