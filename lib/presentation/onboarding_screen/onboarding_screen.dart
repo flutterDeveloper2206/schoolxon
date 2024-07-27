@@ -81,14 +81,14 @@ class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
                           controller: onBoardingController.pageController,
                           itemCount: controller.onBoardingData.length,
                           itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 369),
+                            padding: const EdgeInsets.only(bottom: 385),
                             child: OnBoardingContent(
                               image: controller.onBoardingData[index]["image"],
                             ),
                           ),
                         ),
                         Positioned(
-                          bottom: 40,
+                          bottom: 50,
                           left: 10,
                           right: 10,
                           child: Column(
