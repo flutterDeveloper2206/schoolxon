@@ -54,6 +54,7 @@ class ImageConstant {
   static String backGround2 = 'assets/icons/png/Background2.png';
   static String icOnboarding2 = 'assets/icons/svg/ic_Onboarding2.svg';
   static String imgPlaceHolder = 'assets/images/png/img_placeHolder.png';
+  static String marksCalender = 'assets/images/png/marks_calender.png';
   static String image = 'assets/icons/png/image.png';
   static String pdf1 = 'assets/icons/png/pdf1.png';
   static String pdf2 = 'assets/icons/png/pdf2.png';

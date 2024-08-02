@@ -36,6 +36,7 @@ class AppString {
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
   static const String logIn = 'Login';
+  static const String marks = 'Marks';
   static const String due = 'Due';
   static const String addDescription = "Add Description";
   static const String all = "All";
@@ -117,6 +118,8 @@ class AppString {
   static const String sickLeave = "Sick Leave";
   static const String casualLeave = "Casual Leave";
   static const String startDate = "Start Date";
+  static const String pickDate = "Pick Date";
+  static const String chooseDate = "Choose Date";
   static const String endDate = "End Date";
   static const String description = "Description";
   static const String comments = "Comments";
@@ -129,7 +132,6 @@ class AppString {
   static const String bus = "Bus";
   static const String homeWork = "Home Work";
   static const String livClass = "Liv Class";
-  static const String marks = "Marks";
   static const String dairy = "Dairy";
   static const String timeTable = "Time Table";
   static const String exam = "Exam";
