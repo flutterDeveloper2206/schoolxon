@@ -15,6 +15,7 @@ class NetworkUrl {
   static const String noticeBoardUrl = '${baseUrl}notice/showallnotice/';
   static const String leaveDownloadUrl = '${baseUrl}leave/download_docs/';
   static const String subjectUrl = '${baseUrl}subjects/showallsubjects/';
+  static const String timeTableUrl = '${baseUrl}timetable/gettimetable/';
   static const String showAllHomeWorkUrl =
       '${baseUrl}homework/showallhomeworks/';
   static const String homeWorkDetailsUrl =

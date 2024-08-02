@@ -420,7 +420,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             buildGridItem(
                               svgPath: ImageConstant.icTimeTable,
                               label: AppString.timeTable,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(AppRoutes.timeTableScreenRout);
+                              },
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icExam,
