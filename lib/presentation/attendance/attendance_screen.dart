@@ -265,7 +265,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                                           .copyWith(
                                                               color:
                                                                   ColorConstant
-                                                                      .greyB3,
+                                                                      .grey9e,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,
@@ -322,7 +322,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                                                           .copyWith(
                                                               color:
                                                                   ColorConstant
-                                                                      .greyB3,
+                                                                      .grey9e,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,

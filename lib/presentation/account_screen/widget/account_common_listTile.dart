@@ -44,8 +44,7 @@ class AccountCommonListTile extends StatelessWidget {
                 children: [
                   if (icon != null)
                     Container(
-                        height: getHeight(45),
-                        width: getHeight(45),
+                        width: getWidth(45),
                         padding: EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             color: ColorConstant.greyD9,
@@ -53,7 +52,7 @@ class AccountCommonListTile extends StatelessWidget {
                         child: CustomImageView(imagePath: icon)),
                   if (icon != null)
                     SizedBox(
-                      width: getWidth(30),
+                      width: getWidth(11),
                     ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

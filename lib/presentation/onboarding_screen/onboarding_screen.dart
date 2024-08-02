@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
 import 'package:schoolxon/core/utils/string_constant.dart';
-import 'package:schoolxon/widgets/custom_image_view.dart';
 import '../../core/utils/app_fonts.dart';
 import '../../core/utils/color_constant.dart';
 import '../../widgets/custom_elavated_button.dart';
@@ -47,8 +46,7 @@ class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
                   color: ColorConstant.yellow39,
                   borderRadius: BorderRadius.circular(40),
                   image: DecorationImage(
-                      image:
-                          AssetImage(onBoardingController.currentPage.value == 0
+                      image: AssetImage(onBoardingController.currentPage.value == 0
                               ? ImageConstant.backGround
                               : onBoardingController.currentPage.value == 1
                                   ? ImageConstant.backGround1
@@ -81,7 +79,7 @@ class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
                           controller: onBoardingController.pageController,
                           itemCount: controller.onBoardingData.length,
                           itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 369),
+                            padding: const EdgeInsets.only(bottom: 400),
                             child: OnBoardingContent(
                               image: controller.onBoardingData[index]["image"],
                             ),
@@ -143,7 +141,7 @@ class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
                               Obx(
                                 () => Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 60, left: 60, top: 50),
+                                      right: 60, left: 60, top: 60),
                                   child: AppElevatedButton(
                                     buttonShadowColor: Colors.transparent,
                                     buttonName: onBoardingController

@@ -198,7 +198,7 @@ class NoticeBoardScreen extends GetWidget<NoticeBoardScreenController> {
                                                     //           FontWeight.w600),
                                                     // ),
                                                     SizedBox(
-                                                      height: 50,
+                                                      height: 110,
                                                       child: Html(
                                                           shrinkWrap: true,
                                                           data: controller

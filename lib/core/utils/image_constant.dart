@@ -49,6 +49,7 @@ class ImageConstant {
   static String imgOnboarding4 = 'assets/images/png/Onboarding4.png';
   static String icOnboarding1 = 'assets/icons/png/ic_Onboarding1.png';
   static String backGround = 'assets/icons/png/Background.png';
+  static String backGround4 = 'assets/icons/png/Untitled.png';
   static String backGround1 = 'assets/icons/png/Background1.png';
   static String backGround2 = 'assets/icons/png/Background2.png';
   static String icOnboarding2 = 'assets/icons/svg/ic_Onboarding2.svg';
