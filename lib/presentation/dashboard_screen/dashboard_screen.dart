@@ -20,8 +20,8 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
       body: Obx(() => controller.pages[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
+          backgroundColor: ColorConstant.primaryWhite,
           type: BottomNavigationBarType.fixed,
-
           currentIndex: controller.selectedIndex.value,
           onTap: controller.onItemTapped,
           items: [

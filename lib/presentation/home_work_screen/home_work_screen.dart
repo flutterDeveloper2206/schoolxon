@@ -76,7 +76,7 @@ class HomeWorkScreen extends GetWidget<HomeWorkScreenController> {
                         height: getHeight(30),
                       ),
                       SizedBox(
-                        height: getHeight(30),
+                        height: getHeight(40),
                         child: Obx(
                           () => ListView.builder(
                             shrinkWrap: true,
