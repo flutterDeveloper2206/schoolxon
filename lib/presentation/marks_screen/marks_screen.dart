@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../../core/app_export.dart';
+import '../../routes/app_routes.dart';
 import '../../widgets/common_appBar.dart';
 import '../../widgets/custom_elavated_button.dart';
 import 'controller/marks_screen_controller.dart';
@@ -84,9 +85,9 @@ class MarksScreen extends GetWidget<MarksScreenController> {
                       () => ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: controller.visibleItems.length,
+                    itemCount: controller.marksModel.value.examlist?.length??1,
                     itemBuilder: (context, index) {
-                      final day = controller.visibleItems[index];
+                      final day = controller.marksModel.value.examlist?[index].name??'--';
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: ExpansionWidget(
@@ -107,7 +108,7 @@ class MarksScreen extends GetWidget<MarksScreenController> {
                                      SizedBox(width: getWidth(10)),
                                      Expanded(
                                        child: Text(
-                                         day,
+                                         day!,
                                          style: PMT.style(16,
                                              fontColor: ColorConstant.primaryBlack,
                                              fontWeight: FontWeight.w600),
@@ -125,7 +126,7 @@ class MarksScreen extends GetWidget<MarksScreenController> {
                             padding: const EdgeInsets.symmetric(horizontal: 18),
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('you have scored 335 marks ',style: PMT.style(14,
+                                Text(controller.marksModel.value.examlist?[index].exam??'--',style: PMT.style(14,
                                     fontColor: ColorConstant.green2D,
                                     fontWeight: FontWeight.bold)),
                                 SizedBox(height: getHeight(10),),
@@ -143,8 +144,10 @@ class MarksScreen extends GetWidget<MarksScreenController> {
                                 SizedBox(height: getHeight(15),),
                                 AppElevatedButton(
                                   buttonName: AppString.viewMarks,
-                                  isDisable: true,
-                                  onPressed: () {},
+                                  isDisable: false,
+                                  onPressed: () {
+                                    Get.toNamed(AppRoutes.pdfScreenRout);
+                                  },
                                 )
                               ],
                             ),

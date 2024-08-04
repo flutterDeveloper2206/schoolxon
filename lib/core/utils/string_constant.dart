@@ -150,6 +150,7 @@ class AppString {
   static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
+  static const String marksSheet = "Marks Sheet";
   static const String deleteLeave = "Delete Leave";
   static const String leaveDetails = "Leave Details";
   static const String handIn = "Hand In";

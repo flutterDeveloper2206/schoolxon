@@ -38,6 +38,8 @@ import 'package:schoolxon/presentation/notification_screen/binding/notification_
 import 'package:schoolxon/presentation/notification_screen/notification_screen.dart';
 import 'package:schoolxon/presentation/onboarding_screen/binding/onboarding_screen_binding.dart';
 import 'package:schoolxon/presentation/onboarding_screen/onBoarding_screen.dart';
+import 'package:schoolxon/presentation/pdf_screen/binding/pdf_screen_binding.dart';
+import 'package:schoolxon/presentation/pdf_screen/pdf_screen.dart';
 import 'package:schoolxon/presentation/profile_screen/binding/profile_screen_binding.dart';
 import 'package:schoolxon/presentation/profile_screen/profile_screen.dart';
 import 'package:schoolxon/presentation/select_school_screen/binding/select_school_screen_binding.dart';
@@ -83,6 +85,7 @@ class AppRoutes {
   static const String submitHomeWorkScreenRout = '/submitHomeWorkScreenRout';
   static const String timeTableScreenRout = '/timeTableScreenRout';
   static const String marksScreenRout = '/marksScreenRout';
+  static const String pdfScreenRout = '/pdfScreenRout';
 
   static const String attendanceScreenRout = '/attendanceScreenRout';
 
@@ -276,6 +279,13 @@ class AppRoutes {
         page: () => const MarksScreen(),
         bindings: [
           MarksScreenBinding(),
+        ],
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: pdfScreenRout,
+        page: () =>  PDFScreen(),
+        bindings: [
+          PDFScreenBinding(),
         ],
         transitionDuration: const Duration(milliseconds: 150)),
   ];
