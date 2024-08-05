@@ -410,7 +410,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             buildGridItem(
                               svgPath: ImageConstant.icMarks,
                               label: AppString.marks,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(AppRoutes.marksScreenRout);
+                              },
                             ),
                             buildGridItem(
                               svgPath: ImageConstant.icDiary,

@@ -20,17 +20,9 @@ class PDFScreen extends GetWidget<PDFScreenController> {
             title: AppString.marksSheet,
             elevation: 0,
           )),
-      body:  Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            SfPdfViewer.network(
-              'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
-            ),
-          ],
-        ),
+      body: SfPdfViewer.network(
+        'https://icseindia.org/document/sample.pdf',
       ),
     );
   }
-
 }
