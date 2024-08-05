@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
       fallbackLocale: const Locale('en', 'US'),
       title: 'SCHOOL XON',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.splashScreenRoute,
+      initialRoute: AppRoutes.marksScreenRout,
       getPages: AppRoutes.pages,
       // ),
     );

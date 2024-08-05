@@ -39,6 +39,7 @@ class ColorConstant {
   static const Color grey9e = Color(0xFF9E9E9E);
   static const Color greyE0 = Color(0xFFE0E0E0);
   static const Color greyEE = Color(0xFFEEEEEE);
+  static const Color greyB4 = Color(0xFF819AB4);
   static const Color greyB3 = Color(0xFFB3B3B3);
   static const Color greyF5 = Color(0xFFF5F5F5);
   static const Color grey72 = Color(0xFF777272);

@@ -28,6 +28,7 @@ class AppString {
   static const String subject = "Subject";
   static const String enterSubject = "Enter Subject";
   static const String sendMessage = "Send Message";
+  static const String viewMarks = "View Marks";
   static const String leaves = "Leaves";
   static const String applyLeaves = "Apply Leave";
   static const String leaveDashboard = "Leave Dashboard";
@@ -36,6 +37,7 @@ class AppString {
   static const String noticeBoard = "Notice Board";
   static const String searchSchool = "Search School";
   static const String logIn = 'Login';
+  static const String marks = 'Marks';
   static const String due = 'Due';
   static const String addDescription = "Add Description";
   static const String all = "All";
@@ -117,6 +119,9 @@ class AppString {
   static const String sickLeave = "Sick Leave";
   static const String casualLeave = "Casual Leave";
   static const String startDate = "Start Date";
+  static const String pickDate = "Pick Date";
+  static const String termiIresults = "Term II Results";
+  static const String chooseDate = "Choose Date";
   static const String endDate = "End Date";
   static const String description = "Description";
   static const String comments = "Comments";
@@ -129,7 +134,6 @@ class AppString {
   static const String bus = "Bus";
   static const String homeWork = "Home Work";
   static const String livClass = "Liv Class";
-  static const String marks = "Marks";
   static const String dairy = "Dairy";
   static const String timeTable = "Time Table";
   static const String exam = "Exam";
@@ -146,6 +150,7 @@ class AppString {
   static const String wordsFound = "Words Found";
   static const String attachments = "Attachments";
   static const String applyLeave = "Apply Leave";
+  static const String marksSheet = "Marks Sheet";
   static const String deleteLeave = "Delete Leave";
   static const String leaveDetails = "Leave Details";
   static const String handIn = "Hand In";

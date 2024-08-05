@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/core/utils/image_constant.dart';
 import 'package:schoolxon/core/utils/size_utils.dart';
 import 'package:schoolxon/core/utils/string_constant.dart';
@@ -79,7 +80,7 @@ class OnBoardingScreen extends GetWidget<OnBoardingScreenController> {
                           controller: onBoardingController.pageController,
                           itemCount: controller.onBoardingData.length,
                           itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 400),
+                            padding:  EdgeInsets.only(bottom: getHeight(360)),
                             child: OnBoardingContent(
                               image: controller.onBoardingData[index]["image"],
                             ),

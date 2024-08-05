@@ -21,6 +21,7 @@ class ImageConstant {
   static String icProfile = 'assets/icons/svg/ic_profile.svg';
   static String icRight = 'assets/icons/svg/ic_right.svg';
   static String icPin = 'assets/icons/svg/ic_pin.svg';
+  static String icMarksFile = 'assets/icons/svg/file-text.svg';
   static String icLogo = 'assets/icons/svg/ic_logo.svg';
   static String icFees = 'assets/icons/svg/ic_fees.svg';
   static String icClip = 'assets/icons/svg/ic_clip.svg';
@@ -54,6 +55,7 @@ class ImageConstant {
   static String backGround2 = 'assets/icons/png/Background2.png';
   static String icOnboarding2 = 'assets/icons/svg/ic_Onboarding2.svg';
   static String imgPlaceHolder = 'assets/images/png/img_placeHolder.png';
+  static String marksCalender = 'assets/images/png/marks_calender.png';
   static String image = 'assets/icons/png/image.png';
   static String pdf1 = 'assets/icons/png/pdf1.png';
   static String pdf2 = 'assets/icons/png/pdf2.png';
