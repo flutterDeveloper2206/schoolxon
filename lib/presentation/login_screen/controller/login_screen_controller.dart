@@ -8,6 +8,7 @@ import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/custom_snackbar.dart';
 
 import '../../../ApiServices/api_service.dart';
+import '../../../core/utils/common_constant.dart';
 import '../../../core/utils/network_url.dart';
 import '../../../core/utils/progress_dialog_utils.dart';
 
@@ -53,6 +54,7 @@ class LoginScreenController extends GetxController {
               headerText: value.toString(), error: true);
         } else {
           if (value.statusCode == 200) {
+            fcmTokenApi();
             isLoading.value = false;
             loginModel.value = LoginModel.fromJson(value.body);
             await PrefUtils.putObject(PrefsKey.loginModel, loginModel.value);
@@ -66,6 +68,42 @@ class LoginScreenController extends GetxController {
           } else {
             isLoading.value = false;
 
+            ProgressDialogUtils.showTitleSnackBar(
+                headerText: AppString.something, error: true);
+          }
+        }
+      });
+    } catch (error) {
+      isLoading.value = false;
+
+      ProgressDialogUtils.showTitleSnackBar(
+          headerText: AppString.something, error: true);
+    }
+  }
+  Future<void> fcmTokenApi() async {
+    isLoading.value = true;
+
+    try {
+      await ApiService()
+          .callPostApi(
+              body: FormData({
+                'app_key': CommonConstant.instance.getFcmToken(),
+              }),
+              headerWithToken: false,
+              showLoader: false,
+              url: '${NetworkUrl.fcmTokenUrl}705/342/')
+          .then((value) async {
+        print('value.runtimeType == String ${value}');
+        print('value.runtimeType == String ${value.statusCode}');
+        if (value.runtimeType == String) {
+          isLoading.value = false;
+          ProgressDialogUtils.showTitleSnackBar(
+              headerText: value.toString(), error: true);
+        } else {
+          if (value.statusCode == 200) {
+            isLoading.value = false;
+          } else {
+            isLoading.value = false;
             ProgressDialogUtils.showTitleSnackBar(
                 headerText: AppString.something, error: true);
           }

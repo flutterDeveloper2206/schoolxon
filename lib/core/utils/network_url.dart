@@ -4,6 +4,7 @@ class NetworkUrl {
 
   static const String getSchoolUrl = '${baseUrl}Schdetails/index';
   static const String loginUrl = '${baseUrl}AuthStudent/loginstudent/';
+  static const String fcmTokenUrl = '${baseUrl}AuthStudent/studentAppKey/';
   static const String getStudentByIdUrl = '${baseUrl}AuthStudent/getstudent/';
   static const String applyLeaveUrl = '${baseUrl}leave/apply/';
   static const String removeLeaveUrl = '${baseUrl}leave/removeleave/';

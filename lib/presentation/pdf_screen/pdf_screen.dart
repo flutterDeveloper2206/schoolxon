@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../../core/utils/color_constant.dart';
 import '../../core/utils/size_utils.dart';
 import '../../core/utils/string_constant.dart';
@@ -20,9 +19,9 @@ class PDFScreen extends GetWidget<PDFScreenController> {
             title: AppString.marksSheet,
             elevation: 0,
           )),
-      body: SfPdfViewer.network(
+      body: /*SfPdfViewer.network(
         'https://icseindia.org/document/sample.pdf',
-      ),
+      ),*/Container()
     );
   }
 }
