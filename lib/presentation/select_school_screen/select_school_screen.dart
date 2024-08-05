@@ -73,8 +73,6 @@ class SelectSchoolScreen extends GetWidget<SelectSchoolScreenController> {
                           ),
                           itemCount: controller.filterSchool.length,
                           itemBuilder: (context, index) {
-                            print(
-                                'SCHOOL NAME = ${controller.filterSchool[index].name}  ${controller.filterSchool[index].baseUrl ?? ''}uploads/school_content/logo/app_logo/${controller.filterSchool[index].appLogo ?? ''}');
                             SchoolModel item = controller.filterSchool[index];
 
                             return Bounce(

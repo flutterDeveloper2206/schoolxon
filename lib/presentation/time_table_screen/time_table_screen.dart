@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:schoolxon/presentation/time_table_screen/controller/time_table_screen_controller.dart';
@@ -61,40 +62,25 @@ class TimeTableScreen extends GetWidget<TimeTableScreenController> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: getWidth(12)),
-                  child: Obx(
-                    () => CalendarControllerProvider(
-                      controller: controller.eventController.value,
-                      child: DayView(
-                        dayTitleBuilder: DayHeader.hidden,
-                        minDay:
-                            DateTime.now().subtract(const Duration(days: 30)),
-                        maxDay: DateTime.now().add(const Duration(days: 30)),
-                        initialDay: DateTime.now(),
-                        heightPerMinute: 1.8,
-                        startHour: 7,
-                        verticalLineOffset: 0,
-                        // timeLineBuilder: (date) {
-                        //   return Text('${date.hour}');
-                        // },
-                        eventTileBuilder: (date, events, boundary, start, end) {
-                          if (events.isNotEmpty) {
-                            final event = events.first;
-                            final startTime = event.startTime ?? DateTime.now();
-                            final endTime = event.endTime ?? DateTime.now();
-                            return controller.buildTimeTableItem(
-                              time: controller.formatTime(start),
-                              subject: event.title ?? 'No Subject',
-                              startTime: controller.formatTime(startTime),
-                              endTime: controller.formatTime(endTime),
-                              color: event.color ?? Colors.grey.shade300,
-                            );
-                          }
-                          return SizedBox.shrink();
-                        },
-                      ),
-                    ),
+                child: Obx(
+                  () => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.timeTableList.length,
+                    itemBuilder: (context, index) {
+                      return controller.buildTimeTableItem(
+                        name: controller.timeTableList[index].name ?? '',
+                        roomNo: controller.timeTableList[index].roomNo ?? '',
+                        subject: controller.timeTableList[index].subjectName ??
+                            'No Subject',
+                        startTime: controller.formatTime(
+                            controller.stringToDateTime(
+                                controller.timeTableList[index].startTime)),
+                        endTime: controller.formatTime(
+                            controller.stringToDateTime(
+                                controller.timeTableList[index].endTime)),
+                        color: controller.randomColor().withOpacity(0.2),
+                      );
+                    },
                   ),
                 ),
               ),

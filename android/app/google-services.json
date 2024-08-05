@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1007687234784",
+    "project_id": "schoolxon-d04e5",
+    "storage_bucket": "schoolxon-d04e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007687234784:android:2330f482609084fd0d4c85",
+        "android_client_info": {
+          "package_name": "com.example.schoolxon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1_loUK7t6jofRUm42X7g8T2OyqUyB7Ms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

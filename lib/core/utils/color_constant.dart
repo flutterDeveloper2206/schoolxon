@@ -6,6 +6,7 @@ class ColorConstant {
   static const Color blueF9 = Color(0xFF56A8F9);
   static const Color blueFC = Color(0xFFA2CFFC);
   static const Color primaryBlue = Color(0xFF497E78);
+  static const Color primaryYellow = Color(0xFFE3AA25);
 
   static const Color primaryBlack = Color(0xFF000000);
   static const Color yellowFA = Color(0xFFFAE789);
@@ -24,6 +25,7 @@ class ColorConstant {
   static const Color greyB8 = Color(0xFFB8B8B8);
   static const Color greyDD = Color(0xFFDDE4EA);
   static const Color greyD9 = Color(0xFFD9D9D9);
+  static const Color grey54 = Color(0xFF545454);
   static const Color grey9D = Color(0xFF9D8D8D);
   static const Color greyF1 = Color(0xFFF1F2F4);
 

@@ -2,11 +2,17 @@ import 'package:schoolxon/routes/app_routes.dart';
 import 'package:schoolxon/widgets/error_screen.dart';
 
 import 'core/app_export.dart';
+import 'core/services/push_notification.dart';
 import 'core/utils/initial_bindings.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await FlutterDownloader.initialize(
       debug:
@@ -19,8 +25,20 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    setUpNotification();
+
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override
@@ -39,5 +57,9 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.pages,
       // ),
     );
+  }
+
+  Future<void> setUpNotification() async {
+    FirebaseNotifications(context);
   }
 }
