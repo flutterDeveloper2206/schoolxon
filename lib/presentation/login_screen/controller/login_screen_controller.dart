@@ -54,13 +54,13 @@ class LoginScreenController extends GetxController {
               headerText: value.toString(), error: true);
         } else {
           if (value.statusCode == 200) {
-            fcmTokenApi();
             isLoading.value = false;
             loginModel.value = LoginModel.fromJson(value.body);
             await PrefUtils.putObject(PrefsKey.loginModel, loginModel.value);
             await PrefUtils.setString(PrefsKey.isLogin, '1');
             bool set = await PrefUtils.setString(
                 PrefsKey.studentID, loginModel.value.student?.studentId ?? '');
+            fcmTokenApi();
 
             ProgressDialogUtils.showTitleSnackBar(
                 headerText: AppString.loginSuccessfully);
@@ -80,18 +80,20 @@ class LoginScreenController extends GetxController {
           headerText: AppString.something, error: true);
     }
   }
-  Future<void> fcmTokenApi() async {
-    isLoading.value = true;
 
+  Future<void> fcmTokenApi() async {
+    String schoolId = PrefUtils.getString(PrefsKey.selectSchoolId);
+    String studentId = PrefUtils.getString(PrefsKey.studentID);
+    String token = await CommonConstant.instance.getFcmToken();
     try {
       await ApiService()
           .callPostApi(
               body: FormData({
-                'app_key': CommonConstant.instance.getFcmToken(),
+                'app_key': token,
               }),
               headerWithToken: false,
               showLoader: false,
-              url: '${NetworkUrl.fcmTokenUrl}705/342/')
+              url: '${NetworkUrl.fcmTokenUrl}${schoolId}/${studentId}/')
           .then((value) async {
         print('value.runtimeType == String ${value}');
         print('value.runtimeType == String ${value.statusCode}');
