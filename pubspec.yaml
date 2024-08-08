@@ -59,6 +59,7 @@ dependencies:
   image_cropper: ^7.1.0
   firebase_core: ^3.3.0
   expansion_widget: ^0.1.0
+  syncfusion_flutter_core: ^26.2.8
 
 
 

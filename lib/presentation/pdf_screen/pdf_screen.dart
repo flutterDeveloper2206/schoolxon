@@ -19,9 +19,9 @@ class PDFScreen extends GetWidget<PDFScreenController> {
             title: AppString.marksSheet,
             elevation: 0,
           )),
-      body: /*SfPdfViewer.network(
+      body: SfPdfViewer.network(
         'https://icseindia.org/document/sample.pdf',
-      ),*/Container()
+      ),
     );
   }
 }
