@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:schoolxon/core/app_export.dart';
 import 'package:schoolxon/core/utils/color_constant.dart';
 
+import '../presentation/home_screen/controller/home_screen_controller.dart';
+
 enum WeekStartFrom {
   Sunday,
   Monday,
@@ -278,7 +280,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
     });
     widget.onDateChange?.call(selectedDate);
   }
-
+  HomeScreenController controller = Get.put(HomeScreenController());
   _onBackClick() {
     carouselController.nextPage();
   }
@@ -434,7 +436,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                             onTap: _isNextDisabled()
                                 ? null
                                 : () {
-                                    _onNextClick();
+                              _onNextClick();
                                   },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -634,7 +636,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                       widget.scrollPhysics ?? const ClampingScrollPhysics(),
                   height: 75,
                   viewportFraction: 1.4,
-                  enableInfiniteScroll: false,
+                  enableInfiniteScroll: true,
                   reverse: true,
                   onPageChanged: (index, reason) {
                     onWeekChange(index);

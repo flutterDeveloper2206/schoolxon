@@ -89,10 +89,12 @@ class LoginScreenController extends GetxController {
               body: FormData({
                 'app_key': CommonConstant.instance.getFcmToken(),
               }),
+
               headerWithToken: false,
               showLoader: false,
               url: '${NetworkUrl.fcmTokenUrl}705/342/')
           .then((value) async {
+            print('||||||||||||||||||||||||||||||||||||||||||||||||||||||||||${CommonConstant.instance.getFcmToken()}');
         print('value.runtimeType == String ${value}');
         print('value.runtimeType == String ${value.statusCode}');
         if (value.runtimeType == String) {

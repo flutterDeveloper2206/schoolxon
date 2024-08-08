@@ -12,6 +12,9 @@ import '../../../core/utils/progress_dialog_utils.dart';
 import '../../attendance/model/attendance_model.dart';
 
 class HomeScreenController extends GetxController {
+  DateTime now = DateTime.now();
+  DateTime firstDayOfMonth = DateTime(DateTime.now().year, DateTime.now().month, 1);
+  DateTime lastDayOfMonth = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
   RxBool isLoading = false.obs;
   Rx<StudentByIdModel> studentModel = StudentByIdModel().obs;
   RxList<AttendanceModel> attendanceModel = <AttendanceModel>[].obs;
@@ -32,8 +35,11 @@ class HomeScreenController extends GetxController {
 
     // try {
     await ApiService()
-        .callGetApi(
-            body: FormData({}),
+        .callPostApi(
+            body: FormData({
+              'start_day': firstDayOfMonth,
+              'end_day':lastDayOfMonth
+            }),
             headerWithToken: false,
             showLoader: true,
             url: '${NetworkUrl.attendanceUrl}${schoolId}/${studentId}')
@@ -79,7 +85,9 @@ class HomeScreenController extends GetxController {
     try {
       await ApiService()
           .callGetApi(
-              body: FormData({}),
+              body: FormData({
+
+              }),
               headerWithToken: false,
               showLoader: loading,
               url: '${NetworkUrl.getStudentByIdUrl}${schoolId}/$studentId')

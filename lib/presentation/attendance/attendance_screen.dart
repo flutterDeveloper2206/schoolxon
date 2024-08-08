@@ -122,6 +122,9 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: HorizontalWeekCalendar(
+              onWeekChange: (p0) {
+                controller.onWeekChange(p0.first, p0.last);
+              },
               monthColor: Colors.black,
               inactiveBackgroundColor: Colors.white,
               inactiveTextColor: Colors.grey,
@@ -129,7 +132,6 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
               borderRadius: BorderRadius.circular(15),
               initialDate: DateTime.now(), monthFormat: 'MMMM yyyy',
               minDate: DateTime(2022, 1, 1),
-
               maxDate: DateTime.now().add(Duration(days: 365)),
               // Set the inactive border color to green
             ),
@@ -137,7 +139,8 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
           Divider(height: 50, color: ColorConstant.whiteFB, thickness: 10),
           Expanded(
             child: Obx(
-              () => ListView.builder(
+              () => controller.attendanceModel.value.isNotEmpty?
+                  ListView.builder(
                 itemCount: controller.attendanceModel.length,
                 itemBuilder: (context, index) {
                   return Column(
@@ -380,7 +383,7 @@ class AttendanceScreen extends GetWidget<AttendanceScreenController> {
                     ],
                   );
                 },
-              ),
+              ):Center(child: Text(AppString.noRecordFound))
             ),
           ),
         ],

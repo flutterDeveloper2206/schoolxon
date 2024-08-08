@@ -135,7 +135,7 @@ class MarksScreen extends GetWidget<MarksScreenController> {
                                     fontColor: ColorConstant.grey9e,
                                     fontWeight: FontWeight.bold)),
                                 SizedBox(height: getHeight(15),),
-                                Text('Meet Info',style: PMT.style(18,
+                                Text('Meet Info',style: PMT.style(16,
                                     fontColor: ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.bold),),
                                 Text('Meet date oct 29, 2:59 PM  8 hours',style: PMT.style(16,

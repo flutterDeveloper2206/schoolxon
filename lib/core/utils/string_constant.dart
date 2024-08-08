@@ -77,6 +77,7 @@ class AppString {
   static const String forgetPassword = 'Forget Password';
   static const String language = 'Language';
   static const String notification = 'Notification';
+  static const String noRecordFound = 'No record found';
 
   static const String something = 'Something went wrong!';
   static const String byClicking = 'By Clicking This button You Agree To The ';
